@@ -30,7 +30,7 @@ public class StatisticsManager : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        Debug.LogWarning(this.gameObject.name);
+      
 
         //  startTime = ServerRequest.instance.startTime;
         attempStartTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
@@ -64,6 +64,7 @@ public class StatisticsManager : MonoBehaviour
     {
         // SendAttemptStatistics();
         // Debug.Log("OnSendStatisticsclicked()");
+       
         if (!Statistics.android)
         {
             NetworkManager.InvokeServerMethod("OnSendStatisticsRPC", this.gameObject.name);
@@ -73,7 +74,15 @@ public class StatisticsManager : MonoBehaviour
 
     public void OnSendStatisticsRPC()
     {
-        SendAttemptStatistics();
+        TovaDataGet.ReturnTovaData().SetSessionEnd(true);
+        Debug.Log("SendAttemptStatistics");
+        Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats");
+
+        Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
+        Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
+        Debug.Log("impusivity manager " + TovaDataGet.ReturnTovaData().GetTotalImpsScore());
+        Invoke("SendAttemptStatistics", 3);
+        //SendAttemptStatistics();
         Debug.Log("OnSendStatisticsclicked()");
     }
 
@@ -84,18 +93,23 @@ public class StatisticsManager : MonoBehaviour
             if (canEnterSendStatistics)
             {
                 Debug.Log("SendAttemptStatistics");
-
-                float TaR = 0;
+                Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats");
+                
+                Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
+                Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
+                Debug.Log("impusivity manager " + TovaDataGet.ReturnTovaData().GetTotalImpsScore());
+                //float TaR = 0;
                 float timeTaken = Time.timeSinceLevelLoad;
                 float typicalTime = stats.totalFlowerGrowth + 10 + NPCInstructionsConsumedSeconds;
                 float TiR = (float)timeTaken / (float)typicalTime;
                 float implusivityScore;
-                float TAS = stats.totalFlowerGrowth + 10;
-                float AAS = stats.flowerSustained + stats.wellSustained;
+                float TAS = TovaDataGet.ReturnTovaData().GetTAS();
+                float AAS = TovaDataGet.ReturnTovaData().GetActualTimeSpan();
                 float omissionScore;
-                float TFD = AAS - TAS;
+                float TFD = TovaDataGet.ReturnTovaData().GetActualTimeSpan() - TovaDataGet.ReturnTovaData().GetTAS();
                 float score;
 
+              
                 if (stats.flowerSustained == 0)
                 {
                     score = 0;
@@ -104,54 +118,32 @@ public class StatisticsManager : MonoBehaviour
                 else
                 {
                     score = ((float)stats.totalFlowerGrowth / (float)stats.flowerSustained) * 100;
-                    omissionScore = (float)((float)TAS / (AAS + Mathf.Epsilon));
-                }
-
-                if (stats.level == 1)
-                {
-                    DES = 0;
-                }
-                else
-                {
-                    DES = (1 - ((float)TFD / (float)TAS));
-                }
-
+                    omissionScore = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
+                }             
+                    DES = TovaDataGet.ReturnTovaData().GetTotalDES();
+                    DES = (DES * (1f / 5f)) + 1f;
                 if (stats.level == 1 || stats.level == 2)
                 {
 
 
                     // responseTime = (float)stats.wateringResponseTimeCounter / 1;                
 
-                    responseTime = (float)stats.wateringResponseTimeCounter / (stats.wateringResponseTimes);
-                    if (responseTime.ToString() == "NaN")
-                    {
-                        responseTime = 5;
-                    }
+                    responseTime =TovaDataGet.ReturnTovaData().GetTotalResponseTime();
+                   
 
 
                 }
                 else if (stats.level == 3)
                 {
 
-                    responseTime = (((float)stats.wateringResponseTimeCounter / (stats.wateringResponseTimes)) + ((float)stats.birdFlyingResponseTimeCounter / stats.birdFlyingResponseTimes)) / 2;
-
-                    if (responseTime.ToString() == "NaN")
-                    {
-                        responseTime = 5;
-                    }
-                }
-                if (stats.tasksWithLimitiedInterruptions == 0)
-                {
-                    implusivityScore = 1;
-                }
-                else
-                {
-                    TaR = (float)stats.tasksWithLimitiedInterruptions / (float)stats.totalNumberOfTasks;
-                    implusivityScore = (float)(1 / ((-TaR) * ((Mathf.Log10(TiR) - 1) + Mathf.Epsilon)));
-                }
+                    responseTime = TovaDataGet.ReturnTovaData().GetTotalResponseTime();
 
 
-                Debug.Log(" TFD: " + TFD + " TaR: " + TaR + " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " TiR: " + TiR + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
+                }
+                implusivityScore = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
+                TovaDataGet.ReturnTovaData().SetSessionEnd(false);
+
+                Debug.Log(" TFD: " + TFD +  " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
 
 
 
@@ -169,12 +161,12 @@ public class StatisticsManager : MonoBehaviour
                                             stats.flowerSustained + stats.wellSustained,
                                             Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds),
                                             timeTaken,
-                                            AAS,
+                                            TovaDataGet.ReturnTovaData().GetActualTimeSpan(),
                                             score,
-                                            implusivityScore,
-                                           responseTime,
-                                            omissionScore,
-                                            DES);
+                                            TovaDataGet.ReturnTovaData().GetTotalImpsScore(),
+                                           TovaDataGet.ReturnTovaData().GetTotalResponseTime(),
+                                            TovaDataGet.ReturnTovaData().GetTotalOmissionScore(),
+                                            TovaDataGet.ReturnTovaData().GetTotalDES());
                 //ServerRequest.instance.SendPostRequest(ServerRequest.headset,
                 //                   ServerRequest.roomId,
                 //                   attempStartTime,

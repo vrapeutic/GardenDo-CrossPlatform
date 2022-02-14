@@ -6,7 +6,7 @@ using UnityEngine;
 public class StartWateringSensorForCamera : MonoBehaviour
 {
     [SerializeField] Flower myFlower;
-
+    TovaDataSet dataSet;
     public bool isPlayerLooking;
     public static int interruptionThreshold = 0;
 
@@ -20,6 +20,7 @@ public class StartWateringSensorForCamera : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
+        dataSet = TovaDataGet.ReturnTovaData();
         if (!myFlower) myFlower = this.GetComponentInParent<Flower>();
     }
     private void Update()
@@ -77,7 +78,7 @@ public class StartWateringSensorForCamera : MonoBehaviour
         if (interruptionThreshold == 3)
         {
             stats.tasksWithLimitiedInterruptions++;
-
+            dataSet.SetHitsCounterEnabled(true);
         }
         Debug.Log("TaR : Task with limited interruption : " + stats.tasksWithLimitiedInterruptions);
     }

@@ -5,7 +5,7 @@ using Tachyon;
 
 public class BirdController : MonoBehaviour
 {
-
+    TovaDataSet dataSet;
     public static bool isBirdOnFlower;
     [SerializeField] Animator bird;
     [SerializeField] Animator birdParent;
@@ -13,6 +13,7 @@ public class BirdController : MonoBehaviour
     Statistics stats;
     private void Start()
     {
+        dataSet = TovaDataGet.ReturnTovaData();
         isBirdOnFlower = false;
         InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
         NetworkManager.InvokeClientMethod("IdleBirdAnimRPC", invokationManager);
@@ -27,6 +28,8 @@ public class BirdController : MonoBehaviour
             stats.birdFlyingResponseTimeCounterBegin = true;
             isBirdOnFlower = true;
             IdleBirdAnim();
+            dataSet.SetDistractorResponseTimer(true);
+            dataSet.SetNoOfDistractorHitsCounter(true);
         }
     }
 
@@ -35,6 +38,7 @@ public class BirdController : MonoBehaviour
         if (other.CompareTag("Bird"))
         {
             stats.birdFlyingResponseTimeCounterBegin = false;
+            dataSet.SetDistractorResponseTimer(false);
         }
     }
 

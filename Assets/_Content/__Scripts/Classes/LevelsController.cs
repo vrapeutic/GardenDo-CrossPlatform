@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tachyon;
 
 public class LevelsController : MonoBehaviour
 {
@@ -10,15 +11,18 @@ public class LevelsController : MonoBehaviour
     Statistics stats;
     void Start()
     {
+        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        NetworkManager.InvokeClientMethod("EnableLevel_3DistractorRPC", invokationManager);
         stats = Statistics.instane;
-       
+
         if (stats.level == 1)
         {
             DisableLevel_2Distractor();
         }
         else if (stats.level == 3)
         {
-            EnableLevel_3Distractor();
+            if (Statistics.android)
+                EnableLevel_3Distractor();
         }
     }
 
@@ -28,7 +32,11 @@ public class LevelsController : MonoBehaviour
     }
     public void EnableLevel_3Distractor()
     {
-        // butterfly.SetActive(true);
+        // bird.SetActive(true);
+        NetworkManager.InvokeServerMethod("EnableLevel_3DistractorRPC", this.gameObject.name);
+    }
+    public void EnableLevel_3DistractorRPC()
+    {
         bird.SetActive(true);
     }
 

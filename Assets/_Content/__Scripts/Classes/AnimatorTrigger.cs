@@ -6,16 +6,18 @@ using Tachyon;
 
 public class AnimatorTrigger : MonoBehaviour
 {
-
-    [SerializeField] Flower[] flowers;
+    [SerializeField]
+    GameEvent taskStopped;    
+    [SerializeField]
+    Flower[] flowers;
     [SerializeField]
     private Flower currentFlower;
     [SerializeField]
     private int flowerIndex;
     [SerializeField]
-    GameEvent newFlowerStarted;
+    GameEvent taskStarted;
     Animator flowerAnimator;
-
+    
     private float finalGrowthSpeed;
     private float currentClipTime;
     bool isNewFlower = false;
@@ -80,6 +82,7 @@ public class AnimatorTrigger : MonoBehaviour
                 startFlowerTimer = true;
                 isFlower = true;
                 FlowerGrowingUp(flowerIndex);
+                taskStarted.Raise();
             }
             else if (isFlower)
             {
@@ -98,11 +101,7 @@ public class AnimatorTrigger : MonoBehaviour
     {
         flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
         stopReverseAnim = false;
-        if (isNewFlower == true)
-        {
-            isNewFlower = false;
-            newFlowerStarted.Raise();
-        }
+       
 
         if (sfxIsPlayed == false)
         {
@@ -143,13 +142,13 @@ public class AnimatorTrigger : MonoBehaviour
     public void FlowerReverseRPC(int _currentFlowerIndex)
     {
         //Debug.Log("Flower reverse");
+        taskStopped.Raise();
         flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
         if (!startPlayingSFX)
         {
             wateringFlowersSFX.Pause();
-        }
-
+        }       
         WaterPlarticleSystemEmission(false);
         flowerAnimator.SetFloat("speed", -1.0f / finalGrowthSpeed);
 

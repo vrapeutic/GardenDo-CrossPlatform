@@ -6,6 +6,10 @@ using Tachyon;
 
 public class FillTheBucketAnimation : MonoBehaviour
 {
+    [SerializeField]
+    GameEvent taskStarted;
+    [SerializeField]
+    GameEvent taskStopped;
     WaitForSeconds seconds = new WaitForSeconds(0.2f);
     public Coroutine FillingTheBucketRoutine;
 
@@ -64,10 +68,9 @@ public class FillTheBucketAnimation : MonoBehaviour
             sfxIsPlayed = true;
             fillingTheBucketSFX.Pause();
         }
-
-        // waterParticles.enableEmission = false;
         startFillingTimer = false;
         waterAnim.SetFloat("speed", 0.0f);
+        taskStopped.Raise();    
     }
 
 
@@ -88,6 +91,7 @@ public class FillTheBucketAnimation : MonoBehaviour
         startFillingTimer = true;
         waterAnim.enabled = true;
         waterAnim.SetFloat("speed", 1.0f);
+        taskStarted.Raise();
     }
 
     public void ChangeBucketOnPlaceState(bool state)

@@ -12,12 +12,12 @@ public class Statistics : MonoBehaviour
 
     public float flowerSustained;
     public float wellSustained;
-    public int totalFlowerGrowth;
+    public int totalFlowerGrowth = 40;
     public int level = 1;
     public float growthSpeed;
     public bool firstEnterMainMenu = false;
     public bool isGardenEnviroment;
-    public bool isCompleteCourse = false;
+    public bool isCompleteCourse = true;
     public int numberOfFlowers = 4;
     public int instructionNumber = 0;
 

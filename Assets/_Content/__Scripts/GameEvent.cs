@@ -9,7 +9,7 @@ public class GameEvent : ScriptableObject
 
     public void Raise()
     {
-        Debug.Log("Raise Enter");
+       // Debug.Log("Raise Enter");
 
         for (int i = 0; i < listners.Count; i++)
         {
