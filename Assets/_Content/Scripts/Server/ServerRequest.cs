@@ -113,13 +113,13 @@ public class ServerRequest : MonoBehaviour
         id = getId;
         roomId = getRoom;
     }
-    public void SendPostRequest(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES)
+    public void SendPostRequest(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES,string flowr_position, string flower_heights)
     {
-        StartCoroutine(Post(headset, roomid, startTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttentionTime, score, implusivityScore, responseTime, omissionScore, DES));
+        StartCoroutine(Post(headset, roomid, startTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttentionTime, score, implusivityScore, responseTime, omissionScore, DES, flowr_position,flower_heights));
     }
-    public IEnumerator Post(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES)
+    public IEnumerator Post(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES,string flowr_position,string flower_heights)
     {
-        yield return StartCoroutine(jsonAPIS.PostJsonItems(headset, roomid, sessionStartTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttentionTime, score, implusivityScore, responseTime, omissionScore, DES));
+        yield return StartCoroutine(jsonAPIS.PostJsonItems(headset, roomid, sessionStartTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttentionTime, score, implusivityScore, responseTime, omissionScore, DES,flowr_position,flower_heights));
         statisticsInstance = jsonAPIS.ReturnSendStatistics();
         Session.SetStats(statisticsInstance);
     }

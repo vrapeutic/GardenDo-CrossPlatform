@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 34321695}
   m_Layer: 0
   m_Name: Flower 8
-  m_TagString: FinalFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,7 +1795,7 @@ GameObject:
   - component: {fileID: 50044888}
   m_Layer: 0
   m_Name: Flower 16
-  m_TagString: SecondFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10844,128 +10844,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285426411}
   m_Mesh: {fileID: 4300066, guid: 71086248c5e116645b5d62ea645384f5, type: 3}
---- !u!1 &290011009
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 290011014}
-  - component: {fileID: 290011010}
-  - component: {fileID: 290011013}
-  - component: {fileID: 290011012}
-  - component: {fileID: 290011011}
-  m_Layer: 0
-  m_Name: Test response time
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &290011010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290011009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f028a4564d79004982d21911ec66584, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &290011011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290011009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 3be6dc727ac58b94aac81a6fdbc664b8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 290011010}
-        m_TargetAssemblyTypeName: TaskTimersHandling, Assembly-CSharp
-        m_MethodName: StopResponsTimeCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &290011012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290011009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9daf1943947fdaa40b3d6601463744fb, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 290011010}
-        m_TargetAssemblyTypeName: TaskTimersHandling, Assembly-CSharp
-        m_MethodName: StartNewFlowerTask
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &290011013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290011009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb21b0499a150224fa309379154faf44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  responseTimeCounter: 0
-  distractorResponseTimeCounter: 0
-  noOfTriesCounter: 0
-  noOfDistractorHitsCounter: 0
-  currentResponseTime: 0
-  currentdistractorResponseTime: 0
---- !u!4 &290011014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290011009}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9328535, y: 3.8735638, z: -2.9987154}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 514920183}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290250910
 GameObject:
   m_ObjectHideFlags: 0
@@ -14442,7 +14320,7 @@ GameObject:
   - component: {fileID: 362842932}
   m_Layer: 0
   m_Name: Flower 5
-  m_TagString: SecondFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20323,86 +20201,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 514521808}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &514920180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 514920183}
-  - component: {fileID: 514920182}
-  - component: {fileID: 514920181}
-  m_Layer: 0
-  m_Name: Tova
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &514920181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514920180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 5737b4c701de4204c913a83bc61fa6ec, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 290011010}
-        m_TargetAssemblyTypeName: TaskTimersHandling, Assembly-CSharp
-        m_MethodName: TasksFinsished
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &514920182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514920180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9afcb752ccfc8ef4f8f570801356ea02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TAS: 0
-  instractionTime: 5
-  responseDistractorWight: 0.5
-  responseWight: 0.5
---- !u!4 &514920183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514920180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.0041027, y: -3.117351, z: 1.4854492}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 290011014}
-  - {fileID: 1226135998}
-  - {fileID: 1866271013}
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518618818
 GameObject:
   m_ObjectHideFlags: 0
@@ -21068,7 +20866,7 @@ GameObject:
   - component: {fileID: 529190468}
   m_Layer: 0
   m_Name: Flower 7
-  m_TagString: FirstFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23920,7 +23718,7 @@ GameObject:
   - component: {fileID: 615542045}
   m_Layer: 0
   m_Name: Flower 12
-  m_TagString: ThirdFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25436,7 +25234,7 @@ GameObject:
   - component: {fileID: 647444923}
   m_Layer: 0
   m_Name: Flower 14
-  m_TagString: FirstFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28144,7 +27942,7 @@ GameObject:
   - component: {fileID: 738136269}
   m_Layer: 0
   m_Name: Flower 15
-  m_TagString: ThirdFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48819,7 +48617,7 @@ GameObject:
   - component: {fileID: 1055224806}
   m_Layer: 0
   m_Name: Flower 6
-  m_TagString: ThirdFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50328,7 +50126,7 @@ GameObject:
   - component: {fileID: 1106754159}
   m_Layer: 0
   m_Name: Flower 13
-  m_TagString: FinalFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51081,7 +50879,7 @@ GameObject:
   - component: {fileID: 1111835744}
   m_Layer: 0
   m_Name: Flower 4
-  m_TagString: FinalFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56160,219 +55958,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225763608}
   m_Mesh: {fileID: 4300086, guid: 71086248c5e116645b5d62ea645384f5, type: 3}
---- !u!1 &1226135997
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1226135998}
-  - component: {fileID: 1226136005}
-  - component: {fileID: 1226136004}
-  - component: {fileID: 1226136003}
-  - component: {fileID: 1226136002}
-  - component: {fileID: 1226136001}
-  - component: {fileID: 1226136000}
-  - component: {fileID: 1226135999}
-  m_Layer: 0
-  m_Name: Test omission score
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1226135998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 514920183}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1226135999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 3be6dc727ac58b94aac81a6fdbc664b8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1226136004}
-        m_TargetAssemblyTypeName: OmissionScoreHandling, Assembly-CSharp
-        m_MethodName: TaskStarted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1226136000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 208e81796e25bea4eb08df635e5256d2, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1226136004}
-        m_TargetAssemblyTypeName: OmissionScoreHandling, Assembly-CSharp
-        m_MethodName: TaskStopped
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1226136001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9daf1943947fdaa40b3d6601463744fb, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1226136004}
-        m_TargetAssemblyTypeName: OmissionScoreHandling, Assembly-CSharp
-        m_MethodName: TaskStopped
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1226136002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 38e8684280b5bda4495f022a383811f8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1226136004}
-        m_TargetAssemblyTypeName: OmissionScoreHandling, Assembly-CSharp
-        m_MethodName: TaskStopped
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1226136003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 3be6dc727ac58b94aac81a6fdbc664b8, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1226136004}
-        m_TargetAssemblyTypeName: OmissionScoreHandling, Assembly-CSharp
-        m_MethodName: TaskStarted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1226136004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb2836923e20334b9b9ccee5854ae28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instructionTimeFullCourse: 110
-  instructionTimeWatering: 80
---- !u!114 &1226136005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226135997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5a45013bb43834f9c1bc51cd7aa518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actualTimeSpanCounter: 0
-  distractingTime: 0
-  omissionScore: 0
-  distractingScore: 0
-  levelTimeCounter: 0
 --- !u!1 &1226857595
 GameObject:
   m_ObjectHideFlags: 0
@@ -57327,7 +56912,7 @@ GameObject:
   - component: {fileID: 1242629100}
   m_Layer: 0
   m_Name: Flower 2
-  m_TagString: SecondFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62268,7 +61853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1275818156
 PrefabInstance:
@@ -76168,7 +75753,7 @@ GameObject:
   - component: {fileID: 1403417218}
   m_Layer: 0
   m_Name: Flower 10
-  m_TagString: FirstFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79432,7 +79017,7 @@ GameObject:
   - component: {fileID: 1451014973}
   m_Layer: 0
   m_Name: Flower 3
-  m_TagString: ThirdFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81116,7 +80701,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1504753890
 GameObject:
@@ -99442,7 +99027,7 @@ GameObject:
   - component: {fileID: 1847214445}
   m_Layer: 0
   m_Name: Flower 9
-  m_TagString: FinalFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99911,100 +99496,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860911441}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1866271012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1866271013}
-  - component: {fileID: 1866271016}
-  - component: {fileID: 1866271015}
-  - component: {fileID: 1866271014}
-  m_Layer: 0
-  m_Name: Impulsivity score
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1866271013
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866271012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 514920183}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1866271014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866271012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13946b1496df23341a915936c6955129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9daf1943947fdaa40b3d6601463744fb, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1866271016}
-        m_TargetAssemblyTypeName: ImpulsivityHandling, Assembly-CSharp
-        m_MethodName: FinishOneMoreTask
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  invokedOnce: 0
---- !u!114 &1866271015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866271012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10bc18652c25c048aa2d03ca25c4f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentAmingScore: 0
-  currentImpulsivityScore: 0
-  currentImpulsivityScoreWithAming: 0
-  currentArrows: 0
-  currentTargetsNO: 0
-  currentHitsNO: 0
-  targetRatios: 0
-  timeRatios: 0
---- !u!114 &1866271016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866271012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45293029b0009742b23ac4f05a00955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1868579523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103069,6 +102560,80 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936512246}
   m_Mesh: {fileID: 4300080, guid: 71086248c5e116645b5d62ea645384f5, type: 3}
+--- !u!1001 &1936962896
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445525, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652113918741445530, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: m_Name
+      value: PerformanceData
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596158317338358576, guid: 27f6df7e279f8fb48990a20b87051395,
+        type: 3}
+      propertyPath: targetTag
+      value: Flower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27f6df7e279f8fb48990a20b87051395, type: 3}
 --- !u!1001 &1938902261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104064,7 +103629,7 @@ GameObject:
   - component: {fileID: 1968137325}
   m_Layer: 0
   m_Name: Flower 11
-  m_TagString: SecondFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111194,7 +110759,7 @@ GameObject:
   - component: {fileID: 2137360112}
   m_Layer: 0
   m_Name: Flower 1
-  m_TagString: FirstFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120911,7 +120476,7 @@ GameObject:
   - component: {fileID: 2125736154632648336}
   m_Layer: 0
   m_Name: FlowerPrefab
-  m_TagString: FirstFlower
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -21,10 +21,11 @@ public class ImplusivityScore : MonoBehaviour
     }
 
     #region TestWithInvoker
-    void InvokerImpsScoreTest(bool isEnbaled, bool end, bool distractorEnbaled)
+    void InvokerImpsScoreTest(bool isEnbaled, bool end, bool distractorEnbaled,bool isReleased)
     {
         dataSet.SetTargetsCounterEnabled(isEnbaled);
         dataSet.SetHitsCounterEnabled(distractorEnbaled);
+        dataSet.SetIsReleasedEnabled(isReleased);
         dataSet.SetSessionEnd(end);
         Debug.Log(dataSet.GetSessionEnd() + "" + dataSet.GetTotalImpsScore() + dataSet.GetTimeRatios()+""+ dataSet.GetTargetRatios());
 
@@ -71,7 +72,8 @@ public class ImplusivityScore : MonoBehaviour
     }
     float AmingScore()
     {
-        currentAmingScore= dataSet.GetNumOfHits() / dataSet.GetReleasedArrows();
+        if (dataSet.GetReleasedArrows() == 0) currentAmingScore = 0;
+        else currentAmingScore= dataSet.GetNumOfHits() / dataSet.GetReleasedArrows();
         return currentAmingScore;
     }
     float TotalImpulsivityScore()
@@ -83,8 +85,8 @@ public class ImplusivityScore : MonoBehaviour
     }
     float TotalImpulsivityScoreWithAming()
     {
-        if (AmingScore() == 0) currentImpulsivityScore = 1;
-        currentImpulsivityScoreWithAming = (float)(1 / ((-AmingScore()) * ((Mathf.Log10(TIR()) - 1 + Mathf.Epsilon))));
+        if (AmingScore() == 0) currentImpulsivityScoreWithAming = 1;
+        else currentImpulsivityScoreWithAming = (float)(1 / ((-AmingScore()) * ((Mathf.Log10(TIR()) - 1 + Mathf.Epsilon))));
         return currentImpulsivityScoreWithAming;
     }
 

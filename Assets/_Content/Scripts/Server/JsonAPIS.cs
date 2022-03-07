@@ -36,9 +36,9 @@ public class JsonAPIS : MonoBehaviour
     }
     #endregion
     #region PostRequest
-    public IEnumerator PostJsonItems(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttensionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DS)
+    public IEnumerator PostJsonItems(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttensionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DS,string flowr_position,string flower_heights)
     {
-        string json = ConvertPostToJson(headset, roomid, sessionStartTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttensionTime, score, implusivityScore, responseTime, omissionScore, DS);
+        string json = ConvertPostToJson(headset, roomid, sessionStartTime, attemptStartTime, attemptEndTime, attemptType, expectedDurationInSeconds, Level, flowerSustained, wellSustained, totalSustained, nonSustained, actualDurationInSeconds, actualAttensionTime, score, implusivityScore, responseTime, omissionScore, DS,flowr_position,flower_heights);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
         string url = "https://dashboard.myvrapeutic.com/api/v1/statistics";
         UnityWebRequest www = new UnityWebRequest(url, "POST");
@@ -59,9 +59,9 @@ public class JsonAPIS : MonoBehaviour
             Debug.Log("all" + www.downloadHandler.text);
         }
     }
-    string ConvertPostToJson(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES)
+    string ConvertPostToJson(string headset, string roomid, string sessionStartTime, string attemptStartTime, string attemptEndTime, string attemptType, float expectedDurationInSeconds, string Level, float flowerSustained, float wellSustained, float totalSustained, float nonSustained, float actualDurationInSeconds, float actualAttentionTime, float score, float implusivityScore, float responseTime, float omissionScore, float DES,string flowr_position,string flower_heights)
     {
-        StatisticsJsonFile postRequest = StatisticsJsonFile.Instance;
+        StatisticsJsonFile postRequest =new StatisticsJsonFile();
         postRequest.headset = headset;
         postRequest.room_id = roomid;
 
@@ -83,6 +83,8 @@ public class JsonAPIS : MonoBehaviour
         postRequest.data.response_time = responseTime;
         postRequest.data.omission_score = omissionScore;
         postRequest.data.distraction_endurance_score = DES;
+        postRequest.data.flower_postitions=flowr_position;
+        postRequest.data.flower_Heights=flower_heights;
 
         return JsonUtility.ToJson(postRequest);
     }

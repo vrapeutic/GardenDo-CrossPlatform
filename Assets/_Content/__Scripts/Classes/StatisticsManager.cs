@@ -46,12 +46,12 @@ public class StatisticsManager : MonoBehaviour
         if (stats.wateringResponseTimeCounterBegin)
         {
             stats.wateringResponseTimeCounter += Time.deltaTime;
-            if (stats.wateringResponseTimeCounter % 1 < 0.02) Debug.Log("Response Time : Watering Respone Timer Counter: " + stats.wateringResponseTimeCounter);
+           // if (stats.wateringResponseTimeCounter % 1 < 0.02) //Debug.Log("Response Time : Watering Respone Timer Counter: " + stats.wateringResponseTimeCounter);
         }
         if (stats.birdFlyingResponseTimeCounterBegin)
         {
             stats.birdFlyingResponseTimeCounter += Time.deltaTime;
-            if (stats.birdFlyingResponseTimeCounter % 1 < 0.02) Debug.Log("Response Time : Bird Respone Timer Counter: " + stats.birdFlyingResponseTimeCounter);
+            //if (stats.birdFlyingResponseTimeCounter % 1 < 0.02) //Debug.Log("Response Time : Bird Respone Timer Counter: " + stats.birdFlyingResponseTimeCounter);
         }
     }
 
@@ -77,7 +77,8 @@ public class StatisticsManager : MonoBehaviour
         TovaDataGet.ReturnTovaData().SetSessionEnd(true);
         Debug.Log("SendAttemptStatistics");
         Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats");
-
+        //string[] list=TovaDataGet.ReturnTovaData().GetTargetDataListPositions().ToArray();
+      //  Debug.Log(list[1]+"this is position");
         Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
         Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
         Debug.Log("impusivity manager " + TovaDataGet.ReturnTovaData().GetTotalImpsScore());
@@ -93,7 +94,7 @@ public class StatisticsManager : MonoBehaviour
             if (canEnterSendStatistics)
             {
                 Debug.Log("SendAttemptStatistics");
-                Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats");
+                Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats2");
                 
                 Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
                 Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
@@ -145,7 +146,8 @@ public class StatisticsManager : MonoBehaviour
 
                 Debug.Log(" TFD: " + TFD +  " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
 
-
+    Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
+        Debug.Log( TovaDataGet.ReturnTovaData().GetTargetDataListHights());
 
                 //call post json 
                 ServerRequest.instance.SendPostRequest(ServerRequest.headset,
@@ -166,7 +168,7 @@ public class StatisticsManager : MonoBehaviour
                                             TovaDataGet.ReturnTovaData().GetTotalImpsScore(),
                                            TovaDataGet.ReturnTovaData().GetTotalResponseTime(),
                                             TovaDataGet.ReturnTovaData().GetTotalOmissionScore(),
-                                            TovaDataGet.ReturnTovaData().GetTotalDES());
+                                            TovaDataGet.ReturnTovaData().GetTotalDES(),TovaDataGet.ReturnTovaData().GetTargetDataListPositions(),TovaDataGet.ReturnTovaData().GetTargetDataListHights());///,TovaDataGet.ReturnTovaData().GetTargetDataListPositions().ToArray()[1]);
                 //ServerRequest.instance.SendPostRequest(ServerRequest.headset,
                 //                   ServerRequest.roomId,
                 //                   attempStartTime,
@@ -186,6 +188,7 @@ public class StatisticsManager : MonoBehaviour
                 //                  0,
                 //                  0);
                 Debug.Log("post");
+              
                 //  if (Statistics.android) JsonPreparation.instance.PostJson(JsonItemsInstanceString);
                 canEnterSendStatistics = false;
             }
@@ -200,6 +203,7 @@ public class StatisticsManager : MonoBehaviour
 
     public void ResetStatisticsRPC()
     {
+        
         stats.flowerSustained = 0f;
         stats.wellSustained = 0f;
         stats.totalFlowerGrowth = 0;

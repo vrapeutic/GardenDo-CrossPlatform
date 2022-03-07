@@ -119,7 +119,7 @@ namespace Tachyon
                 position.SetField("y", controllerTransform.position.y);
                 position.SetField("z", controllerTransform.position.z);
                 position.SetField("controllerName", controllerName);
-                UnityEngine.Debug.Log(position["y"]);
+               // UnityEngine.Debug.Log(position["y"]);
 
                 // SocketIOComponent.instance.Emit("changeControllerPosition", position);
                 //UnityEngine.Debug.Log("Emitting to server my position, I am " + controllerName);

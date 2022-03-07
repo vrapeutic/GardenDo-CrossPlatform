@@ -40,9 +40,16 @@ public class TovaData : ScriptableObject
     public float distractionEnduranceScore;
     #endregion
 
+    #region PerformanceData Variables
+    public string TargetDataListHights;
+    public string TargetDataListPositions;
+    public string TargetDataLisDirections;
+    public string HandToolsDataListAngles;
+    #endregion
     public float typicalTime; //closed or tipical time
-    public float instructionsTime; 
+    public float instructionsTime;
     public bool isSessionEnd;
+    public bool isActionStarted = false;
 
 
 }

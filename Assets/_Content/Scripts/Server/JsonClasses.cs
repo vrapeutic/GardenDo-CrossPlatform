@@ -9,25 +9,8 @@ public class GetRoomIDJson
 
 public class StatisticsJsonFile
 {
-    private static StatisticsJsonFile instance = null;
-    private static readonly object padlock = new object();
-    StatisticsJsonFile()
-    {
-    }
-    public static StatisticsJsonFile Instance
-    {
-        get
-        {
-            lock (padlock)
-            {
-                if (instance == null)
-                {
-                    instance = new StatisticsJsonFile();
-                }
-                return instance;
-            }
-        }
-    }
+  
+   
     public string headset;
     public string room_id;
     public Data data = new Data();
@@ -61,6 +44,8 @@ public class Data
     public float response_time;
     public float omission_score;
     public float distraction_endurance_score;
+    public string flower_postitions;
+    public string flower_Heights;
 
 }
 

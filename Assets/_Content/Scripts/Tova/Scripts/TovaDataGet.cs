@@ -5,16 +5,23 @@ using UnityEngine;
 public class TovaDataGet : MonoBehaviour
 {
 
-   public static TovaDataSet dataSet;
+    public static TovaDataSet dataSet;
+    TovaDataGet[] getData;
     [SerializeField] float TAS;
     [SerializeField] float instractionTime = 5;
     [SerializeField] float responseDistractorWight = 0.5f;
     [SerializeField] float responseWight = 0.5f;
     private void Awake()
     {
-        dataSet = new TovaDataSet();
+     
+      dataSet = ScriptableObject.CreateInstance<TovaDataSet>();
+        getData =FindObjectsOfType<TovaDataGet>();
+        if (getData.Length > 1)
+            Destroy(getData[1].gameObject);
+            DontDestroyOnLoad(this.gameObject);
+        
     }
-  
+
     public static TovaDataSet ReturnTovaData()
     {
         return dataSet;
@@ -31,14 +38,23 @@ public class TovaDataGet : MonoBehaviour
     {
         while (true)
         {
-           if (ReturnTovaData().GetSessionEnd() != false) {
+           if (ReturnTovaData().GetSessionEnd() != false)
+            {
                 ReturnTovaData().SetSessionEnd(false);
                 ReturnTovaData().SetActualTimeCounter(false);
                 ReturnTovaData().SetResponseTimer(false);
                 ReturnTovaData().SetDistractorResponseTimer(false);
+             //  Invoke( "ResetData",3);
             }
+
             yield return new WaitForSeconds(.3f);
         }
     }
 
+    private void ResetData()
+    {
+       // Destroy(this.gameObject);
+    }
+
+   
 }

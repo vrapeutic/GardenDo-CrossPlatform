@@ -1,5 +1,7 @@
 
 
+using System.Collections.Generic;
+
 public class TovaDataSet : TovaData
 {
 
@@ -222,6 +224,50 @@ public class TovaDataSet : TovaData
     }
     #endregion
 
+    #region NewPerformanceData Set&Get
+    public void SetTargetListDataHights(string list)
+    {
+        TargetDataListHights = list;
+    }
+    public string GetTargetDataListHights()
+    {
+        return TargetDataListHights;
+    }
+    public void SetTargetListDataDirections(string list)
+    {
+        TargetDataLisDirections = list;
+    }
+    public string GetTargetDataListDirections()
+    {
+        return TargetDataLisDirections;
+    }
+    public void SetTargetListDataPostions(string list)
+    {
+        TargetDataListPositions = list;
+    }
+    public string GetTargetDataListPositions()
+    {
+        return TargetDataListPositions;
+    }
+    public void SetIsActionStarted(bool _isActionStarted)
+    {
+        isActionStarted = _isActionStarted;
+    }
+    public bool GetIsActionStarted()
+    {
+        return isActionStarted;
+    }
+
+    public void SetHandToolsListDataAngles(string list)
+    {
+        HandToolsDataListAngles = list;
+    }
+    public string GetHandToolsDataList()
+    {
+        return HandToolsDataListAngles;
+    }
+#endregion
+
     public void SetTypicalTime(float _fixedTime)
     {
         typicalTime = _fixedTime;
@@ -239,7 +285,8 @@ public class TovaDataSet : TovaData
     {
         return instructionsTime;
     }
-      public void SetSessionEnd(bool _isEnded)
+
+    public void SetSessionEnd(bool _isEnded)
     {
         isSessionEnd = _isEnded;
     }
@@ -247,4 +294,5 @@ public class TovaDataSet : TovaData
     {
         return isSessionEnd;
     }
+
 }
