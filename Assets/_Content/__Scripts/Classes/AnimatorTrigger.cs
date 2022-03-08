@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Tachyon;
-
+using System;
 
 public class AnimatorTrigger : MonoBehaviour
 {
-    [SerializeField]
-    GameEvent taskStopped;    
-    [SerializeField]
-    Flower[] flowers;
+
+    [SerializeField] Flower[] flowers;
     [SerializeField]
     private Flower currentFlower;
     [SerializeField]
     private int flowerIndex;
     [SerializeField]
-    GameEvent taskStarted;
+    GameEvent newFlowerStarted;
     Animator flowerAnimator;
-    
+
     private float finalGrowthSpeed;
     private float currentClipTime;
     bool isNewFlower = false;
@@ -25,6 +23,7 @@ public class AnimatorTrigger : MonoBehaviour
     private bool sfxIsPlayed = false;
     private bool startPlayingSFX = true;
     private bool stopReverseAnim = false;
+    private bool isWatering = false;
     public Coroutine currentCoroutine;
 
     AnimatorStateInfo animationState;
@@ -33,7 +32,7 @@ public class AnimatorTrigger : MonoBehaviour
     WaitForSeconds waitingSeconds = new WaitForSeconds(0.2f);
     // [SerializeField] Animator HussienAnim;
     [SerializeField] ParticleSystem waterParticles;
-    [SerializeField] GameObject callPlayerToWaterTheFlower;
+    //[SerializeField] GameObject callPlayerToWaterTheFlower;
     // [SerializeField] GameObject setGrowthPeriod;
     [SerializeField] AudioSource wateringFlowersSFX;
 
@@ -81,27 +80,38 @@ public class AnimatorTrigger : MonoBehaviour
                 Debug.Log("enter condition to water  flower");
                 startFlowerTimer = true;
                 isFlower = true;
-                FlowerGrowingUp(flowerIndex);
-                taskStarted.Raise();
+                if (!isWatering)
+                    FlowerGrowingUp(flowerIndex);
+                isWatering = true;
             }
             else if (isFlower)
             {
                 startFlowerTimer = false;
-                FlowerReverse(flowerIndex);
+                if (isWatering)
+                    FlowerReverse(flowerIndex);
+                isWatering = false;
             }
         }
     }
 
     private void FlowerGrowingUp(int _currrentFlowerIndix)
     {
-        if (Statistics.android) { NetworkManager.InvokeServerMethod("FlowerGrowingUpRPC", this.gameObject.name, _currrentFlowerIndix); }
+        if (Statistics.android)
+        {
+            NetworkManager.InvokeServerMethod("FlowerGrowingUpRPC", this.gameObject.name, _currrentFlowerIndix);
+            FlowerGrowingUpAndroid(_currrentFlowerIndix);
+        }
     }
 
-    public void FlowerGrowingUpRPC(int _currrentFlowerIndix)
+    private void FlowerGrowingUpAndroid(int _currrentFlowerIndix)
     {
         flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
         stopReverseAnim = false;
-       
+        if (isNewFlower == true)
+        {
+            isNewFlower = false;
+            newFlowerStarted.Raise();
+        }
 
         if (sfxIsPlayed == false)
         {
@@ -123,7 +133,7 @@ public class AnimatorTrigger : MonoBehaviour
             stats.wateringResponseTimes++;
             Debug.Log("Response Time : Watering Response Times : " + stats.wateringResponseTimes);
             SetAnimatorInt.instance.AnimatorSetIntger(10);
-            callPlayerToWaterTheFlower.GetComponent<CheckIntervals>().check = true;
+            //  callPlayerToWaterTheFlower.GetComponent<CheckIntervals>().check = true;
             CallPlayerToWateraFlower.isPlayerWateringTheFlower = true;
         }
 
@@ -132,23 +142,69 @@ public class AnimatorTrigger : MonoBehaviour
         flowerAnimator.SetFloat("speed", 1.0f / finalGrowthSpeed);
     }
 
+    public void FlowerGrowingUpRPC(int _currrentFlowerIndix)
+    {
+        if (!Statistics.android)
+        {
+            flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
+            stopReverseAnim = false;
+            if (isNewFlower == true)
+            {
+                isNewFlower = false;
+                newFlowerStarted.Raise();
+            }
+
+            if (sfxIsPlayed == false)
+            {
+                Debug.Log("SFX Is Played");
+                wateringFlowersSFX.Play();
+                startPlayingSFX = false;
+                sfxIsPlayed = true;
+            }
+            else
+            {
+                wateringFlowersSFX.UnPause();
+            }
+
+            finalGrowthSpeed = stats.growthSpeed;
+
+            if (CallPlayerToWateraFlower.isPlayerWateringTheFlower == false)
+            {
+                stats.wateringResponseTimeCounterBegin = false;
+                stats.wateringResponseTimes++;
+                Debug.Log("Response Time : Watering Response Times : " + stats.wateringResponseTimes);
+                SetAnimatorInt.instance.AnimatorSetIntger(10);
+                //  callPlayerToWaterTheFlower.GetComponent<CheckIntervals>().check = true;
+                CallPlayerToWateraFlower.isPlayerWateringTheFlower = true;
+            }
+
+            WaterPlarticleSystemEmission(true);
+            flowerAnimator.enabled = true;
+            flowerAnimator.SetFloat("speed", 1.0f / finalGrowthSpeed);
+        }
+
+    }
+
 
 
     public void FlowerReverse(int _currentFlowerIndex)
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("FlowerReverseRPC", this.gameObject.name, _currentFlowerIndex);
+        if (Statistics.android)
+        {
+            NetworkManager.InvokeServerMethod("FlowerReverseRPC", this.gameObject.name, _currentFlowerIndex);
+            FlowerReverseAndroid(_currentFlowerIndex);
+        }
     }
 
-    public void FlowerReverseRPC(int _currentFlowerIndex)
+    private void FlowerReverseAndroid(int currentFlowerIndex)
     {
-        //Debug.Log("Flower reverse");
-        taskStopped.Raise();
-        flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
+        flowerAnimator = flowers[currentFlowerIndex].GetComponent<Animator>();
 
         if (!startPlayingSFX)
         {
             wateringFlowersSFX.Pause();
-        }       
+        }
+
         WaterPlarticleSystemEmission(false);
         flowerAnimator.SetFloat("speed", -1.0f / finalGrowthSpeed);
 
@@ -164,16 +220,61 @@ public class AnimatorTrigger : MonoBehaviour
         }
     }
 
-    public void WaterPlarticleSystemEmission(bool _emssion)
+    public void FlowerReverseRPC(int _currentFlowerIndex)
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("WaterPlarticleSystemEmissionRPC", this.gameObject.name, _emssion);
+        if (!Statistics.android)
+        {
+            flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
+
+            if (!startPlayingSFX)
+            {
+                wateringFlowersSFX.Pause();
+            }
+
+            WaterPlarticleSystemEmission(false);
+            flowerAnimator.SetFloat("speed", -1.0f / finalGrowthSpeed);
+
+            animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
+            myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
+            currentClipTime = myAnimatorClip[0].clip.length * animationState.normalizedTime;
+
+            if (currentClipTime <= 0.5f)
+            {
+                flowerAnimator.SetFloat("speed", 0f);
+                currentClipTime = 0f;
+                stopReverseAnim = true;
+            }
+        }
+        //Debug.Log("Flower reverse");
+
     }
 
-    public void WaterPlarticleSystemEmissionRPC(bool _emssion)
+    public void WaterPlarticleSystemEmission(bool _emssion)
+    {
+        if (Statistics.android)
+        {
+            NetworkManager.InvokeServerMethod("WaterPlarticleSystemEmissionRPC", this.gameObject.name, _emssion);
+            WaterPlarticleSystemEmissionAndroid(_emssion);
+        }
+
+    }
+
+    private void WaterPlarticleSystemEmissionAndroid(bool _emssion)
     {
         emssion = _emssion;
         waterParticles.enableEmission = emssion;
         startFlowerTimer = _emssion;
+    }
+
+    public void WaterPlarticleSystemEmissionRPC(bool _emssion)
+    {
+        if (!Statistics.android)
+        {
+            emssion = _emssion;
+            waterParticles.enableEmission = emssion;
+            startFlowerTimer = _emssion;
+        }
+
     }
     public void StopWaterSFX()
     {
