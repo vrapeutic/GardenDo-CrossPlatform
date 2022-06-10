@@ -20,8 +20,15 @@ public class StatisticsManager : MonoBehaviour
     public static StatisticsManager instance = new StatisticsManager();
 
     Statistics stats;
+
+    BackendSession currentSession;
+    DataCollection dataCollection;
+   
     private void Awake()
     {
+        currentSession = FindObjectOfType<BackendSession>();
+        dataCollection = FindObjectOfType<BackendSession>().MyStats;
+
         if (instance == null) instance = this;
         else Destroy(this);
         //DontDestroyOnLoad(this.gameObject);
@@ -30,7 +37,7 @@ public class StatisticsManager : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-      
+
 
         //  startTime = ServerRequest.instance.startTime;
         attempStartTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
@@ -46,7 +53,7 @@ public class StatisticsManager : MonoBehaviour
         if (stats.wateringResponseTimeCounterBegin)
         {
             stats.wateringResponseTimeCounter += Time.deltaTime;
-           // if (stats.wateringResponseTimeCounter % 1 < 0.02) //Debug.Log("Response Time : Watering Respone Timer Counter: " + stats.wateringResponseTimeCounter);
+            // if (stats.wateringResponseTimeCounter % 1 < 0.02) //Debug.Log("Response Time : Watering Respone Timer Counter: " + stats.wateringResponseTimeCounter);
         }
         if (stats.birdFlyingResponseTimeCounterBegin)
         {
@@ -64,12 +71,12 @@ public class StatisticsManager : MonoBehaviour
     {
         // SendAttemptStatistics();
         // Debug.Log("OnSendStatisticsclicked()");
-       
-        if (!Statistics.android)
-        {
-            NetworkManager.InvokeServerMethod("OnSendStatisticsRPC", this.gameObject.name);
-        }
 
+        //if (!Statistics.android)
+        //{
+        //NetworkManager.InvokeServerMethod("OnSendStatisticsRPC", this.gameObject.name);
+        //}
+        OnSendStatisticsRPC();
     }
 
     public void OnSendStatisticsRPC()
@@ -78,7 +85,7 @@ public class StatisticsManager : MonoBehaviour
         Debug.Log("SendAttemptStatistics");
         Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats");
         //string[] list=TovaDataGet.ReturnTovaData().GetTargetDataListPositions().ToArray();
-      //  Debug.Log(list[1]+"this is position");
+        //  Debug.Log(list[1]+"this is position");
         Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
         Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
         Debug.Log("impusivity manager " + TovaDataGet.ReturnTovaData().GetTotalImpsScore());
@@ -95,7 +102,7 @@ public class StatisticsManager : MonoBehaviour
             {
                 Debug.Log("SendAttemptStatistics");
                 Debug.Log(TovaDataGet.ReturnTovaData() + "dataset in stats2");
-                
+
                 Debug.Log("response time manager" + TovaDataGet.ReturnTovaData().GetTotalResponseTime());
                 Debug.Log("omission time manager " + TovaDataGet.ReturnTovaData().GetTotalOmissionScore());
                 Debug.Log("impusivity manager " + TovaDataGet.ReturnTovaData().GetTotalImpsScore());
@@ -111,6 +118,7 @@ public class StatisticsManager : MonoBehaviour
                 float score;
 
               
+
                 if (stats.flowerSustained == 0)
                 {
                     score = 0;
@@ -120,17 +128,17 @@ public class StatisticsManager : MonoBehaviour
                 {
                     score = ((float)stats.totalFlowerGrowth / (float)stats.flowerSustained) * 100;
                     omissionScore = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
-                }             
-                    DES = TovaDataGet.ReturnTovaData().GetTotalDES();
-                    DES = (DES * (1f / 5f)) + 1f;
+                }
+                DES = TovaDataGet.ReturnTovaData().GetTotalDES();
+                DES = (DES * (1f / 5f)) + 1f;
                 if (stats.level == 1 || stats.level == 2)
                 {
 
 
                     // responseTime = (float)stats.wateringResponseTimeCounter / 1;                
 
-                    responseTime =TovaDataGet.ReturnTovaData().GetTotalResponseTime();
-                   
+                    responseTime = TovaDataGet.ReturnTovaData().GetTotalResponseTime();
+
 
 
                 }
@@ -144,10 +152,37 @@ public class StatisticsManager : MonoBehaviour
                 implusivityScore = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
                 TovaDataGet.ReturnTovaData().SetSessionEnd(false);
 
-                Debug.Log(" TFD: " + TFD +  " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
+                Debug.Log(" TFD: " + TFD + " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
 
-    Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
-        Debug.Log( TovaDataGet.ReturnTovaData().GetTargetDataListHights());
+                Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
+                Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListHights());
+
+
+                dataCollection.session_start_time = attempStartTime;
+                dataCollection.attempt_start_time = attempStartTime;
+                dataCollection.attempt_end_time = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
+                dataCollection.expected_duration_in_seconds = typicalTime;
+                dataCollection.actual_duration_in_seconds = timeTaken;
+                dataCollection.level = stats.level.ToString();
+                dataCollection.attempt_type = "open";
+                dataCollection.total_sustained = stats.flowerSustained + stats.wellSustained;
+                dataCollection.non_sustained = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+                dataCollection.impulsivity_score = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
+                dataCollection.response_time = TovaDataGet.ReturnTovaData().GetTotalResponseTime();
+                dataCollection.omission_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
+                //dataCollection.distractibility_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
+                dataCollection.actual_attention_time = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+                dataCollection.flowerSustained = stats.flowerSustained;
+                dataCollection.wellSustained = stats.wellSustained;
+                dataCollection.totalSustained = stats.flowerSustained + stats.wellSustained;
+                dataCollection.nonSustained = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+                dataCollection.des = TovaDataGet.ReturnTovaData().GetTotalDES();
+                dataCollection.score = score;
+                dataCollection.flowr_position = TovaDataGet.ReturnTovaData().GetTargetDataListPositions();
+                dataCollection.flower_heights = TovaDataGet.ReturnTovaData().GetTargetDataListHights();
+
+
+                currentSession.SendStatsData();
 
                 //call post json 
                 ServerRequest.instance.SendPostRequest(ServerRequest.headset,
@@ -166,9 +201,9 @@ public class StatisticsManager : MonoBehaviour
                                             TovaDataGet.ReturnTovaData().GetActualTimeSpan(),
                                             score,
                                             TovaDataGet.ReturnTovaData().GetTotalImpsScore(),
-                                           TovaDataGet.ReturnTovaData().GetTotalResponseTime(),
+                                            TovaDataGet.ReturnTovaData().GetTotalResponseTime(),
                                             TovaDataGet.ReturnTovaData().GetTotalOmissionScore(),
-                                            TovaDataGet.ReturnTovaData().GetTotalDES(),TovaDataGet.ReturnTovaData().GetTargetDataListPositions(),TovaDataGet.ReturnTovaData().GetTargetDataListHights());///,TovaDataGet.ReturnTovaData().GetTargetDataListPositions().ToArray()[1]);
+                                            TovaDataGet.ReturnTovaData().GetTotalDES(), TovaDataGet.ReturnTovaData().GetTargetDataListPositions(), TovaDataGet.ReturnTovaData().GetTargetDataListHights());///,TovaDataGet.ReturnTovaData().GetTargetDataListPositions().ToArray()[1]);
                 //ServerRequest.instance.SendPostRequest(ServerRequest.headset,
                 //                   ServerRequest.roomId,
                 //                   attempStartTime,
@@ -188,7 +223,7 @@ public class StatisticsManager : MonoBehaviour
                 //                  0,
                 //                  0);
                 Debug.Log("post");
-              
+
                 //  if (Statistics.android) JsonPreparation.instance.PostJson(JsonItemsInstanceString);
                 canEnterSendStatistics = false;
             }
@@ -203,7 +238,7 @@ public class StatisticsManager : MonoBehaviour
 
     public void ResetStatisticsRPC()
     {
-        
+
         stats.flowerSustained = 0f;
         stats.wellSustained = 0f;
         stats.totalFlowerGrowth = 0;

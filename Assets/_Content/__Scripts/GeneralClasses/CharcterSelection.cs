@@ -56,22 +56,22 @@ public class CharcterSelection : MonoBehaviour
                 Debug.Log("liza female selsected ");
             }
         }
-        else
-        {
-            Debug.Log("language selsected error");
-        }/*
+        //else
+        //{
+        //    Debug.Log("language selsected error");
+        //}
         else if (Statistics.languageIndex == 2)
         {
-            if (Statistics.character == 0)
+            if (stats.character == 0)
             {
-                // if (gameObject.tag == "HussienSU") ;
-                HussienSU.SetActive(true);
+                 //if (gameObject.tag == "HussienSU") ;
+                Hussien.SetActive(true);
             }
-            else if (Statistics.character == 1)
+            else if (stats.character == 1)
             {
-                ReemSU.SetActive(true);
+                Reem.SetActive(true);
             }
-        }
+        }/*
         else if(Statistics.languageIndex == 3)
         {
             if (Statistics.character == 0)

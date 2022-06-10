@@ -1,24 +1,24 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
-using PusherClient;
+//using PusherClient;
 using SocketIO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PusherManager : MonoBehaviour
 {
-   
-#if UNITY_ANDROID
-    // A mutation of https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
     public static PusherManager instance = null;
+    public string OrgPackageName;
+   
+#if UNITY_STANDALONE
+    // A mutation of https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
     private Pusher _pusher;
     private Channel _channel;
     //modified
     private const string APP_KEY = "c9287ffe04bd6fce40ff";
     //modified
     private const string APP_CLUSTER = "eu";
-    public string OrgPackageName;
     string packageName;
     string serial;
     bool sameApp = false;

@@ -108,9 +108,9 @@ public class MenuController : MonoBehaviour
 
     public void LoadSceneRPC()
     {
-      
 
-    
+
+
         if (stats.isGardenEnviroment)
         {
             SceneManager.LoadScene("Garden");
@@ -124,7 +124,9 @@ public class MenuController : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        NetworkManager.InvokeServerMethod("LoadMainMenuRPC", this.gameObject.name);
+        //NetworkManager.InvokeServerMethod("LoadMainMenuRPC", this.gameObject.name);
+        StatisticsManager.instance.OnSendStatistics();
+        Invoke("LoadMainMenuRPC", 4f);
     }
 
     public void LoadMainMenuRPC()
@@ -136,26 +138,29 @@ public class MenuController : MonoBehaviour
     public void ExitModule()
     {
         Debug.Log("Exit Module");
-        ServerRequest.instance.SendPutRequest();
+        //ServerRequest.instance.SendPutRequest();
 
-       if (!Statistics.android) NetworkManager.InvokeServerMethod("ExitModuleRPC", this.gameObject.name);
-      // 
+        StatisticsManager.instance.OnSendStatistics();
+        Invoke("ExitModuleRPC", 0f);
+        /*if (!Statistics.android)*/
+        //NetworkManager.InvokeServerMethod("ExitModuleRPC", this.gameObject.name);
+        // 
     }
 
     public void ExitModuleRPC()
     {
-                Invoke("bye", 7);
+        Invoke("bye", 7);
 
         Debug.Log("bye");
 
-      
+
     }
 
     public void bye()
     {
         Debug.Log("Exit Module RPC");
         //StartCoroutine(ExitEnum());     
-  if (Statistics.android)
+        if (Statistics.android)
             Application.Quit();
     }
 

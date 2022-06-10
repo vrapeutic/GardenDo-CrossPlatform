@@ -7,15 +7,15 @@ public class SetAnimalAnimatorInt : MonoBehaviour
 {
     [SerializeField] Animator myAnimator;
     [SerializeField] AnimalBehaviourControl myAnimalBehaviour;
-    [SerializeField] public static  bool isAnimalDistracting;
-  
+    [SerializeField] public static bool isAnimalDistracting;
+
     public bool canFill;
     private void Start()
     {
         try
         {
-        InvokationManager invokationManager = new InvokationManager( this, this.gameObject.name );
-        NetworkManager.InvokeClientMethod("StartDistractionRPC", invokationManager );
+            InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+            NetworkManager.InvokeClientMethod("StartDistractionRPC", invokationManager);
             NetworkManager.InvokeClientMethod("StopDistractionRPC", invokationManager);
 
         }
@@ -23,17 +23,17 @@ public class SetAnimalAnimatorInt : MonoBehaviour
         {
             Debug.Log("set animal int init error");
         }
-       //if( !myAnimalBehaviour ) myAnimalBehaviour = GetComponentInChildren<AnimalBehaviourControl>();
-        
+        //if( !myAnimalBehaviour ) myAnimalBehaviour = GetComponentInChildren<AnimalBehaviourControl>();
+
         isAnimalDistracting = false;
         canFill = false;
-       if(!myAnimator)  myAnimator = this.GetComponent<Animator>();
+        if (!myAnimator) myAnimator = this.GetComponent<Animator>();
     }
 
     public void StartDistraction()
     {
-       
-            Debug.Log("Start distraction");
+
+        Debug.Log("Start distraction");
         if (Statistics.android)
         {
             Debug.Log("should enable collider");
@@ -43,14 +43,14 @@ public class SetAnimalAnimatorInt : MonoBehaviour
             isAnimalDistracting = true;
             NetworkManager.InvokeServerMethod("StartDistractionRPC", this.gameObject.name);
         }
-          
-       
+
+
     }
-    
+
     public void StartDistractionRPC()
     {
         Debug.Log("Start distraction RPC");
-        myAnimator.SetInteger( "State" , 0 );     
+        myAnimator.SetInteger("State", 0);
     }
     public void StopDistraction()
     {
@@ -60,8 +60,8 @@ public class SetAnimalAnimatorInt : MonoBehaviour
         NetworkManager.InvokeServerMethod("StopDistractionRPC", this.gameObject.name);
     }
     public void StopDistractionRPC()
-    {     
-        myAnimator.SetInteger( "State" , 1 );
+    {
+        myAnimator.SetInteger("State", 1);
         Debug.Log("Stop distraction RPC");
     }
     //IEnumerator Distract()

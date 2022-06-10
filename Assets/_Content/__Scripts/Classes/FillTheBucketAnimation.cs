@@ -75,8 +75,8 @@ public class FillTheBucketAnimation : MonoBehaviour
 
     public void StoppingWaterProcessRPC()
     {
-        if (!Statistics.android)
-        {
+        //if (!Statistics.android)
+        //{
             if (!startPlayingSFX)
             {
                 sfxIsPlayed = true;
@@ -86,7 +86,7 @@ public class FillTheBucketAnimation : MonoBehaviour
             // waterParticles.enableEmission = false;
             startFillingTimer = false;
             waterAnim.SetFloat("speed", 0.0f);
-        }
+        //}
 
     }
 
@@ -105,8 +105,8 @@ public class FillTheBucketAnimation : MonoBehaviour
 
     public void PlayingWaterProcessRPC()
     {
-        if (!Statistics.android)
-        {
+       // if (!Statistics.android)
+        //{
             if (sfxIsPlayed == false)
             {
                 fillingTheBucketSFX.Play();
@@ -121,7 +121,7 @@ public class FillTheBucketAnimation : MonoBehaviour
             startFillingTimer = true;
             waterAnim.enabled = true;
             waterAnim.SetFloat("speed", 1.0f);
-        }
+      //  }
 
     }
 

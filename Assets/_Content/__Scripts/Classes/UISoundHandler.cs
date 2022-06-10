@@ -10,10 +10,10 @@ public class UISoundHandler : MonoBehaviour
   [SerializeField]  AudioSource myAudioSource;
     private void Start()
     {
-        if (!Statistics.android)
-        {
+      //  if (!Statistics.android)
+      //  {
             if(!myAudioSource) myAudioSource = this.GetComponent<AudioSource>();
-        } 
+        //} 
     }
     public void PlayHoverSound()
     {

@@ -41,11 +41,11 @@ public class EndSession : MonoBehaviour
 
     public void GameOver()
     {
-        if (!Statistics.android)
-        {
+        //if (!Statistics.android)
+        //{
             try
             {
-               StatisticsManager.instance.OnSendStatistics();
+                StatisticsManager.instance.OnSendStatistics();
                 Debug.Log("stats  send");
 
             }
@@ -55,7 +55,7 @@ public class EndSession : MonoBehaviour
             }
             EndGameCanvas();
            // StartCoroutine(EndCanvasIEnum());
-        }
+        //}
         Debug.Log("Game Over Buton /// ");
         //  NetworkManager.InvokeServerMethod("GameOverRPC", this.gameObject.name);
     }
@@ -119,8 +119,5 @@ public class EndSession : MonoBehaviour
     {
         savePanel.SetActive(true);
     }
-
-
-
 
 }

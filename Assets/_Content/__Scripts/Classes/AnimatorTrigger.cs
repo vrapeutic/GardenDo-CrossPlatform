@@ -144,8 +144,8 @@ public class AnimatorTrigger : MonoBehaviour
 
     public void FlowerGrowingUpRPC(int _currrentFlowerIndix)
     {
-        if (!Statistics.android)
-        {
+        //if (!Statistics.android)
+        //{
             flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
             stopReverseAnim = false;
             if (isNewFlower == true)
@@ -181,7 +181,7 @@ public class AnimatorTrigger : MonoBehaviour
             WaterPlarticleSystemEmission(true);
             flowerAnimator.enabled = true;
             flowerAnimator.SetFloat("speed", 1.0f / finalGrowthSpeed);
-        }
+        //}
 
     }
 
@@ -222,8 +222,8 @@ public class AnimatorTrigger : MonoBehaviour
 
     public void FlowerReverseRPC(int _currentFlowerIndex)
     {
-        if (!Statistics.android)
-        {
+      //  if (!Statistics.android)
+       // {
             flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
             if (!startPlayingSFX)
@@ -244,7 +244,7 @@ public class AnimatorTrigger : MonoBehaviour
                 currentClipTime = 0f;
                 stopReverseAnim = true;
             }
-        }
+    //    }
         //Debug.Log("Flower reverse");
 
     }
@@ -268,12 +268,12 @@ public class AnimatorTrigger : MonoBehaviour
 
     public void WaterPlarticleSystemEmissionRPC(bool _emssion)
     {
-        if (!Statistics.android)
-        {
+       // if (!Statistics.android)
+        //{
             emssion = _emssion;
             waterParticles.enableEmission = emssion;
             startFlowerTimer = _emssion;
-        }
+     //   }
 
     }
     public void StopWaterSFX()

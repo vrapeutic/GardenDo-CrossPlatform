@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Content/___Scenes/Lobby.unity
-    guid: c096c458a80f33f4ba991d014b94c7cc
-  - enabled: 1
-    path: Assets/_Content/___Scenes/Server.unity
-    guid: e0be1677dec9e2c4cb8e40b36be77c58
+    path: Assets/Scenes/Session.unity
+    guid: 534d362804046ad4aa2fadd4350f6f0f
   - enabled: 1
     path: Assets/_Content/___Scenes/Main Menu.unity
     guid: cef3e4df3e8af6640978fdb63d5946dc
@@ -21,7 +18,7 @@ EditorBuildSettings:
     path: Assets/_Content/___Scenes/Garden.unity
     guid: bc93c26384792ed469bb5b15eb82d9a4
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9e811e9ecb5aa844fa046a892143cd62,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a2a41c6a616c9e44b97fbccb8ce12746,
       type: 2}
     Unity.XR.PXR.Settings: {fileID: 11400000, guid: 4c5dec813e7c9d742b5b74e966e8ae4b,
       type: 2}

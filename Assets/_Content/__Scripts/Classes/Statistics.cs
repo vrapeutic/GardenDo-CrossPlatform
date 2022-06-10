@@ -6,7 +6,7 @@ public class Statistics : MonoBehaviour
 {
     public static bool android = false;
 
-    public static int languageIndex;// 0 --> Arabic, 1 --> English, 2 --> Suadi
+    public static int languageIndex;// 0 --> vietnamese, 1 --> English, 2 --> arabic
 
     public int character;// 0 --> Hussien, 1 --> Reem
 
