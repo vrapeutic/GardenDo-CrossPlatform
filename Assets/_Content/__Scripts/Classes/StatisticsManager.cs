@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class StatisticsManager : MonoBehaviour
 {
@@ -35,10 +35,10 @@ public class StatisticsManager : MonoBehaviour
         //  startTime = ServerRequest.instance.startTime;
         attempStartTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
 
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        //  NetworkManager.InvokeClientMethod("SendAttemptStatistics", invokationManager);
-        NetworkManager.InvokeClientMethod("ResetStatisticsRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("OnSendStatisticsRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        ////  NetworkManager.InvokeClientMethod("SendAttemptStatistics", invokationManager);
+        //NetworkManager.InvokeClientMethod("ResetStatisticsRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("OnSendStatisticsRPC", invokationManager);
     }
 
     private void Update()
@@ -144,7 +144,38 @@ public class StatisticsManager : MonoBehaviour
                 implusivityScore = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
                 TovaDataGet.ReturnTovaData().SetSessionEnd(false);
 
+<<<<<<< Updated upstream
                 Debug.Log(" TFD: " + TFD +  " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
+=======
+                Debug.Log(" TFD: " + TFD + " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
+
+                Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
+                Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListHights());
+
+
+                dataCollection.session_start_time = attempStartTime;
+                dataCollection.attempt_start_time = attempStartTime;
+                dataCollection.attempt_end_time = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
+                dataCollection.expected_duration_in_seconds = typicalTime;
+                dataCollection.actual_duration_in_seconds = timeTaken;
+                dataCollection.level = stats.level.ToString();
+                dataCollection.attempt_type = "open";
+                dataCollection.total_sustained = stats.flowerSustained + stats.wellSustained;
+                dataCollection.non_sustained = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+                dataCollection.impulsivity_score = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
+                dataCollection.response_time = TovaDataGet.ReturnTovaData().GetTotalResponseTime();
+                dataCollection.omission_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
+                //dataCollection.distractibility_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
+                dataCollection.actual_attention_time = TovaDataGet.ReturnTovaData().GetActualTimeSpan();
+                dataCollection.flowerSustained = stats.flowerSustained;
+                dataCollection.wellSustained = stats.wellSustained;
+                dataCollection.totalSustained = stats.flowerSustained + stats.wellSustained;
+                dataCollection.nonSustained = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+                dataCollection.des = TovaDataGet.ReturnTovaData().GetTotalDES();
+                dataCollection.score = score;
+                dataCollection.flowr_position = TovaDataGet.ReturnTovaData().GetTargetDataListPositions();
+                dataCollection.flower_heights = TovaDataGet.ReturnTovaData().GetTargetDataListHights();
+>>>>>>> Stashed changes
 
     Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
         Debug.Log( TovaDataGet.ReturnTovaData().GetTargetDataListHights());
@@ -198,7 +229,8 @@ public class StatisticsManager : MonoBehaviour
 
     public void ResetStatistics()
     {
-        NetworkManager.InvokeServerMethod("ResetStatisticsRPC", this.gameObject.name);
+        ResetStatisticsRPC();
+        //NetworkManager.InvokeServerMethod("ResetStatisticsRPC", this.gameObject.name);
     }
 
     public void ResetStatisticsRPC()

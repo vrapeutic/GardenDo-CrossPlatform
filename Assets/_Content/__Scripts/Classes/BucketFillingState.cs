@@ -1,34 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class BucketFillingState : MonoBehaviour
 {
-  
+
     bool bucketIsFull = false;
     [SerializeField] GameEvent bucketIsFullEvent;
-  
+
     // [SerializeField] Animator HussienAnim;
-    
-   
-   // [SerializeField] ParticleSystem waterParticles;
+
+
+    // [SerializeField] ParticleSystem waterParticles;
     [SerializeField] Animator waterLevelAnim;
     [SerializeField] AudioSource waterSFX;
 
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OnBucketIsFullRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OnBucketIsFullRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
     }
 
-   
-  
+
+
 
     public void OnBucketIsFull()
     {
-       if(Statistics.android) NetworkManager.InvokeServerMethod("OnBucketIsFullRPC", this.gameObject.name);
+        if (Statistics.android) OnBucketIsFullRPC();
+        /*NetworkManager.InvokeServerMethod("OnBucketIsFullRPC", this.gameObject.name);*/
     }
 
     public void OnBucketIsFullRPC()
@@ -37,14 +38,15 @@ public class BucketFillingState : MonoBehaviour
         bucketIsFullEvent.Raise();
         waterLevelAnim.speed = 0f;
         waterSFX.Stop();
-       
-       // SetAnimatorInt.instance.AnimatorSetIntger(8);
+
+        // SetAnimatorInt.instance.AnimatorSetIntger(8);
     }
 
     public void StartFilling()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);
-        
+        if (Statistics.android) StartFillingRPC();
+        /*NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);*/
+
     }
 
     public void StartFillingRPC()

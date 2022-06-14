@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 public class NPCInstructions : MonoBehaviour
 {
 
@@ -14,13 +14,13 @@ public class NPCInstructions : MonoBehaviour
     {
         flowerIndex = 0;
         npcAnimator = this.GetComponent<Animator>();
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("TellThePlayerToHoldTheBucketRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("OnPlayerGrabbTheBucketRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("OnHandleDownRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("ReadyToWaterTheFlowerRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("PlayerPlantedFlowerRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("PlayerPlantedAllFlowersRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("TellThePlayerToHoldTheBucketRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("OnPlayerGrabbTheBucketRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("OnHandleDownRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("ReadyToWaterTheFlowerRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("PlayerPlantedFlowerRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("PlayerPlantedAllFlowersRPC", invokationManager);
         stats = Statistics.instane;
         maxFlowerNumber = stats.numberOfFlowers;
     }
@@ -28,7 +28,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("TellThePlayerToHoldTheBucketRPC", this.gameObject.name);
+            TellThePlayerToHoldTheBucketRPC();
+            //NetworkManager.InvokeServerMethod("TellThePlayerToHoldTheBucketRPC", this.gameObject.name);
             Debug.Log("tell the player to hold the bucket");
         }
 
@@ -39,7 +40,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("OnPlayerGrabbTheBucketRPC", this.gameObject.name);
+            OnPlayerGrabbTheBucketRPC();
+            //NetworkManager.InvokeServerMethod("OnPlayerGrabbTheBucketRPC", this.gameObject.name);
             Debug.Log("player grabs the bucket");
         }
 
@@ -49,7 +51,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("OnHandleDownRPC", this.gameObject.name);
+            OnHandleDownRPC();
+            //NetworkManager.InvokeServerMethod("OnHandleDownRPC", this.gameObject.name);
             Debug.Log("handle down");
         }
 
@@ -59,7 +62,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("ReadyToWaterTheFlowerRPC", this.gameObject.name);
+            ReadyToWaterTheFlowerRPC();
+            //NetworkManager.InvokeServerMethod("ReadyToWaterTheFlowerRPC", this.gameObject.name);
             Debug.Log("player ready to water the flower");
         }
 
@@ -69,7 +73,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("PlayerPlantedFlowerRPC", this.gameObject.name);
+            PlayerPlantedFlowerRPC();
+            //NetworkManager.InvokeServerMethod("PlayerPlantedFlowerRPC", this.gameObject.name);
             Debug.Log("player planted flower");
         }
     }
@@ -78,7 +83,8 @@ public class NPCInstructions : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("PlayerPlantedAllFlowersRPC", this.gameObject.name);
+            PlayerPlantedAllFlowersRPC();
+            //NetworkManager.InvokeServerMethod("PlayerPlantedAllFlowersRPC", this.gameObject.name);
             Debug.Log("player planted all flowers");
         }
     }

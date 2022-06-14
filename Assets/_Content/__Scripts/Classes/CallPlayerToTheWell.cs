@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class CallPlayerToTheWell : MonoBehaviour
 {
@@ -13,8 +13,8 @@ public class CallPlayerToTheWell : MonoBehaviour
 
     void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("WaitForPlayerToComeOverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("WaitForPlayerToComeOverRPC", invokationManager);
         playerMovedTowardsTheWell = false;
      //  if(Statistics.android) GetComponent<CheckIntervals>().CheckIntervalsCall(waitingSeconds, playerMovedTowardsTheWell);
     }

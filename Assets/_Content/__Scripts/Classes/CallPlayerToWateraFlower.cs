@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class CallPlayerToWateraFlower : MonoBehaviour
 {
@@ -14,14 +14,15 @@ public class CallPlayerToWateraFlower : MonoBehaviour
 
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("LetsWaterTheFlowerRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("LetsWaterTheFlowerRPC", invokationManager);
         Debug.Log("Call player to water a flower is started");
     }
 
     public void OnConditionNotChecked()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("LetsWaterTheFlowerRPC", this.gameObject.name);
+        if (Statistics.android) LetsWaterTheFlowerRPC();
+            /* NetworkManager.InvokeServerMethod("LetsWaterTheFlowerRPC", this.gameObject.name);*/
     }
 
     public void LetsWaterTheFlowerRPC()

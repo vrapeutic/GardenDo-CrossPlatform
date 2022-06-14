@@ -129,7 +129,8 @@ public class MenuController : MonoBehaviour
 
     public void LoadMainMenuRPC()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Session");
+        Destroy(FindObjectOfType<TovaDataGet>().gameObject);
     }
 
 
@@ -138,8 +139,16 @@ public class MenuController : MonoBehaviour
         Debug.Log("Exit Module");
         ServerRequest.instance.SendPutRequest();
 
+<<<<<<< Updated upstream
        if (!Statistics.android) NetworkManager.InvokeServerMethod("ExitModuleRPC", this.gameObject.name);
       // 
+=======
+        StatisticsManager.instance.OnSendStatistics();
+        ExitModuleRPC();
+        /*if (!Statistics.android)*/
+        //NetworkManager.InvokeServerMethod("ExitModuleRPC", this.gameObject.name);
+        // 
+>>>>>>> Stashed changes
     }
 
     public void ExitModuleRPC()

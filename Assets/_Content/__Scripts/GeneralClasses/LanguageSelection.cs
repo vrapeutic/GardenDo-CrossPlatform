@@ -25,11 +25,11 @@ public class LanguageSelection : MonoBehaviour
         stats = Statistics.instane;
         InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
         NetworkManager.InvokeClientMethod("OnLanguageSelectRPC", invokationManager);
-        if (stats.firstEnterMainMenu)
-        {
-            menuSequence.NextUI();
-            //Destroy(gameObject);
-        }
+        //if (stats.firstEnterMainMenu)
+        //{
+        //    menuSequence.NextUI();
+        //    //Destroy(gameObject);
+        //}
     }
 
     public void OnLanguageSelect(int languageNO)

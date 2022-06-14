@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class ControlBucketCover : MonoBehaviour
 {
     WaitForSeconds seconds = new WaitForSeconds(0.2f);
-  
+
 
     [SerializeField]
     private Animator bucketCover;
@@ -20,9 +20,9 @@ public class ControlBucketCover : MonoBehaviour
 
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OpenBucketCoverRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("CloseBucketCoverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OpenBucketCoverRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("CloseBucketCoverRPC", invokationManager);
         isCoverOpened = false;
         shallNPCTalk = true;
     }
@@ -33,11 +33,12 @@ public class ControlBucketCover : MonoBehaviour
     }
 
 
-  
+
 
     public void OpenBucketCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("OpenBucketCoverRPC", this.gameObject.name);
+        if (Statistics.android) OpenBucketCoverRPC();
+        /*NetworkManager.InvokeServerMethod("OpenBucketCoverRPC", this.gameObject.name);*/
     }
 
     public void OpenBucketCoverRPC()
@@ -52,7 +53,8 @@ public class ControlBucketCover : MonoBehaviour
 
     public void CloseBucketCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("CloseBucketCoverRPC", this.gameObject.name);
+        if (Statistics.android) CloseBucketCoverRPC();
+        /*NetworkManager.InvokeServerMethod("CloseBucketCoverRPC", this.gameObject.name);*/
     }
 
     public void CloseBucketCoverRPC()

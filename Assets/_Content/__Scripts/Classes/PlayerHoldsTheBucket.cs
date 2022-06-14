@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class PlayerHoldsTheBucket : MonoBehaviour
 {
@@ -20,8 +20,8 @@ public class PlayerHoldsTheBucket : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("GrabTheHandleRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("GrabTheHandleRPC", invokationManager);
 
         if (!stats.isCompleteCourse)
         {
@@ -41,7 +41,8 @@ public class PlayerHoldsTheBucket : MonoBehaviour
             if (Statistics.android && !firstHandEnter)
             {
                 Debug.Log("First Enter Grabbing Bucket");
-                NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
+                GrabTheHandleRPC();
+                //NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
                 firstHandEnter = true;
             }
 
@@ -57,7 +58,8 @@ public class PlayerHoldsTheBucket : MonoBehaviour
 
     public void OnConditionNotChecked()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
+        if (Statistics.android) GrabTheHandleRPC();
+        /*NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);*/
     }
 
 

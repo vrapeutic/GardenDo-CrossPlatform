@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class HandleActionAfterWelcomming : MonoBehaviour
 {
@@ -15,13 +15,14 @@ public class HandleActionAfterWelcomming : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OnWelcommingFinishRPC", invokationManager);   
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OnWelcommingFinishRPC", invokationManager);   
     }
     public void OnWelcommingFinish()
     {
         Debug.Log("welcoming finished event listened");
-        if (Statistics.android) NetworkManager.InvokeServerMethod("OnWelcommingFinishRPC", this.gameObject.name);
+        if (Statistics.android) OnWelcommingFinishRPC();
+        /* NetworkManager.InvokeServerMethod("OnWelcommingFinishRPC", this.gameObject.name);*/
     }
 
     public void OnWelcommingFinishRPC()

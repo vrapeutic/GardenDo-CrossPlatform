@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class BirdMovementTrigger : MonoBehaviour
 {
@@ -11,14 +11,14 @@ public class BirdMovementTrigger : MonoBehaviour
     Statistics stats;
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("FlyingBirdAnimRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("FlyingBirdAnimRPC", invokationManager);
         stats = Statistics.instane;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.gameObject.tag == "Hand")
         {
             Debug.Log("Bird flying away from Flower!");
             if (BirdController.isBirdOnFlower)
@@ -34,7 +34,11 @@ public class BirdMovementTrigger : MonoBehaviour
 
     private void FlyingBirdAnim()
     {
-        if (Statistics.android) { NetworkManager.InvokeServerMethod("FlyingBirdAnimRPC", this.gameObject.name); }
+        if (Statistics.android)
+        {
+            FlyingBirdAnimRPC();
+            /*NetworkManager.InvokeServerMethod("FlyingBirdAnimRPC", this.gameObject.name);*/
+        }
     }
 
     public void FlyingBirdAnimRPC()

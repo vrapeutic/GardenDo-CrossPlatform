@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 using UnityEngine.UI;
 public class EndSession : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class EndSession : MonoBehaviour
     [SerializeField] GameObject onPlayCanvas;
     [SerializeField] GameObject savePanel;
     //text for testing stats
-   // [SerializeField] GameObject debugText;
+    // [SerializeField] GameObject debugText;
 
 
     public static EndSession instance = new EndSession();
@@ -34,13 +34,14 @@ public class EndSession : MonoBehaviour
     {
         stats = Statistics.instane;
         canEnterEndCanvasIEnum = true;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("GameOverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("GameOverRPC", invokationManager);
     }
 
 
     public void GameOver()
     {
+<<<<<<< Updated upstream
         if (!Statistics.android)
         {
             try
@@ -56,6 +57,23 @@ public class EndSession : MonoBehaviour
             EndGameCanvas();
            // StartCoroutine(EndCanvasIEnum());
         }
+=======
+        //if (!Statistics.android)
+        //{
+        try
+        {
+            StatisticsManager.instance.OnSendStatistics();
+            Debug.Log("stats  send");
+
+        }
+        catch
+        {
+            Debug.Log("stats not send");
+        }
+        EndGameCanvas();
+        // StartCoroutine(EndCanvasIEnum());
+        //}
+>>>>>>> Stashed changes
         Debug.Log("Game Over Buton /// ");
         //  NetworkManager.InvokeServerMethod("GameOverRPC", this.gameObject.name);
     }
@@ -77,8 +95,8 @@ public class EndSession : MonoBehaviour
         else yield return new WaitForSeconds(4f);
         try
         {
-          //  StatisticsManager.instance.ResetStatistics();
-            
+            //  StatisticsManager.instance.ResetStatistics();
+
         }
         catch
         {
@@ -94,12 +112,12 @@ public class EndSession : MonoBehaviour
 
     void EndGameCanvas()
     {
-        if (!canEnterEndCanvasIEnum) return;
+        //if (!canEnterEndCanvasIEnum) return;
         canEnterCanvas = true;
         endCanvas.SetActive(true);
         savePanel.SetActive(false);
         onPlayCanvas.SetActive(false);
-       // StatisticsManager.instance.ResetStatistics();
+        // StatisticsManager.instance.ResetStatistics();
     }
 
     public void SaveConfirmed()
@@ -110,9 +128,9 @@ public class EndSession : MonoBehaviour
     public void SaveDenied()
     {
         // StatisticsManager.instance.ResetStatistics();
-         endCanvas.SetActive(true);
-         savePanel.SetActive(false);
-         onPlayCanvas.SetActive(false);
+        endCanvas.SetActive(true);
+        savePanel.SetActive(false);
+        onPlayCanvas.SetActive(false);
     }
 
     public void QuitSession()

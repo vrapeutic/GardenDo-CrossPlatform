@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class PlayerIsNearTheWell : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class PlayerIsNearTheWell : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
 
         if (stats.isCompleteCourse)
         {

@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 
 public class TheHandelController : MonoBehaviour
 {
-   
-   
+
+
     [SerializeField] Animator handelAnim;
-    
+
     [SerializeField] GameEvent HandleDownEvent;
 
     public static bool isHandleDown;
@@ -17,8 +17,8 @@ public class TheHandelController : MonoBehaviour
     Outline MyOutLine;
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("PlayHandleAnimRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("PlayHandleAnimRPC", invokationManager);
         isHandleDown = false;
         MyOutLine = this.GetComponent<Outline>();
     }
@@ -26,12 +26,13 @@ public class TheHandelController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand"))
+        if (other.gameObject.tag == "Hand")
         {
             Debug.Log("Handel Ainem");
-        
-            if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
-           
+
+            if (Statistics.android) PlayHandleAnimRPC();
+            //NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
+
         }
     }
 
@@ -50,15 +51,15 @@ public class TheHandelController : MonoBehaviour
             this.GetComponent<Collider>().enabled = false;
             isHandleDown = false;
         }
-       
+
     }
 
-    
-   public void OnHandleOpen()
+
+    public void OnHandleOpen()
     {
         isHandleDown = true;
     }
-    
+
     public void StartOutline()
     {
         MyOutLine.enabled = true;

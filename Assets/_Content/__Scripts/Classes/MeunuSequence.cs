@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 public class MeunuSequence : MonoBehaviour
 {
     [SerializeField] GameObject[] panels;
@@ -9,7 +9,7 @@ public class MeunuSequence : MonoBehaviour
 
     private void Start()
     {
-        currentUIIndex = 0;
+        currentUIIndex =0;
         ShowUI();
     }
 

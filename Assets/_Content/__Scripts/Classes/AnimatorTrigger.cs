@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 using System;
 
 public class AnimatorTrigger : MonoBehaviour
@@ -50,10 +50,10 @@ public class AnimatorTrigger : MonoBehaviour
         Debug.Log("Animator trigger is started");
         flowerIndex = 0;
         UpdateCurrentFlower();
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("FlowerGrowingUpRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("FlowerReverseRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("WaterPlarticleSystemEmissionRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("FlowerGrowingUpRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("FlowerReverseRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("WaterPlarticleSystemEmissionRPC", invokationManager);
         if (Statistics.android) currentCoroutine = StartCoroutine(WaterTheFlowers());
     }
 
@@ -98,7 +98,8 @@ public class AnimatorTrigger : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("FlowerGrowingUpRPC", this.gameObject.name, _currrentFlowerIndix);
+            FlowerGrowingUpRPC(_currrentFlowerIndix);
+            //NetworkManager.InvokeServerMethod("FlowerGrowingUpRPC", this.gameObject.name, _currrentFlowerIndix);
             FlowerGrowingUpAndroid(_currrentFlowerIndix);
         }
     }
@@ -191,7 +192,8 @@ public class AnimatorTrigger : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("FlowerReverseRPC", this.gameObject.name, _currentFlowerIndex);
+            FlowerReverseRPC(_currentFlowerIndex);
+            //NetworkManager.InvokeServerMethod("FlowerReverseRPC", this.gameObject.name, _currentFlowerIndex);
             FlowerReverseAndroid(_currentFlowerIndex);
         }
     }
@@ -253,7 +255,8 @@ public class AnimatorTrigger : MonoBehaviour
     {
         if (Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("WaterPlarticleSystemEmissionRPC", this.gameObject.name, _emssion);
+            WaterPlarticleSystemEmissionRPC(_emssion);
+            //NetworkManager.InvokeServerMethod("WaterPlarticleSystemEmissionRPC", this.gameObject.name, _emssion);
             WaterPlarticleSystemEmissionAndroid(_emssion);
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 public class NPCGoesToWell : MonoBehaviour
 {
     [SerializeField]
@@ -16,18 +16,19 @@ public class NPCGoesToWell : MonoBehaviour
     {
         if (!npcAnimator) npcAnimator = this.GetComponent<Animator>();
         if (!npcChildAnimator) npcChildAnimator = this.GetComponentInChildren<Animator>();
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("NPCMovesToTheWellRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("NPCArrivedToTheWellRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("GetNPCBackToHisPositionRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("NPC_ArrivedToOriginalPositionRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("NPCMovesToTheWellRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("NPCArrivedToTheWellRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("GetNPCBackToHisPositionRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("NPC_ArrivedToOriginalPositionRPC", invokationManager);
     }
     public void NPCMovesToTheWell()
     {
         if(Statistics.android)
         {
             Debug.Log("npc moves to the well ");
-            NetworkManager.InvokeServerMethod("NPCMovesToTheWellRPC", this.gameObject.name);
+            NPCMovesToTheWellRPC();
+            //NetworkManager.InvokeServerMethod("NPCMovesToTheWellRPC", this.gameObject.name);
         }
        
     }
@@ -37,7 +38,8 @@ public class NPCGoesToWell : MonoBehaviour
         if(Statistics.android)
         {
             Debug.Log("npc arrived to the well");
-            NetworkManager.InvokeServerMethod("NPCArrivedToTheWellRPC", this.gameObject.name);
+            NPCArrivedToTheWellRPC();
+            //NetworkManager.InvokeServerMethod("NPCArrivedToTheWellRPC", this.gameObject.name);
         }
         
     }
@@ -47,7 +49,8 @@ public class NPCGoesToWell : MonoBehaviour
         if(Statistics.android)
         {
             Debug.Log("get npc back to his position");
-            NetworkManager.InvokeServerMethod("GetNPCBackToHisPositionRPC", this.gameObject.name);
+            GetNPCBackToHisPositionRPC();
+            //NetworkManager.InvokeServerMethod("GetNPCBackToHisPositionRPC", this.gameObject.name);
         }
        
     }
@@ -56,7 +59,8 @@ public class NPCGoesToWell : MonoBehaviour
         if(Statistics.android)
         {
             Debug.Log("npc arrived to original position");
-            NetworkManager.InvokeServerMethod("NPC_ArrivedToOriginalPositionRPC", this.gameObject.name);
+            NPC_ArrivedToOriginalPositionRPC();
+            //NetworkManager.InvokeServerMethod("NPC_ArrivedToOriginalPositionRPC", this.gameObject.name);
         }
        
     }

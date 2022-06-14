@@ -13,11 +13,13 @@ public class HandleFlowersTransition : MonoBehaviour
     int flowerIndex = 0;
     [SerializeField]
     GameEvent gameFinished;
-  //  [SerializeField]
+    //  [SerializeField]
     //Text indexText;
     Statistics stats;
     int numberOfFLower;
     public static bool tasksAreDone = false;
+
+
     private void Start()
     {
 
@@ -45,7 +47,7 @@ public class HandleFlowersTransition : MonoBehaviour
                 flowers[i].gameObject.SetActive(false);
             }
         }
-    //    indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
+        //    indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
     public void ReadyForWatering()
     {
@@ -57,7 +59,13 @@ public class HandleFlowersTransition : MonoBehaviour
 
     }
 
-
+    private void Update()
+    {
+        if (flowerIndex >= stats.numberOfFlowers + 1)
+        {
+            gameFinished.Raise();
+        }
+    }
 
     public void MakeNextFlowerReady()
     {
@@ -71,7 +79,7 @@ public class HandleFlowersTransition : MonoBehaviour
             Debug.Log("Game finished");
         }
         Debug.Log("make next flower ready called");
-      //  indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
+        //  indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
 
     public void FinishGame()
@@ -79,7 +87,7 @@ public class HandleFlowersTransition : MonoBehaviour
 
         gameFinished.Raise();
         Debug.Log("game finished");
-      //  indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
+        //  indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
 
 }

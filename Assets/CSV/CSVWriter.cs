@@ -119,8 +119,8 @@ public class CSVWriter : MonoBehaviour
     public void SendStatisticsRPC(float _typicalTime, float _timeTaken, int _level, float _flowerSustained, float _wellSusutained, float _implusivityScore,
         float _score, float _omissionScore, float _DES)
     {
-        if (!Statistics.android)
-        {
+        //if (!Statistics.android)
+        //{
             typicalTime = _typicalTime;
             timeTaken = _timeTaken;
             level = _level;
@@ -136,7 +136,7 @@ public class CSVWriter : MonoBehaviour
             Debug.Log("pc recieved stats");
             WriteFinalStatistics();
 
-        }
+        //}
 
     }
 

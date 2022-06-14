@@ -8,6 +8,7 @@ public class CelebrationParticleEffectHandler : MonoBehaviour
     GameObject[] flowerCelebrationParticleEffect;
     [SerializeField]
     GameObject endGameCelebration;
+    [SerializeField] GameEvent gameFinished;
 
     Statistics stats;
     int particleIndex = 0;
@@ -15,6 +16,7 @@ public class CelebrationParticleEffectHandler : MonoBehaviour
     {
         stats = Statistics.instane;
     }
+   
     public void OnFLowerFinished()
     {
         if (particleIndex < (stats.numberOfFlowers))
