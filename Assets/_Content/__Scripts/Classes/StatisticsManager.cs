@@ -172,6 +172,7 @@ public class StatisticsManager : MonoBehaviour
                 dataCollection.omission_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
                 //dataCollection.distractibility_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
                 dataCollection.actual_attention_time = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
+               
                 dataCollection.flowerSustained = stats.flowerSustained;
                 dataCollection.wellSustained = stats.wellSustained;
                 dataCollection.totalSustained = stats.flowerSustained + stats.wellSustained;

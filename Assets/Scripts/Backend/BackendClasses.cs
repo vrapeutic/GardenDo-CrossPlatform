@@ -19,7 +19,7 @@ public class SessionStats
 
 //this class will be customized to every module
 [Serializable]
-public class MyData 
+public class MyData
 {
     //add data attributes here 
     public string session_start_time;
@@ -36,6 +36,14 @@ public class MyData
     public float omission_score;
     public float distractibility_score;
     public float actual_attention_time;
+    public float flowerSustained;
+    public float wellSustained;
+    public float totalSustained;
+    public float nonSustained;
+    public float des;
+    public float score;
+    public string flowr_position;
+    public string flower_heights;
 }
 
 [Serializable]
@@ -47,9 +55,9 @@ public class SessionElements
 [Serializable]
 public class GetStatsData
 {
-    public SessionData sessionData ;
+    public SessionData sessionData;
 }
- [Serializable]
+[Serializable]
 public class SessionData
 {
     string desc;

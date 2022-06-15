@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 public class AnimalBehaviourControl : MonoBehaviour
 {
     [SerializeField]SetAnimalAnimatorInt parentAnimatorInt;
@@ -14,16 +14,16 @@ public class AnimalBehaviourControl : MonoBehaviour
     private void Start()
     {
         GetComponent<BoxCollider>().enabled = false;
-        try
-        {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("StopFillingRPC", invokationManager);
-        }
-        catch
-        {
-            Debug.Log("Animal control init problem");
-        }
+        //try
+        //{
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("StopFillingRPC", invokationManager);
+        //}
+        //catch
+        //{
+        //    Debug.Log("Animal control init problem");
+        //}
       
         isFilled = false;
     }
@@ -64,7 +64,8 @@ public class AnimalBehaviourControl : MonoBehaviour
         
         if (Statistics.android)
         {
-          NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);
+            StartFillingRPC();
+          //NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);
             Debug.Log("Start filling");
         }
     }
@@ -88,7 +89,8 @@ public class AnimalBehaviourControl : MonoBehaviour
     {
         if(Statistics.android)
         {
-            NetworkManager.InvokeServerMethod("StopFillingRPC", this.gameObject.name);
+            StopFillingRPC();
+            //NetworkManager.InvokeServerMethod("StopFillingRPC", this.gameObject.name);
             Debug.Log("Stop filling");
         }
     }

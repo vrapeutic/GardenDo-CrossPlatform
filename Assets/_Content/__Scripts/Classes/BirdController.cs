@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tachyon;
+//using Tachyon;
 
 public class BirdController : MonoBehaviour
 {
@@ -15,8 +15,8 @@ public class BirdController : MonoBehaviour
     {
         dataSet = TovaDataGet.ReturnTovaData();
         isBirdOnFlower = false;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("IdleBirdAnimRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("IdleBirdAnimRPC", invokationManager);
         stats = Statistics.instane;
     }
 
@@ -44,7 +44,10 @@ public class BirdController : MonoBehaviour
 
     private void IdleBirdAnim()
     {
-        if (Statistics.android) { NetworkManager.InvokeServerMethod("IdleBirdAnimRPC", this.gameObject.name); }
+        if (Statistics.android) {
+            IdleBirdAnimRPC();
+            //NetworkManager.InvokeServerMethod("IdleBirdAnimRPC", this.gameObject.name); 
+        }
     }
 
     public void IdleBirdAnimRPC()

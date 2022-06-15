@@ -131,7 +131,8 @@ public class MenuController : MonoBehaviour
 
     public void LoadMainMenuRPC()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Session");
+        Destroy(FindObjectOfType<TovaDataGet>().gameObject);
     }
 
 
