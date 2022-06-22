@@ -304,11 +304,11 @@ public class AnimatorTrigger : MonoBehaviour
         isNewFlower = true;
         StopWaterSFX();
         WaterPlarticleSystemEmission(false);
-        if ((stats.numberOfFlowers - 1) > flowerIndex)
+        if ((stats.numberOfFlowers ) > flowerIndex)
         {
             flowerIndex++;
             UpdateCurrentFlower();
-            Debug.Log("animator trigger flower numbers" + stats.numberOfFlowers);
+            Debug.Log("animator trigger flower numbers" + flowerIndex);
         }
 
     }

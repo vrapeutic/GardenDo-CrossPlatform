@@ -10,13 +10,14 @@ public class BucketCoverAnimControl : MonoBehaviour
     private void Start()
     {
         if (!coverAnimator) coverAnimator = this.GetComponent<Animator>();
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OpenTheCoverRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("CloseTheCoverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OpenTheCoverRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("CloseTheCoverRPC", invokationManager);
     }
     public void OpenTheCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("OpenTheCoverRPC", this.gameObject.name);
+        OpenTheCoverRPC();
+       // if (Statistics.android) NetworkManager.InvokeServerMethod("OpenTheCoverRPC", this.gameObject.name);
     }
 
     public void OpenTheCoverRPC()
@@ -26,7 +27,8 @@ public class BucketCoverAnimControl : MonoBehaviour
 
     public void CloseTheCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("CloseTheCoverRPC", this.gameObject.name);
+        CloseTheCoverRPC();
+       // if (Statistics.android) NetworkManager.InvokeServerMethod("CloseTheCoverRPC", this.gameObject.name);
     }
 
     public void CloseTheCoverRPC()

@@ -13,20 +13,20 @@ public class TovaDataGet : MonoBehaviour
     [SerializeField] float responseWight = 0.5f;
     private void Awake()
     {
-     
-      dataSet = ScriptableObject.CreateInstance<TovaDataSet>();
-        getData =FindObjectsOfType<TovaDataGet>();
+
+        dataSet = ScriptableObject.CreateInstance<TovaDataSet>();
+        getData = FindObjectsOfType<TovaDataGet>();
         if (getData.Length > 1)
-            Destroy(getData[1].gameObject);
-            DontDestroyOnLoad(this.gameObject);
-        
+            Destroy(getData[0].gameObject);
+        DontDestroyOnLoad(this.gameObject);
+
     }
 
     public static TovaDataSet ReturnTovaData()
     {
         return dataSet;
     }
-   private void Start()
+    private void Start()
     {
         dataSet.SetTypicalTime(TAS);
         dataSet.SetInstructionTime(instractionTime);
@@ -38,13 +38,13 @@ public class TovaDataGet : MonoBehaviour
     {
         while (true)
         {
-           if (ReturnTovaData().GetSessionEnd() != false)
+            if (ReturnTovaData().GetSessionEnd() != false)
             {
                 ReturnTovaData().SetSessionEnd(false);
                 ReturnTovaData().SetActualTimeCounter(false);
                 ReturnTovaData().SetResponseTimer(false);
                 ReturnTovaData().SetDistractorResponseTimer(false);
-             //  Invoke( "ResetData",3);
+                //  Invoke( "ResetData",3);
             }
 
             yield return new WaitForSeconds(.3f);
@@ -53,8 +53,8 @@ public class TovaDataGet : MonoBehaviour
 
     private void ResetData()
     {
-       // Destroy(this.gameObject);
+        // Destroy(this.gameObject);
     }
 
-   
+
 }

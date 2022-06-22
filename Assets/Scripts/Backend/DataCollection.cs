@@ -13,8 +13,6 @@ public class DataCollection : ScriptableObject
     public float actual_duration_in_seconds = 40;
     public string level = "1";
     public string attempt_type = "Open";
-    public float total_sustained = 20;
-    public float non_sustained = 20;
     public float impulsivity_score = 1;
     public float response_time = 20;
     public float omission_score = 0;

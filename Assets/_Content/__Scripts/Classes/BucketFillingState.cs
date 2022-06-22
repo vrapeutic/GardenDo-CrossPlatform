@@ -18,9 +18,9 @@ public class BucketFillingState : MonoBehaviour
 
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OnBucketIsFullRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OnBucketIsFullRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("StartFillingRPC", invokationManager);
     }
 
    
@@ -28,7 +28,8 @@ public class BucketFillingState : MonoBehaviour
 
     public void OnBucketIsFull()
     {
-       if(Statistics.android) NetworkManager.InvokeServerMethod("OnBucketIsFullRPC", this.gameObject.name);
+        OnBucketIsFullRPC();
+       //if (Statistics.android) NetworkManager.InvokeServerMethod("OnBucketIsFullRPC", this.gameObject.name);
     }
 
     public void OnBucketIsFullRPC()
@@ -43,7 +44,8 @@ public class BucketFillingState : MonoBehaviour
 
     public void StartFilling()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);
+        StartFillingRPC();
+       // if (Statistics.android) NetworkManager.InvokeServerMethod("StartFillingRPC", this.gameObject.name);
         
     }
 

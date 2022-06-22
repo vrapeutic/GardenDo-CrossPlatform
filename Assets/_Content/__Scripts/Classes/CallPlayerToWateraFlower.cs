@@ -21,7 +21,8 @@ public class CallPlayerToWateraFlower : MonoBehaviour
 
     public void OnConditionNotChecked()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("LetsWaterTheFlowerRPC", this.gameObject.name);
+        LetsWaterTheFlowerRPC();
+      //  if (Statistics.android) NetworkManager.InvokeServerMethod("LetsWaterTheFlowerRPC", this.gameObject.name);
     }
 
     public void LetsWaterTheFlowerRPC()

@@ -29,8 +29,8 @@ public class TheHandelController : MonoBehaviour
         if (other.CompareTag("Hand"))
         {
             Debug.Log("Handel Ainem");
-        
-            if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
+            PlayHandleAnimRPC();
+          //  if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
            
         }
     }

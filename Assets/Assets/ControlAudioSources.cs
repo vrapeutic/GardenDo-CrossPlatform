@@ -13,7 +13,8 @@ public class ControlAudioSources : MonoBehaviour
 
     public void PuaseCurrentAudioClip()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("PuaseCurrentAudioClipRPC", this.gameObject.name);
+        PuaseCurrentAudioClipRPC();
+        //if (Statistics.android) NetworkManager.InvokeServerMethod("PuaseCurrentAudioClipRPC", this.gameObject.name);
     }
 
     public void PuaseCurrentAudioClipRPC()

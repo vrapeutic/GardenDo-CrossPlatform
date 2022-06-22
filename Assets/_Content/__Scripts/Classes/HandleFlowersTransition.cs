@@ -26,25 +26,27 @@ public class HandleFlowersTransition : MonoBehaviour
         flowerIndex = 0;
         if (numberOfFLower > 4 && numberOfFLower < 10)
         {
-            for (int i = 4; i < 8; i++)
+            for (int i = 4; i <= 8; i++)
             {
                 flowers[i].gameObject.SetActive(true);
+                
             }
         }
         else if (numberOfFLower > 10)
         {
-            for (int i = 8; i < 16; i++)
+            for (int i = 8; i <= 16; i++)
             {
                 flowers[i].gameObject.SetActive(true);
             }
         }
         else
         {
-            for (int i = 4; i < 16; i++)
+            for (int i = 4; i <= 16; i++)
             {
                 flowers[i].gameObject.SetActive(false);
             }
         }
+        flowers[numberOfFLower].gameObject.SetActive(false);
     //    indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
     public void ReadyForWatering()
@@ -63,13 +65,15 @@ public class HandleFlowersTransition : MonoBehaviour
     {
         flowers[flowerIndex].GetReadyForWatering();
         flowerIndex = flowerIndex + 1;
-        Debug.Log("flower index " + flowerIndex);
-        if (flowerIndex > numberOfFLower)
+
+        Debug.Log(numberOfFLower+"flower index " + flowerIndex);
+        if (flowerIndex > numberOfFLower )
         {
             FinishGame();
             tasksAreDone = true;
-            Debug.Log("Game finished");
+            Debug.Log("task finished"+numberOfFLower);
         }
+
         Debug.Log("make next flower ready called");
       //  indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }

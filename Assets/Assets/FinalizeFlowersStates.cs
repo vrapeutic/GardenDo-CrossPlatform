@@ -26,12 +26,12 @@ public class FinalizeFlowersStates : MonoBehaviour
 
     void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("FinalizeCurrentStateRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("GameOverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("FinalizeCurrentStateRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("GameOverRPC", invokationManager);
         animatorTrigger = FindObjectOfType<AnimatorTrigger>();
         tasksAreDone = false;
-        currentIndix = 0;
+        currentIndix =0;
         stats = Statistics.instane;
         flowerMaxNumber = stats.numberOfFlowers;
 
@@ -40,15 +40,19 @@ public class FinalizeFlowersStates : MonoBehaviour
     public void FinalizeCurrentState()
     {
         Debug.Log("Finalize Current State");
-        if (Statistics.android) NetworkManager.InvokeServerMethod("FinalizeCurrentStateRPC", this.gameObject.name);
+        // if (Statistics.android) NetworkManager.InvokeServerMethod("FinalizeCurrentStateRPC", this.gameObject.name);
+        FinalizeCurrentStateRPC();
     }
 
     public void FinalizeCurrentStateRPC()
     {
+
+
         Debug.Log("Finalize Current State RPC");
         if (Statistics.android)
         {
-            if (currentIndix == (flowerMaxNumber - 1))
+
+            if (currentIndix >= (flowerMaxNumber ))
             {
 
                 tasksAreDone = true;
@@ -60,7 +64,8 @@ public class FinalizeFlowersStates : MonoBehaviour
                 Debug.Log("FinalFlower");
 
             }
-           
+        currentIndix++;
+
         }
     }
 

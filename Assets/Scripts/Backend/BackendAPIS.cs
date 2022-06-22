@@ -93,14 +93,11 @@ public class BackendAPIS : MonoBehaviour
         statsVariables.data.actual_duration_in_seconds = currentData.actual_duration_in_seconds;
         statsVariables.data.level = currentData.level;
         statsVariables.data.attempt_type = currentData.attempt_type;
-        statsVariables.data.total_sustained = currentData.total_sustained;
-        statsVariables.data.non_sustained = currentData.non_sustained;
         statsVariables.data.impulsivity_score = currentData.impulsivity_score;
         statsVariables.data.response_time = currentData.response_time;
         statsVariables.data.omission_score = currentData.omission_score;
         statsVariables.data.distractibility_score = currentData.distractibility_score;
         statsVariables.data.actual_attention_time = currentData.actual_attention_time;
-
         statsVariables.data.flowerSustained = currentData.flowerSustained;
         statsVariables.data.wellSustained = currentData.wellSustained;
         statsVariables.data.totalSustained = currentData.totalSustained;
@@ -109,7 +106,6 @@ public class BackendAPIS : MonoBehaviour
         statsVariables.data.score = currentData.score;
         statsVariables.data.flowr_position = currentData.flowr_position;
         statsVariables.data.flower_heights = currentData.flower_heights;
-        
         return JsonUtility.ToJson(statsVariables);
     }
     public SessionStats SendStatsResponse()

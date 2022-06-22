@@ -13,10 +13,10 @@ public class CallPlayerToTheWell : MonoBehaviour
 
     void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("WaitForPlayerToComeOverRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("WaitForPlayerToComeOverRPC", invokationManager);
         playerMovedTowardsTheWell = false;
-     //  if(Statistics.android) GetComponent<CheckIntervals>().CheckIntervalsCall(waitingSeconds, playerMovedTowardsTheWell);
+   //GetComponent<CheckIntervals>().CheckIntervalsCall(waitingSeconds, playerMovedTowardsTheWell);
     }
 
     public void TimedConditionChecked()

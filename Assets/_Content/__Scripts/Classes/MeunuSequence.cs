@@ -9,7 +9,11 @@ public class MeunuSequence : MonoBehaviour
 
     private void Start()
     {
-        currentUIIndex = 0;
+
+        if (!Statistics.instane.firstEnterMainMenu)
+        currentUIIndex =0;
+        else currentUIIndex = -1;
+
         ShowUI();
     }
 

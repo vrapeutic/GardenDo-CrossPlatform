@@ -43,7 +43,13 @@ public class TovaData : ScriptableObject
     #region PerformanceData Variables
     public string TargetDataListHights;
     public string TargetDataListPositions;
+    public string TargetDataListPositions_X;
+    public string TargetDataListPositions_Y;
+    public string TargetDataListPositions_Z;
     public string TargetDataLisDirections;
+    public string TargetDataLisDirections_X;
+    public string TargetDataLisDirections_Y;
+    public string TargetDataLisDirections_Z;
     public string HandToolsDataListAngles;
     #endregion
     public float typicalTime; //closed or tipical time

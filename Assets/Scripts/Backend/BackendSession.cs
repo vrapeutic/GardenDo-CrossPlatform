@@ -29,7 +29,7 @@ public class BackendSession : MonoBehaviour
 
         instance = FindObjectsOfType<BackendSession>();
         if (instance.Length > 1)
-            Destroy(instance[1].gameObject);
+            Destroy(instance[0].gameObject);
         DontDestroyOnLoad(this.gameObject);
 
     }
@@ -59,14 +59,13 @@ public class BackendSession : MonoBehaviour
     {
         yield return StartCoroutine(jsonAPIS.SendSessionElements(patient_id, moduleID,auth));
         sessionElements = jsonAPIS.SessioResponseElements();
-
         SartGame(sessionElements.id, sessionElements.room_id);
     }
     public void SartGame(int getId, string getRoom)
     {
         sessionId = getId;
         currentRoomId = getRoom;
-        if (currentRoomId != null)
+        if (currentRoomId != null && SceneManager.GetActiveScene().name == "Session")
          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);//Load nextScene    
 
     }

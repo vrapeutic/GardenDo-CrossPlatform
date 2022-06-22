@@ -51,12 +51,14 @@ public class MenuController : MonoBehaviour
 
     public void LoadScene()
     {
-        NetworkManager.InvokeServerMethod("LoadSceneRPC", this.gameObject.name);
+        LoadSceneRPC();
+       // NetworkManager.InvokeServerMethod("LoadSceneRPC", this.gameObject.name);
     }
     public void SetCompleteCourse(bool isCompleteCourse)
     {
+        SetCompleteCourseRPC(isCompleteCourse);
         Debug.Log("set course ");
-        NetworkManager.InvokeServerMethod("SetCompleteCourseRPC", this.gameObject.name, isCompleteCourse);
+       // NetworkManager.InvokeServerMethod("SetCompleteCourseRPC", this.gameObject.name, isCompleteCourse);
     }
     public void SetCompleteCourseRPC(bool isCompleteCourse)
     {
@@ -66,7 +68,9 @@ public class MenuController : MonoBehaviour
 
     public void SetEnviroment(bool isGarden)
     {
-        NetworkManager.InvokeServerMethod("SetEnviromentRPC", this.gameObject.name, isGarden);
+        //
+        SetEnviromentRPC(isGarden);
+       // NetworkManager.InvokeServerMethod("SetEnviromentRPC", this.gameObject.name, isGarden);
     }
     public void SetEnviromentRPC(bool isGarden)
     {
@@ -79,7 +83,8 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("set level ");
         stats.instructionNumber = level;
-        NetworkManager.InvokeServerMethod("setLevelRPC", this.gameObject.name, level);
+        // NetworkManager.InvokeServerMethod("setLevelRPC", this.gameObject.name, level);
+       setLevelRPC(level);
     }
     public void setLevelRPC(int level)
     {
@@ -89,7 +94,8 @@ public class MenuController : MonoBehaviour
     }
     public void SetWateringCycle(int wateringCycle)
     {
-        NetworkManager.InvokeServerMethod("SetWateringCycleRPC", this.gameObject.name, wateringCycle);
+        SetWateringCycleRPC(wateringCycle);
+       // NetworkManager.InvokeServerMethod("SetWateringCycleRPC", this.gameObject.name, wateringCycle);
     }
     public void SetWateringCycleRPC(int wateringCycle)
     {
@@ -99,7 +105,8 @@ public class MenuController : MonoBehaviour
     }
     public void ChooseCharacter(int characterNo)
     {
-        NetworkManager.InvokeServerMethod("ChooseCharacterRPC", this.gameObject.name, characterNo);
+        ChooseCharacterRPC(characterNo);
+       // NetworkManager.InvokeServerMethod("ChooseCharacterRPC", this.gameObject.name, characterNo);
     }
     public void ChooseCharacterRPC(int characterNo)
     {
@@ -124,15 +131,17 @@ public class MenuController : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        //NetworkManager.InvokeServerMethod("LoadMainMenuRPC", this.gameObject.name);
+        //
         StatisticsManager.instance.OnSendStatistics();
+        NetworkManager.InvokeServerMethod("LoadMainMenuRPC", this.gameObject.name);
         Invoke("LoadMainMenuRPC", 4f);
     }
 
     public void LoadMainMenuRPC()
     {
-        SceneManager.LoadScene("Session");
-        Destroy(FindObjectOfType<TovaDataGet>().gameObject);
+        FindObjectOfType<BackendSession>().StartSession();
+        SceneManager.LoadScene("Main Menu");
+       // Destroy(FindObjectOfType<TovaDataGet>().gameObject);
     }
 
 

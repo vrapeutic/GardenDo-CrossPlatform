@@ -23,8 +23,8 @@ public class LanguageSelection : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("OnLanguageSelectRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("OnLanguageSelectRPC", invokationManager);
         if (stats.firstEnterMainMenu)
         {
             menuSequence.NextUI();
@@ -34,7 +34,8 @@ public class LanguageSelection : MonoBehaviour
 
     public void OnLanguageSelect(int languageNO)
     {
-        NetworkManager.InvokeServerMethod("OnLanguageSelectRPC", this.gameObject.name, languageNO);
+        OnLanguageSelectRPC(languageNO);
+       // NetworkManager.InvokeServerMethod("OnLanguageSelectRPC", this.gameObject.name, languageNO);
         stats.firstEnterMainMenu = true;
     }
 

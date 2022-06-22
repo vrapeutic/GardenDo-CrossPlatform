@@ -26,11 +26,11 @@ public class FillTheBucketAnimation : MonoBehaviour
         stats = Statistics.instane;
         if (stats.isCompleteCourse)
         {
-            InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-            NetworkManager.InvokeClientMethod("PlayingWaterProcessRPC", invokationManager);
-            NetworkManager.InvokeClientMethod("StoppingWaterProcessRPC", invokationManager);
+            //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+            //NetworkManager.InvokeClientMethod("PlayingWaterProcessRPC", invokationManager);
+            //NetworkManager.InvokeClientMethod("StoppingWaterProcessRPC", invokationManager);
             waterAnim.enabled = false;
-            if (Statistics.android) FillingTheBucketRoutine = StartCoroutine(FillingTheBucket());
+            FillingTheBucketRoutine = StartCoroutine(FillingTheBucket());
         }
 
     }
@@ -55,7 +55,8 @@ public class FillTheBucketAnimation : MonoBehaviour
                 Debug.Log("ready to fill the bucket");
                 if (Statistics.android && !isFilling)
                 {
-                    NetworkManager.InvokeServerMethod("PlayingWaterProcessRPC", this.gameObject.name);
+                    PlayingWaterProcessRPC();
+                    //NetworkManager.InvokeServerMethod("PlayingWaterProcessRPC", this.gameObject.name);
                     PlayingWaterProcessAndoid();
                     isFilling = true;
                 }
@@ -64,7 +65,8 @@ public class FillTheBucketAnimation : MonoBehaviour
             {
                 if (Statistics.android && isFilling)
                 {
-                    NetworkManager.InvokeServerMethod("StoppingWaterProcessRPC", this.gameObject.name);
+                    StoppingWaterProcessRPC();
+                  //  NetworkManager.InvokeServerMethod("StoppingWaterProcessRPC", this.gameObject.name);
                     StoppingWaterProcessAndroid();
                     isFilling = false;
                 }

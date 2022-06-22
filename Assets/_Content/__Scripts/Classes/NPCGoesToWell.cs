@@ -47,7 +47,8 @@ public class NPCGoesToWell : MonoBehaviour
         if(Statistics.android)
         {
             Debug.Log("get npc back to his position");
-            NetworkManager.InvokeServerMethod("GetNPCBackToHisPositionRPC", this.gameObject.name);
+            GetNPCBackToHisPositionRPC();
+           // NetworkManager.InvokeServerMethod("GetNPCBackToHisPositionRPC", this.gameObject.name);
         }
        
     }
@@ -56,7 +57,8 @@ public class NPCGoesToWell : MonoBehaviour
         if(Statistics.android)
         {
             Debug.Log("npc arrived to original position");
-            NetworkManager.InvokeServerMethod("NPC_ArrivedToOriginalPositionRPC", this.gameObject.name);
+            NPC_ArrivedToOriginalPositionRPC();
+           // NetworkManager.InvokeServerMethod("NPC_ArrivedToOriginalPositionRPC", this.gameObject.name);
         }
        
     }

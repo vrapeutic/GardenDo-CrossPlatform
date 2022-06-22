@@ -37,7 +37,8 @@ public class ControlBucketCover : MonoBehaviour
 
     public void OpenBucketCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("OpenBucketCoverRPC", this.gameObject.name);
+        OpenBucketCoverRPC();
+       // if (Statistics.android) NetworkManager.InvokeServerMethod("OpenBucketCoverRPC", this.gameObject.name);
     }
 
     public void OpenBucketCoverRPC()
@@ -52,7 +53,8 @@ public class ControlBucketCover : MonoBehaviour
 
     public void CloseBucketCover()
     {
-        if (Statistics.android) NetworkManager.InvokeServerMethod("CloseBucketCoverRPC", this.gameObject.name);
+        CloseBucketCoverRPC();
+        //if (Statistics.android) NetworkManager.InvokeServerMethod("CloseBucketCoverRPC", this.gameObject.name);
     }
 
     public void CloseBucketCoverRPC()

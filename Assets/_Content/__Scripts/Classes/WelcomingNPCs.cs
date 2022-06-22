@@ -13,11 +13,9 @@ public class WelcomingNPCs : MonoBehaviour
     void Start()
     {
        
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("NPCWavingRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("NPCMovingToWellRPC", invokationManager);
+       
         if (!myAnim) myAnim = this.GetComponentInChildren<Animator>();
-       if(Statistics.android) StartCoroutine(WelcomeThePlayerIEnum());
+       StartCoroutine(WelcomeThePlayerIEnum());
     }
 
 
@@ -25,9 +23,9 @@ public class WelcomingNPCs : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
 
-         if (Statistics.android) NetworkManager.InvokeServerMethod("NPCWavingRPC", this.gameObject.name);
-      //  NPCWavingRPC();
-        yield return new WaitForSeconds(9);
+        NPCWavingRPC();
+        //  NPCWavingRPC();
+                yield return new WaitForSeconds(9);
 
         finishWelcommingEvent.Raise();
       

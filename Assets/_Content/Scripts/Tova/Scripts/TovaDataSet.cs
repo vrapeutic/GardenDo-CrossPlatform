@@ -241,6 +241,30 @@ public class TovaDataSet : TovaData
     {
         return TargetDataLisDirections;
     }
+    public void SetTargetListDataDirections_X(string list)
+    {
+        TargetDataLisDirections_X = list;
+    }
+    public string GetTargetDataListDirections_X()
+    {
+        return TargetDataLisDirections_X;
+    }
+    public void SetTargetListDataDirections_Y(string list)
+    {
+        TargetDataLisDirections_Y = list;
+    }
+    public string GetTargetDataListDirections_Y()
+    {
+        return TargetDataLisDirections_Y;
+    }
+    public void SetTargetListDataDirections_Z(string list)
+    {
+        TargetDataLisDirections_Z = list;
+    }
+    public string GetTargetDataListDirections_Z()
+    {
+        return TargetDataLisDirections_Z;
+    }
     public void SetTargetListDataPostions(string list)
     {
         TargetDataListPositions = list;
@@ -248,6 +272,30 @@ public class TovaDataSet : TovaData
     public string GetTargetDataListPositions()
     {
         return TargetDataListPositions;
+    }
+    public void SetTargetListDataPostions_X(string _xList)
+    {
+        TargetDataListPositions_X = _xList;
+    }
+    public string GetTargetDataListPositions_X()
+    {
+        return TargetDataListPositions_X;
+    }
+    public void SetTargetListDataPostions_Y(string _yList)
+    {
+        TargetDataListPositions_Y = _yList;
+    }
+    public string GetTargetDataListPositions_Y()
+    {
+        return TargetDataListPositions_Y;
+    }
+    public void SetTargetListDataPostions_Z(string _zList)
+    {
+        TargetDataListPositions_Z = _zList;
+    }
+    public string GetTargetDataListPositions_Z()
+    {
+        return TargetDataListPositions_Z;
     }
     public void SetIsActionStarted(bool _isActionStarted)
     {

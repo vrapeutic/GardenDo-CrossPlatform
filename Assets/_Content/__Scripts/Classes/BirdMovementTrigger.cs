@@ -34,7 +34,7 @@ public class BirdMovementTrigger : MonoBehaviour
 
     private void FlyingBirdAnim()
     {
-        if (Statistics.android) { NetworkManager.InvokeServerMethod("FlyingBirdAnimRPC", this.gameObject.name); }
+        if (Statistics.android)  FlyingBirdAnimRPC();// NetworkManager.InvokeServerMethod("FlyingBirdAnimRPC", this.gameObject.name); }
     }
 
     public void FlyingBirdAnimRPC()

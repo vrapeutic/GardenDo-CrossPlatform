@@ -17,13 +17,13 @@ public class CelebrationParticleEffectHandler : MonoBehaviour
     }
     public void OnFLowerFinished()
     {
-        if (particleIndex < (stats.numberOfFlowers))
+        if (particleIndex <= (stats.numberOfFlowers-1))
         {
             Debug.Log("flower finished");
             flowerCelebrationParticleEffect[particleIndex].SetActive(true);
             particleIndex++;
         }
-
+       
     }
     public void OnGameFinished()
     {
