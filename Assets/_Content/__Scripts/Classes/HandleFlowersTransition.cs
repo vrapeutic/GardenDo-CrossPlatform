@@ -46,7 +46,7 @@ public class HandleFlowersTransition : MonoBehaviour
                 flowers[i].gameObject.SetActive(false);
             }
         }
-        flowers[numberOfFLower].gameObject.SetActive(false);
+        flowers[numberOfFLower ].gameObject.SetActive(false);
     //    indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
     public void ReadyForWatering()

@@ -16,18 +16,19 @@ public class NPCGoesToWell : MonoBehaviour
     {
         if (!npcAnimator) npcAnimator = this.GetComponent<Animator>();
         if (!npcChildAnimator) npcChildAnimator = this.GetComponentInChildren<Animator>();
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("NPCMovesToTheWellRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("NPCArrivedToTheWellRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("GetNPCBackToHisPositionRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("NPC_ArrivedToOriginalPositionRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("NPCMovesToTheWellRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("NPCArrivedToTheWellRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("GetNPCBackToHisPositionRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("NPC_ArrivedToOriginalPositionRPC", invokationManager);
     }
     public void NPCMovesToTheWell()
     {
         if(Statistics.android)
         {
             Debug.Log("npc moves to the well ");
-            NetworkManager.InvokeServerMethod("NPCMovesToTheWellRPC", this.gameObject.name);
+            NPCMovesToTheWellRPC();
+          //NetworkManager.InvokeServerMethod("NPCMovesToTheWellRPC", this.gameObject.name);
         }
        
     }
@@ -36,8 +37,9 @@ public class NPCGoesToWell : MonoBehaviour
     {
         if(Statistics.android)
         {
+            NPCArrivedToTheWellRPC();
             Debug.Log("npc arrived to the well");
-            NetworkManager.InvokeServerMethod("NPCArrivedToTheWellRPC", this.gameObject.name);
+            //NetworkManager.InvokeServerMethod("NPCArrivedToTheWellRPC", this.gameObject.name);
         }
         
     }

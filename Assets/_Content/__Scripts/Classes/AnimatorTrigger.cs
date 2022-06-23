@@ -304,7 +304,7 @@ public class AnimatorTrigger : MonoBehaviour
         isNewFlower = true;
         StopWaterSFX();
         WaterPlarticleSystemEmission(false);
-        if ((stats.numberOfFlowers ) > flowerIndex)
+        if ((stats.numberOfFlowers ) >= flowerIndex)
         {
             flowerIndex++;
             UpdateCurrentFlower();

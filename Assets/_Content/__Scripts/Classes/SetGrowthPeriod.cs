@@ -11,14 +11,15 @@ public class SetGrowthPeriod : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("SetFlowerGrowthPeriodRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("SetFlowerGrowthPeriodRPC", invokationManager);
     }
 
 
     public void SetFlowerGrowthPeriod(int _totalSceneSeconds)
     {
-        NetworkManager.InvokeServerMethod("SetFlowerGrowthPeriodRPC", this.gameObject.name, _totalSceneSeconds);
+        SetFlowerGrowthPeriodRPC(_totalSceneSeconds);
+       // NetworkManager.InvokeServerMethod("SetFlowerGrowthPeriodRPC", this.gameObject.name, _totalSceneSeconds);
     }
 
     public void SetFlowerGrowthPeriodRPC(int _totalSceneSeconds)

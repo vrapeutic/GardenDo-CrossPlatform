@@ -30,8 +30,10 @@ public class TheHandelController : MonoBehaviour
         {
             Debug.Log("Handel Ainem");
             PlayHandleAnimRPC();
-          //  if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
-           
+            MyOutLine.enabled = false;
+
+            //  if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
+
         }
     }
 
@@ -42,6 +44,7 @@ public class TheHandelController : MonoBehaviour
             handelAnim.SetInteger("HndleControl", 1);
             HandleDownEvent.Raise();
             isHandleDown = true;
+            MyOutLine.enabled = false;
             StopOutline();
         }
         else

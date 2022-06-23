@@ -18,7 +18,6 @@ public class PlayerIsNearTheWell : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
 
         if (stats.isCompleteCourse)
         {
@@ -48,6 +47,8 @@ public class PlayerIsNearTheWell : MonoBehaviour
     public void PlayerArrived()
     {
         playerArrivedToTheWellEvent.Raise();
+        this.GetComponent<Collider>().enabled = false;
+
     }
 
 

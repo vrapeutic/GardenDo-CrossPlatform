@@ -11,8 +11,8 @@ public class LevelsController : MonoBehaviour
     Statistics stats;
     void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("EnableLevel_3DistractorRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("EnableLevel_3DistractorRPC", invokationManager);
         stats = Statistics.instane;
 
         if (stats.level == 1)
@@ -32,8 +32,8 @@ public class LevelsController : MonoBehaviour
     }
     public void EnableLevel_3Distractor()
     {
-        // bird.SetActive(true);
-        NetworkManager.InvokeServerMethod("EnableLevel_3DistractorRPC", this.gameObject.name);
+         bird.SetActive(true);
+        //NetworkManager.InvokeServerMethod("EnableLevel_3DistractorRPC", this.gameObject.name);
     }
     public void EnableLevel_3DistractorRPC()
     {

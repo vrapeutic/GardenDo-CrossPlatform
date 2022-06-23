@@ -20,13 +20,14 @@ public class PlayerHoldsTheBucket : MonoBehaviour
     private void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("GrabTheHandleRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("GrabTheHandleRPC", invokationManager);
 
         if (!stats.isCompleteCourse)
         {
             firstHandEnter = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            GrabTheHandleRPC();
         }
     }
 
@@ -41,8 +42,9 @@ public class PlayerHoldsTheBucket : MonoBehaviour
             if (Statistics.android && !firstHandEnter)
             {
                 Debug.Log("First Enter Grabbing Bucket");
-                NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
-                firstHandEnter = true;
+                // NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
+                GrabTheHandleRPC();
+                 firstHandEnter = true;
             }
 
             if (Statistics.android) GetComponent<CheckIntervals>().CheckIntervalsCall(waitingSeconds, playerIsGrabbingtheHandle);
@@ -57,6 +59,7 @@ public class PlayerHoldsTheBucket : MonoBehaviour
 
     public void OnConditionNotChecked()
     {
+        GrabTheHandleRPC();
         if (Statistics.android) NetworkManager.InvokeServerMethod("GrabTheHandleRPC", this.gameObject.name);
     }
 
