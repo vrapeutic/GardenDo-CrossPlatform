@@ -17,11 +17,15 @@ public class TheHandelController : MonoBehaviour
     Outline MyOutLine;
     private void Start()
     {
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("PlayHandleAnimRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("PlayHandleAnimRPC", invokationManager);
         isHandleDown = false;
-        MyOutLine = this.GetComponent<Outline>();
-    }
+        MyOutLine = this.gameObject.GetComponent<Outline>();
+        if (!Statistics.instane.isCompleteCourse) {
+            MyOutLine.enabled = false;
+
+            this.enabled = false;
+    }}
 
 
     private void OnTriggerEnter(Collider other)
@@ -29,8 +33,8 @@ public class TheHandelController : MonoBehaviour
         if (other.CompareTag("Hand"))
         {
             Debug.Log("Handel Ainem");
-            PlayHandleAnimRPC();
             MyOutLine.enabled = false;
+            PlayHandleAnimRPC();
 
             //  if (Statistics.android) NetworkManager.InvokeServerMethod("PlayHandleAnimRPC", this.gameObject.name);           
 

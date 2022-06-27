@@ -25,9 +25,11 @@ public class PlayerHoldsTheBucket : MonoBehaviour
 
         if (!stats.isCompleteCourse)
         {
+            this.gameObject.GetComponentInParent<Outline>().enabled = false;
+
             firstHandEnter = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
-            GrabTheHandleRPC();
+           // GrabTheHandleRPC();
         }
     }
 

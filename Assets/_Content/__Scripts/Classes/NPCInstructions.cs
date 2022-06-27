@@ -122,7 +122,7 @@ public class NPCInstructions : MonoBehaviour
 
     public void PlayerPlantedFlowerRPC()
     {
-        if (flowerIndex < (maxFlowerNumber - 1))
+        if (flowerIndex <= (maxFlowerNumber - 1))
         {
             Debug.Log("player planted flower RPC");
             SetAnimationClib(11);// good job you planted a beautiful flower

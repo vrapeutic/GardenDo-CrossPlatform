@@ -51,6 +51,7 @@ public class FinalizeFlowersStates : MonoBehaviour
         Debug.Log("Finalize Current State RPC");
         if (Statistics.android)
         {
+        currentIndix++;
 
             if (currentIndix >= (flowerMaxNumber ))
             {
@@ -64,7 +65,6 @@ public class FinalizeFlowersStates : MonoBehaviour
                 Debug.Log("FinalFlower");
 
             }
-        currentIndix++;
 
         }
     }
