@@ -27,13 +27,13 @@ public class DataCollection : ScriptableObject
     public string flowr_position = " ";
     public string flower_heights = " ";
 
-    public float total_arches_count = 15;
-    public float consumed_arches = 10;
-    public float success_arches_count = 10;
-    public float distance = 10;
-    public float total_prizes = 10;
-    public float remaining_prizes = 5;
-    public float distraction_endurance_score = 2;
+    //public float total_arches_count = 15;
+    //public float consumed_arches = 10;
+    //public float success_arches_count = 10;
+    //public float distance = 10;
+    //public float total_prizes = 10;
+    //public float remaining_prizes = 5;
+    //public float distraction_endurance_score = 2;
 
     #region Performance_Data
     public string handToolsDataList =" ";

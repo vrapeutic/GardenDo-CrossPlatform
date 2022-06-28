@@ -29,8 +29,6 @@ public class MyData
     public float actual_duration_in_seconds;
     public string level;
     public string attempt_type;
-    public float total_sustained;
-    public float non_sustained;
     public float impulsivity_score;
     public float response_time;
     public float omission_score;

@@ -151,7 +151,6 @@ public class StatisticsManager : MonoBehaviour
                 }
                 implusivityScore = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
 
-                Debug.Log(" TFD: " + TFD + " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
 
                 Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions());
                 Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListHights());
@@ -182,6 +181,7 @@ public class StatisticsManager : MonoBehaviour
               //  dataCollection.targetDataList = TovaDataGet.ReturnTovaData().GetTargetDataListPositions();
 
                 currentSession.SendStatsData();
+                Debug.Log(" TFD: " + TFD + " Time Taken: " + timeTaken + " Typical Time: " + typicalTime + " TAS: " + TAS + " Response time: " + responseTime + " AAS: " + AAS + " Task with limited interruption: " + stats.tasksWithLimitiedInterruptions);
 
                 //call post json 
                 //ServerRequest.instance.SendPostRequest(ServerRequest.headset,
