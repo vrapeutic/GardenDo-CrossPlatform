@@ -10,33 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a71aa50b7a9547409ed825a02159261, type: 3}
-  m_Name: MyStats
+  m_Name: Mystats
   m_EditorClassIdentifier: 
-  session_start_time: 2022/06/19 09:20:13 PM
-  attempt_start_time: 2022/06/19 09:20:13 PM
-  attempt_end_time: 2022/06/19 09:20:53 PM
-  expected_duration_in_seconds: 120
-  actual_duration_in_seconds: 39.746464
-  level: 2
-  attempt_type: open
+  session_start_time: yyyy/MM/dd hh:mm:ss tt
+  attempt_start_time: yyyy/MM/dd hh:mm:ss tt
+  attempt_end_time: yyyy/MM/dd hh:mm:ss tt
+  expected_duration_in_seconds: 30
+  actual_duration_in_seconds: 40
+  level: 1
+  attempt_type: Open
   impulsivity_score: 1
-  response_time: 0
+  response_time: 20
   omission_score: 0
   distractibility_score: 16
-  actual_attention_time: -30.253536
-  flowerSustained: 0
-  wellSustained: 0
-  totalSustained: 0
-  nonSustained: -30.253536
-  des: 0
-  score: 0
-  flowr_position: 
-  flower_heights: 
-  total_arches_count: 15
-  consumed_arches: 10
-  success_arches_count: 10
-  distance: 10
-  total_prizes: 10
-  remaining_prizes: 5
-  distraction_endurance_score: 2
+  actual_attention_time: 20
+  flowerSustained: 20
+  wellSustained: 20
+  totalSustained: 20
+  nonSustained: 20
+  des: 20
+  score: 20
+  flowr_position: ' '
+  flower_heights: ' '
   handToolsDataList: ' '
