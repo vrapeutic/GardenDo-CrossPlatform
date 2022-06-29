@@ -22,6 +22,10 @@ public class DataCollection : ScriptableObject
     public float response_time = 20;
     public float omission_score = 0;
     public float distractibility_score = 16;
+    public float flower_min_height=0.36f;
+    public float flower_max_height = 0.36f;
+    public float flower_average_height = 0.36f;
+    public float flower_count=4;
     public float des = 20;
     public float score = 20;
     public string flowr_position = " ";

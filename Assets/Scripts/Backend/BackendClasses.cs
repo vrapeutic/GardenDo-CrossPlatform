@@ -40,6 +40,10 @@ public class MyData
     public float actual_attention_time;
     public float distraction_endurance_score;
     public float score;
+   public float flower_min_height;
+  public float flower_max_height;
+    public float flower_average_height;
+    public float flower_count;
     public string flowr_position;
     public string flower_heights;
 }

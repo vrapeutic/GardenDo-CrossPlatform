@@ -106,6 +106,10 @@ public class BackendAPIS : MonoBehaviour
         statsVariables.data.score = currentData.score;
         statsVariables.data.flowr_position = currentData.flowr_position;
         statsVariables.data.flower_heights = currentData.flower_heights;
+        statsVariables.data.flower_max_height = currentData.flower_max_height;
+        statsVariables.data.flower_min_height = currentData.flower_min_height;
+        statsVariables.data.flower_average_height = currentData.flower_average_height;
+        statsVariables.data.flower_count = currentData.flower_count;
         return JsonUtility.ToJson(statsVariables);
     }
     public SessionStats SendStatsResponse()

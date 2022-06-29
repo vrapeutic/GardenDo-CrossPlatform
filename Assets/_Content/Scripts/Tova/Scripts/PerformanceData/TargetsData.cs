@@ -68,10 +68,45 @@ public class TargetsData : MonoBehaviour
                 currentDirection_Z_List.Add(direction.z.ToString());
             }
         }
+        
+    }
+    float MaxHight()
+    {
+        float _max = currentHieghtsList[0];
+        foreach(float height in currentHieghtsList)
+        {
+            if (_max < height)
+                _max = height;
+        }
+        return _max;
+    }
+    float MinHight()
+    {
+        float _min = currentHieghtsList[0];
+        foreach (float height in currentHieghtsList)
+        {
+            if (_min > height)
+                _min = height;
+        }
+        return _min;
+    }
+    float AverageHight()
+    {
+        float _aver=0;
+        foreach (float height in currentHieghtsList)
+        {
+            _aver += height;
+        }
+        return _aver / targets.Length;
     }
     void SetDataList()
     {
         GetTargetList();
+
+        TovaDataGet.ReturnTovaData().SetTargetCount(targets.Length);
+        TovaDataGet.ReturnTovaData().SetMax_Height(MaxHight());
+        TovaDataGet.ReturnTovaData().SetMin_Height(MinHight());
+        TovaDataGet.ReturnTovaData().SetAver_Height(AverageHight());
         TovaDataGet.ReturnTovaData().SetTargetListDataHights(string.Join(",", currentHieghtsList));
         
         TovaDataGet.ReturnTovaData().SetTargetListDataPostions(string.Join(",", currentPositionsList));
@@ -92,10 +127,10 @@ public class TargetsData : MonoBehaviour
         Debug.Log(targets.Length);
         SetDataList();
         string lists = TovaDataGet.ReturnTovaData().GetTargetDataListDirections();
-        Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions_X());
-        Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions_Y());
-        Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListPositions_Z());
-        Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListDirections_X());
+        Debug.Log(TovaDataGet.ReturnTovaData().GetMax_Height());
+        Debug.Log(TovaDataGet.ReturnTovaData().GetMin_Height());
+        Debug.Log(TovaDataGet.ReturnTovaData().GetAver_Height());
+        Debug.Log(TovaDataGet.ReturnTovaData().GetTarget_Count());
         Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListDirections_Y());
         Debug.Log(TovaDataGet.ReturnTovaData().GetTargetDataListDirections_Z());
         Debug.Log(lists + " all " + lists);

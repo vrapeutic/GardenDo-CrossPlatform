@@ -314,7 +314,40 @@ public class TovaDataSet : TovaData
     {
         return HandToolsDataListAngles;
     }
-#endregion
+
+    public void SetMax_Height(float _max)
+    {
+        max_Height = _max;
+    }
+    public void SetMin_Height(float _min)
+    {
+        min_Height = _min;
+    }
+    public void SetAver_Height(float _aver)
+    {
+        aver_Height=_aver;
+    }
+    public void SetTargetCount(float _Count)
+    {
+        targetCount = _Count;
+    }
+    public float GetMax_Height()
+    {
+       return max_Height;
+    }
+    public float GetMin_Height()
+    {
+        return min_Height;
+    }
+    public float GetAver_Height()
+    {
+        return aver_Height;
+    }
+    public float GetTarget_Count()
+    {
+        return targetCount;
+    }
+    #endregion
 
     public void SetTypicalTime(float _fixedTime)
     {

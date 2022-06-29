@@ -51,6 +51,11 @@ public class TovaData : ScriptableObject
     public string TargetDataLisDirections_Y;
     public string TargetDataLisDirections_Z;
     public string HandToolsDataListAngles;
+    public float max_Height;
+    public float min_Height;
+    public float aver_Height;
+    public float targetCount;
+
     #endregion
     public float typicalTime; //closed or tipical time
     public float instructionsTime;

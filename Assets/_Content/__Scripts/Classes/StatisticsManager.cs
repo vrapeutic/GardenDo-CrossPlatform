@@ -163,13 +163,15 @@ public class StatisticsManager : MonoBehaviour
                 dataCollection.actual_duration_in_seconds = timeTaken;
                 dataCollection.level = stats.level.ToString();
                 dataCollection.attempt_type = "open";
-             
+                dataCollection.flower_max_height = TovaDataGet.ReturnTovaData().GetMax_Height();
+                dataCollection.flower_min_height = TovaDataGet.ReturnTovaData().GetMin_Height();
+                dataCollection.flower_average_height = TovaDataGet.ReturnTovaData().GetAver_Height();
                 dataCollection.impulsivity_score = TovaDataGet.ReturnTovaData().GetTotalImpsScore();
                 dataCollection.response_time = TovaDataGet.ReturnTovaData().GetTotalResponseTime();
                 dataCollection.omission_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
                 //dataCollection.distractibility_score = TovaDataGet.ReturnTovaData().GetTotalOmissionScore();
                 dataCollection.actual_attention_time = Time.timeSinceLevelLoad - (AAS + NPCInstructionsConsumedSeconds);
-               
+                dataCollection.flower_count = stats.numberOfFlowers;
                 dataCollection.flowerSustained = stats.flowerSustained;
                 dataCollection.wellSustained = stats.wellSustained;
                 dataCollection.totalSustained = stats.flowerSustained + stats.wellSustained;
