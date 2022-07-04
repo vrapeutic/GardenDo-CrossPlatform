@@ -31,7 +31,6 @@ public class HandleFlowersTransition : MonoBehaviour
                 flowers[i].gameObject.SetActive(true);
                 
             }
-            
         }
         else if (numberOfFLower > 10)
         {
@@ -48,8 +47,6 @@ public class HandleFlowersTransition : MonoBehaviour
             }
         }
         flowers[numberOfFLower ].gameObject.SetActive(false);
-        ////
-       //
     //    indexText.text = "current index =" + flowerIndex + "flower number =" + stats.numberOfFlowers;
     }
     public void ReadyForWatering()
@@ -70,7 +67,7 @@ public class HandleFlowersTransition : MonoBehaviour
         flowerIndex = flowerIndex + 1;
 
         Debug.Log(numberOfFLower+"flower index " + flowerIndex);
-        if (flowerIndex >numberOfFLower )
+        if (flowerIndex > numberOfFLower )
         {
             FinishGame();
             tasksAreDone = true;
