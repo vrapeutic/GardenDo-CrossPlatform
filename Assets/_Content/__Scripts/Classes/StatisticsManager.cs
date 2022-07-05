@@ -42,10 +42,10 @@ public class StatisticsManager : MonoBehaviour
         //  startTime = ServerRequest.instance.startTime;
         attempStartTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
 
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        //  NetworkManager.InvokeClientMethod("SendAttemptStatistics", invokationManager);
-        NetworkManager.InvokeClientMethod("ResetStatisticsRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("OnSendStatisticsRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        ////  NetworkManager.InvokeClientMethod("SendAttemptStatistics", invokationManager);
+        //NetworkManager.InvokeClientMethod("ResetStatisticsRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("OnSendStatisticsRPC", invokationManager);
     }
 
     private void Update()

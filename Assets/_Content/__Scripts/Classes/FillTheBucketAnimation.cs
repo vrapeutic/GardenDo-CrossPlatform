@@ -8,7 +8,10 @@ public class FillTheBucketAnimation : MonoBehaviour
 {
     WaitForSeconds seconds = new WaitForSeconds(0.2f);
     public Coroutine FillingTheBucketRoutine;
-
+    [SerializeField]
+    GameEvent taskStarted;
+    [SerializeField]
+    GameEvent taskStopped;
     private bool sfxIsPlayed = false;
     private bool startPlayingSFX = true;
     private bool startFillingTimer = false;
@@ -88,6 +91,7 @@ public class FillTheBucketAnimation : MonoBehaviour
             // waterParticles.enableEmission = false;
             startFillingTimer = false;
             waterAnim.SetFloat("speed", 0.0f);
+        taskStopped.Raise();
         //}
 
     }
@@ -123,6 +127,7 @@ public class FillTheBucketAnimation : MonoBehaviour
             startFillingTimer = true;
             waterAnim.enabled = true;
             waterAnim.SetFloat("speed", 1.0f);
+        taskStarted.Raise();
       //  }
 
     }

@@ -14,6 +14,10 @@ public class AnimatorTrigger : MonoBehaviour
     private int flowerIndex;
     [SerializeField]
     GameEvent newFlowerStarted;
+    [SerializeField]
+    GameEvent taskStarted;
+    [SerializeField]
+    GameEvent taskStopped;
     Animator flowerAnimator;
 
     private float finalGrowthSpeed;
@@ -182,6 +186,7 @@ public class AnimatorTrigger : MonoBehaviour
             WaterPlarticleSystemEmission(true);
             flowerAnimator.enabled = true;
             flowerAnimator.SetFloat("speed", 1.0f / finalGrowthSpeed);
+        taskStarted.Raise();
         //}
 
     }
@@ -224,8 +229,9 @@ public class AnimatorTrigger : MonoBehaviour
 
     public void FlowerReverseRPC(int _currentFlowerIndex)
     {
-      //  if (!Statistics.android)
-       // {
+        //  if (!Statistics.android)
+        // {
+        taskStopped.Raise();
             flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
             if (!startPlayingSFX)
