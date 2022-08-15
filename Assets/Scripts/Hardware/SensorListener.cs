@@ -28,6 +28,7 @@ public class SensorListener : MonoBehaviour{
     Queue<Vector3> accBuffer = new Queue<Vector3>();
     Quaternion originRotation;
     Vector3 oldAngles;
+    CSVFileManager myCSVFileManager;
 
 
     IEnumerator sensorReconnect(int secs){
@@ -60,6 +61,7 @@ public class SensorListener : MonoBehaviour{
         oldAngles = transform.localEulerAngles;
         clientReceiveThread = new Thread(new ThreadStart(ListenForData));
         clientReceiveThread.Start();
+        //myCSVFileManager.writeStringToFile("testttttttt", "test.csv");
 
     }
 
@@ -204,7 +206,7 @@ public class SensorListener : MonoBehaviour{
             angulerVel.x = Math.Abs(angulerVel.x) > 1000 ? 0 : angulerVel.x;
             angulerVel.y = Math.Abs(angulerVel.y) > 1000 ? 0 : angulerVel.y;
             angulerVel.z = Math.Abs(angulerVel.z) > 1000 ? 0 : angulerVel.z;
-            quatData += transform.rotation + "\n";
+            quatData += transform.rotation.w + ", " + transform.rotation.x + ", " + transform.rotation.y + ", " + transform.rotation.z + "\n";
             sensorData += sensorId + ", " + angles + ", " + angulerVel + ", " + acc + "\n";
             recordData = sensorId + ", " + minAng + ", " + maxAng + ", " + minVel + ", " + maxVel + ", " + minAcc + ", " + maxAcc + "\n";
             //Debug.Log(recordData);
@@ -417,9 +419,53 @@ public class SensorListener : MonoBehaviour{
     }
 
 
+    DateTime StartDateTime;
+    DateTime epochStart;
+    string timeString;
+    string dateTime;
+    int cur_time;
+    String header;
+    String filename;
+
+    public void saveCSV()
+    {
+
+        epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+        StartDateTime = DateTime.Now;
+        dateTime = StartDateTime.ToString("dd-MM-yyyy");
+        timeString = StartDateTime.ToString("hh-mm-ss");
+        myCSVFileManager = gameObject.AddComponent(typeof(CSVFileManager)) as CSVFileManager;
+
+        if(!string.IsNullOrEmpty(recordData)){
+            header = "sensor number, min Sagittal plane, min Frontal plane, min Transverse plane, max Sagittal plane, max Frontal plane, max Transverse plane, min Sagittal speed, min Frontal speed, min Transverse speed, max Sagittal speed, max Frontal speed, max Transverse speed, min acceleration Frontal, min acceleration Longitudinal, min acceleration Sagittal, max acceleration Frontal, max acceleration Longitudinal, max acceleration Sagittal\n";
+            filename = dateTime + "-" + timeString + "IMU_No" + Int32.Parse(sensorId, System.Globalization.NumberStyles.HexNumber).ToString() + "RecordData.csv";
+            myCSVFileManager.writeStringToFile(header + recordData, filename);
+        }
+        if(!string.IsNullOrEmpty(sensorData)){
+            header = "sensor number, Sagittal plane, Frontal plane, Transverse plane, Sagittal speed, Frontal speed, Transverse speed, acceleration Frontal, acceleration Longitudinal, acceleration Sagittal\n";
+            filename = dateTime + "-" + timeString + "IMU_No" + Int32.Parse(sensorId, System.Globalization.NumberStyles.HexNumber).ToString() + "FullData.csv";
+            myCSVFileManager.writeStringToFile(header + sensorData, filename);
+        }
+
+        if(!string.IsNullOrEmpty(avrData)){
+            header = "sensor number, avg Sagittal plane, avg Frontal plane, avg Transverse plane, avg Sagittal speed, avg Frontal speed, avg Transverse speed, avg acceleration Frontal, avg acceleration Longitudinal, avg acceleration Sagittal\n";
+            filename = dateTime + "-" + timeString + "IMU_No" + Int32.Parse(sensorId, System.Globalization.NumberStyles.HexNumber).ToString() + "AvrData.csv";
+            myCSVFileManager.writeStringToFile(header + avrData, filename);
+        }
+
+        if(!string.IsNullOrEmpty(quatData)){
+            header = "sensor number, w, x, y, z\n";
+            filename = dateTime + "-" + timeString + "IMU_No" + Int32.Parse(sensorId, System.Globalization.NumberStyles.HexNumber).ToString() + "QuatData.csv";
+            myCSVFileManager.writeStringToFile(header + quatData, filename);
+        }
+
+    }
+
     void OnDestroy(){
 
         Debug.Log("Application ending");
+        //saveCSV();
         if(socketConnection != null){
             socketConnection.GetStream().Close();
             socketConnection.Client.Close();
