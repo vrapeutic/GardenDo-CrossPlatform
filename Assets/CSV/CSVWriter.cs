@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Tachyon;
+using System;
+
 public class CSVWriter : MonoBehaviour
 {
     string fileName;
@@ -28,6 +30,13 @@ public class CSVWriter : MonoBehaviour
     bool isStatsSent = false;
 
     Statistics stats;
+
+    CSVFileManager myCSVFileManager;
+    String header;
+    string dateTime;
+    string timeString;
+    DateTime StartDateTime;
+    String data = "";
     void Start()
     {
         InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
@@ -52,12 +61,35 @@ public class CSVWriter : MonoBehaviour
         {
             InitiateStateVaribaleFields();
         }
-
-
-
     }
 
+    public void SaveCognitiveDataToCSV(string session_start_time, string attempt_start_time, string attempt_end_time, float expected_duration_in_seconds,
+         float actual_duration_in_seconds, string level, string attempt_type, float impulsivity_score, float response_time, float omission_score,
+        float actual_attention_time, float flower_count, float flowerSustained, float wellSustained, float totalSustained, float nonSustained,
+        float des, float score)
+    {
 
+        StartDateTime = DateTime.Now;
+        dateTime = StartDateTime.ToString("dd-MM-yyyy");
+        timeString = StartDateTime.ToString("hh-mm-ss");
+
+
+        myCSVFileManager = gameObject.AddComponent(typeof(CSVFileManager)) as CSVFileManager;
+
+
+        header = "session_start_time, attempt_start_time, attempt_end_time, expected_duration_in_seconds," +
+         " actual_duration_in_seconds, level, attempt_type, flower_max_height, flower_min_height, flower_average_height" +
+        ", impulsivity_score, response_time, omission_score, actual_attention_time, flower_count, flowerSustained" +
+        ", wellSustained, totalSustained, nonSustained, des, score, flowr_position, flower_heights\n";
+
+        data = session_start_time + ", " + attempt_start_time + ", " + attempt_end_time + ", " + expected_duration_in_seconds + ", " +
+            actual_duration_in_seconds + ", " + level + ", " + attempt_type + ", " + impulsivity_score + ", " + response_time
+          + ", " + omission_score + ", " + actual_attention_time + ", " + flower_count + ", " + flowerSustained + ", " +
+          wellSustained + ", " + totalSustained + ", " + nonSustained + ", " + des + ", " + score;
+        fileName = dateTime + "-" + timeString + "CognitiveData.csv";
+        myCSVFileManager.writeStringToFile(header + data, fileName);
+
+    }
     private void OnApplicationQuit()
     {
         if (!isStatsSent)
@@ -119,23 +151,23 @@ public class CSVWriter : MonoBehaviour
     public void SendStatisticsRPC(float _typicalTime, float _timeTaken, int _level, float _flowerSustained, float _wellSusutained, float _implusivityScore,
         float _score, float _omissionScore, float _DES)
     {
-        
-            typicalTime = _typicalTime;
-            timeTaken = _timeTaken;
-            level = _level;
-            flowerSustained = _flowerSustained;
-            wellSustained = _wellSusutained;
-            implusivityScore = _implusivityScore;
-            score = _score;
-            omissionScore = _omissionScore;
-            DES = _DES;
 
-            Debug.Log(typicalTime.ToString() + "," + timeTaken.ToString() + "," + level + "," + flowerSustained + "," + wellSustained + "," + implusivityScore
-                + "," + score + "," + omissionScore + "," + DES);
-            Debug.Log("pc recieved stats");
-            WriteFinalStatistics();
+        typicalTime = _typicalTime;
+        timeTaken = _timeTaken;
+        level = _level;
+        flowerSustained = _flowerSustained;
+        wellSustained = _wellSusutained;
+        implusivityScore = _implusivityScore;
+        score = _score;
+        omissionScore = _omissionScore;
+        DES = _DES;
 
-        
+        Debug.Log(typicalTime.ToString() + "," + timeTaken.ToString() + "," + level + "," + flowerSustained + "," + wellSustained + "," + implusivityScore
+            + "," + score + "," + omissionScore + "," + DES);
+        Debug.Log("pc recieved stats");
+        WriteFinalStatistics();
+
+
 
     }
 
