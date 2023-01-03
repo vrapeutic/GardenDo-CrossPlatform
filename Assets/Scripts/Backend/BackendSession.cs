@@ -23,6 +23,8 @@ public class BackendSession : MonoBehaviour
     public static string startTimeSession = "yyyy/MM/dd hh:mm:ss tt"; // use System.DateTime.Now(start time) when level start to getstart time
     [HideInInspector]
     public string endTimeNow = "yyyy/MM/dd hh:mm:ss tt"; //use System.DateTime.Now(end time) when level end to get end time
+    [SerializeField]
+    private GameObject pop_up;
 
     private void Awake()
     {
@@ -51,15 +53,24 @@ public class BackendSession : MonoBehaviour
     #region SessionStart
    public void StartSession()
     {
-        StartCoroutine(SendSessionElements(patient_id, moduleID,auth));
+        if (patient_id >= 100 && patient_id <= 115)
+
+            StartCoroutine(SendSessionElements(patient_id, moduleID, auth));
+        else StartCoroutine(PopUp());
+        
+    }
+   IEnumerator PopUp()
+    {
+        pop_up.SetActive(true);
+        yield return new WaitForSeconds(2);
+        pop_up.SetActive(false);
 
     }
-   
     IEnumerator SendSessionElements(int patient_id , int moduleId,string auth)
     {
         yield return StartCoroutine(jsonAPIS.SendSessionElements(patient_id, moduleID,auth));
         sessionElements = jsonAPIS.SessioResponseElements();
-        SartGame(sessionElements.id, sessionElements.room_id);
+            SartGame(sessionElements.id, sessionElements.room_id);
     }
     public void SartGame(int getId, string getRoom)
     {
