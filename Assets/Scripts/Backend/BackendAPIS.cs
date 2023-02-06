@@ -12,11 +12,11 @@ public class BackendAPIS : MonoBehaviour
 
     
     #region CreateSession
-    public IEnumerator SendSessionElements(int patient_id,int vr_module_id, string auth)
+    public IEnumerator SendSessionElements(string patient_id,int vr_module_id, string auth)
     {
         string json = ConvertElementsTojson(patient_id, vr_module_id);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
-        string url = "https://dashboard.myvrapeutic.com/api/v1/module_sessions/create_without_headset/";
+        string url = "http://vrapeutic-rails-production.eba-2nd4efne.eu-west-1.elasticbeanstalk.com/api/v1/module_sessions/create_without_headset/";
         UnityWebRequest www = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         www.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
@@ -36,7 +36,7 @@ public class BackendAPIS : MonoBehaviour
             Debug.Log("all" + www.downloadHandler.text);
         }
     }
-    string ConvertElementsTojson(int patient_id, int vr_module_id)
+    string ConvertElementsTojson(string patient_id, int vr_module_id)
     {
         SessionElements elements = new SessionElements();
         elements.patient_id = patient_id;
@@ -59,7 +59,7 @@ public class BackendAPIS : MonoBehaviour
     {
         string json = ConvertDataToJson( );
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
-        string url = "https://dashboard.myvrapeutic.com/api/v1/statistics/create_without_headset";
+        string url = "http://vrapeutic-rails-production.eba-2nd4efne.eu-west-1.elasticbeanstalk.com/api/v1/statistics/create_without_headset";
         UnityWebRequest www = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         www.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);

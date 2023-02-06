@@ -51,7 +51,7 @@ public class MyData
 [Serializable]
 public class SessionElements
 {
-    public int patient_id;
+    public string patient_id;
     public int vr_module_id;
 }
 [Serializable]

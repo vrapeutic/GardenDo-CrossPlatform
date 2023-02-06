@@ -14,7 +14,7 @@ public class BackendSession : MonoBehaviour
     public DataCollection MyStats;
     int sessionId;
     public int moduleID = 13;//every module has unique id
-    public  int patient_id;
+    public  string patient_id;
     public string auth="";
     [SerializeField]
     InputField input;
@@ -37,10 +37,10 @@ public class BackendSession : MonoBehaviour
     }
     public void SetPatient()
     {
-       patient_id = int.Parse(input.text);
+       patient_id = input.text;
 
     }
-    public int GetPatient()
+    public string GetPatient()
     {
         return patient_id;
     }
@@ -53,10 +53,10 @@ public class BackendSession : MonoBehaviour
     #region SessionStart
    public void StartSession()
     {
-        if (patient_id >= 100 && patient_id <= 115)
+        //if (patient_id >= 100 && patient_id <= 115)
 
             StartCoroutine(SendSessionElements(patient_id, moduleID, auth));
-        else StartCoroutine(PopUp());
+        //else StartCoroutine(PopUp());
         
     }
    IEnumerator PopUp()
@@ -66,7 +66,7 @@ public class BackendSession : MonoBehaviour
         pop_up.SetActive(false);
 
     }
-    IEnumerator SendSessionElements(int patient_id , int moduleId,string auth)
+    IEnumerator SendSessionElements(string patient_id , int moduleId,string auth)
     {
         yield return StartCoroutine(jsonAPIS.SendSessionElements(patient_id, moduleID,auth));
         sessionElements = jsonAPIS.SessioResponseElements();
