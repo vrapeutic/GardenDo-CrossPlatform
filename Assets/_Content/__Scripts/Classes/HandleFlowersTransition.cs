@@ -34,7 +34,7 @@ public class HandleFlowersTransition : MonoBehaviour
         }
         else if (numberOfFLower > 10)
         {
-            for (int i = 8; i <= 16; i++)
+            for (int i = 8; i <= stats.numberOfFlowers; i++)
             {
                 flowers[i].gameObject.SetActive(true);
             }

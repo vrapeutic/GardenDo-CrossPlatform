@@ -17,7 +17,7 @@ public class HandleFlowerNumbers : MonoBehaviour
 
         if (stats.numberOfFlowers > 9)
         {
-            for (int i = 0; i < flowerToEnable.Length; i++)
+            for (int i = 0; i < stats.numberOfFlowers; i++)
             {
                 flowerToEnable[i].SetActive(true);
             }
