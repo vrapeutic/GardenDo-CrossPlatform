@@ -88,4 +88,23 @@ public class NonTargetMovement : MonoBehaviour
             yield return waitTime;
         }
     }
+
+    private void OnEnable()
+    {
+        // Restart the coroutine when the object is set active
+        if (MoveDistructorCoroutine == null)
+        {
+            MoveDistructorCoroutine = StartCoroutine(Movement());
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Stop the coroutine when the object is deactivated
+        if (MoveDistructorCoroutine != null)
+        {
+            StopCoroutine(MoveDistructorCoroutine);
+            MoveDistructorCoroutine = null;
+        }
+    }
 }

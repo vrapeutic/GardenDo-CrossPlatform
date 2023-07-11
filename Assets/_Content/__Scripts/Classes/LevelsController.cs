@@ -44,8 +44,19 @@ public class LevelsController : MonoBehaviour
         if (timer >= timeBetweenDistractors)
         {
             timer = 0f;
+            DisableAllDistractors();
             EnableRandomDistractor();
         }
+    }
+
+    private void DisableAllDistractors()
+    {
+        level4Distractor.SetActive(false);
+        level5Distractor.SetActive(false);
+        level6Distractor.SetActive(false);
+        //level7Distractor.SetActive(false);
+        //level8Distractor.SetActive(false);
+        level9Distractor.SetActive(false);
     }
 
     private void EnableRandomDistractor()
@@ -86,7 +97,7 @@ public class LevelsController : MonoBehaviour
 
     private void Enablelevel5Distractors()
     {
-        int randomDistractorIndex = Random.Range(1, 2);
+        int randomDistractorIndex = Random.Range(1, 3);
 
         switch (randomDistractorIndex)
         {
@@ -103,7 +114,7 @@ public class LevelsController : MonoBehaviour
 
     private void Enablelevel6Distractors()
     {
-        int randomDistractorIndex = Random.Range(1, 3);
+        int randomDistractorIndex = Random.Range(1, 4);
 
         switch (randomDistractorIndex)
         {
@@ -128,7 +139,7 @@ public class LevelsController : MonoBehaviour
 
     private void Enablelevel8Distractors()
     {
-        int randomDistractorIndex = Random.Range(1, 2);
+        int randomDistractorIndex = Random.Range(1, 3);
 
         switch (randomDistractorIndex)
         {
@@ -145,7 +156,7 @@ public class LevelsController : MonoBehaviour
 
     private void Enablelevel9Distractors()
     {
-        int randomDistractorIndex = Random.Range(1, 3);
+        int randomDistractorIndex = Random.Range(1, 4);
 
         switch (randomDistractorIndex)
         {
