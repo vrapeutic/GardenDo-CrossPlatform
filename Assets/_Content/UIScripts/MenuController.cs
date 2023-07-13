@@ -103,6 +103,12 @@ public class MenuController : MonoBehaviour
         stats.totalNumberOfTasks = wateringCycle;
         Debug.Log("number of flowers " + wateringCycle);
     }
+
+    public void SetVisualOnly(bool isVisualOnly)
+    {
+        stats.isVisualOnly = isVisualOnly;
+    }
+
     public void ChooseCharacter(int characterNo)
     {
         ChooseCharacterRPC(characterNo);

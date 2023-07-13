@@ -53881,6 +53881,11 @@ MonoBehaviour:
   level7Distractor: {fileID: 0}
   level8Distractor: {fileID: 0}
   level9Distractor: {fileID: 3673026471163331741}
+  secondLevelDistractorsAudioSources:
+  - {fileID: 2954301584731160160}
+  - {fileID: 6875056869198914842}
+  - {fileID: 1219444281332015810}
+  - {fileID: 1523176523711051135}
 --- !u!1 &7622093925275087578
 GameObject:
   m_ObjectHideFlags: 0

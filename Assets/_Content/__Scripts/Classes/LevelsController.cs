@@ -15,6 +15,7 @@ public class LevelsController : MonoBehaviour
     [SerializeField] GameObject level7Distractor;
     [SerializeField] GameObject level8Distractor;
     [SerializeField] GameObject level9Distractor;
+    [SerializeField] AudioSource[] secondLevelDistractorsAudioSources;
 
     Statistics stats;
     void Start()
@@ -22,6 +23,11 @@ public class LevelsController : MonoBehaviour
         //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
         //NetworkManager.InvokeClientMethod("EnableLevel_3DistractorRPC", invokationManager);
         stats = Statistics.instane;
+        if (stats.isVisualOnly) {
+            foreach (AudioSource audioSource in secondLevelDistractorsAudioSources) {
+                audioSource.enabled = false;
+            }
+        }
 
         //if (stats.level == 1)
         //{

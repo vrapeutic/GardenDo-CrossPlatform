@@ -20,6 +20,7 @@ public class Statistics : MonoBehaviour
     public bool isCompleteCourse = true;
     public int numberOfFlowers = 4;
     public int instructionNumber = 0;
+    public bool isVisualOnly = false;
 
     public float tasksWithLimitiedInterruptions = 0;
     public float totalNumberOfTasks;
