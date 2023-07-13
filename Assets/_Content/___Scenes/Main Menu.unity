@@ -5650,7 +5650,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 931646907}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: SetAudioOnly
+        m_MethodName: SetVisualOnly
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5658,7 +5658,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 62715222}
         m_TargetAssemblyTypeName: MeunuSequence, Assembly-CSharp
@@ -7082,7 +7082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &522060433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11618,7 +11618,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 931646907}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: SetAudioOnly
+        m_MethodName: SetVisualOnly
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11626,7 +11626,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 62715222}
         m_TargetAssemblyTypeName: MeunuSequence, Assembly-CSharp
@@ -20502,7 +20502,7 @@ MonoBehaviour:
   isCompleteCourse: 0
   numberOfFlowers: 4
   instructionNumber: 0
-  isAudioOnly: 0
+  isVisualOnly: 0
   tasksWithLimitiedInterruptions: 0
   totalNumberOfTasks: 0
   wateringResponseTimeCounter: 0
