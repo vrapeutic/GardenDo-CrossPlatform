@@ -53874,7 +53874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   butterfly: {fileID: 1227323572029599187}
   bird: {fileID: 4551097710357193500}
-  timeBetweenDistractors: 5
+  timeBetweenDistractors: 30
   level4Distractor: {fileID: 886012392860096806}
   level5Distractor: {fileID: 2202410456454336552}
   level6Distractor: {fileID: 5394508928643963988}
