@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Content/___Scenes/Balacony.unity
     guid: b29ed61627608d64186122d2ceea6ad7
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Content/___Scenes/Garden.unity
     guid: bc93c26384792ed469bb5b15eb82d9a4
   m_configObjects:
