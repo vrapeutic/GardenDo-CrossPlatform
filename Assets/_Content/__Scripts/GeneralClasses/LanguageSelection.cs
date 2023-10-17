@@ -22,21 +22,21 @@ public class LanguageSelection : MonoBehaviour
 
     private void Start()
     {
-        stats = Statistics.instane;
-        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        //NetworkManager.InvokeClientMethod("OnLanguageSelectRPC", invokationManager);
-        if (stats.firstEnterMainMenu)
-        {
-            menuSequence.NextUI();
-            //Destroy(gameObject);
-        }
+        //stats = Statistics.instane;
+        ////InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        ////NetworkManager.InvokeClientMethod("OnLanguageSelectRPC", invokationManager);
+        //if (stats.firstEnterMainMenu)
+        //{
+        //    menuSequence.NextUI();
+        //    //Destroy(gameObject);
+        //}
     }
 
     public void OnLanguageSelect(int languageNO)
     {
         OnLanguageSelectRPC(languageNO);
        // NetworkManager.InvokeServerMethod("OnLanguageSelectRPC", this.gameObject.name, languageNO);
-        stats.firstEnterMainMenu = true;
+        //stats.firstEnterMainMenu = true;
     }
 
     public void OnLanguageSelectRPC(int languageNO)

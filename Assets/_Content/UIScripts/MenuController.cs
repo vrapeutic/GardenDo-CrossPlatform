@@ -156,7 +156,7 @@ public class MenuController : MonoBehaviour
         Debug.Log("Exit Module");
         //ServerRequest.instance.SendPutRequest();
 
-        StatisticsManager.instance.OnSendStatistics();
+        //StatisticsManager.instance.OnSendStatistics();
         Invoke("ExitModuleRPC", 0f);
         /*if (!Statistics.android)*/
         //NetworkManager.InvokeServerMethod("ExitModuleRPC", this.gameObject.name);
@@ -165,7 +165,7 @@ public class MenuController : MonoBehaviour
 
     public void ExitModuleRPC()
     {
-        Invoke("bye", 7);
+        Invoke("bye", 0f);
 
         Debug.Log("bye");
 
@@ -176,7 +176,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Exit Module RPC");
         //StartCoroutine(ExitEnum());     
-        if (Statistics.android)
+        //if (Statistics.android)
             Application.Quit();
     }
 
