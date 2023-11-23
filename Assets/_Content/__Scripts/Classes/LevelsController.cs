@@ -7,16 +7,17 @@ public class LevelsController : MonoBehaviour
 {
     [SerializeField] GameObject butterfly;
     [SerializeField] GameObject bird;
-    private float timer = 0f;
+    private static float timer = 0f;
     [SerializeField] public float timeBetweenDistractors = 30f;
     [SerializeField] GameObject level4Distractor; //9 levels, 1-3 no distractors, 6 distractors total for levels 4,5,6,7,8,9
     [SerializeField] GameObject level5Distractor;
     [SerializeField] GameObject level6Distractor;
-    [SerializeField] GameObject level7Distractor;
+    [SerializeField] GameObject[] level7Distractor;
     [SerializeField] GameObject level8Distractor;
     [SerializeField] GameObject level9Distractor;
     [SerializeField] AudioSource[] secondLevelDistractorsAudioSources;
 
+    public static bool isWaitingForInteraction = false;
     Statistics stats;
     void Start()
     {
@@ -29,6 +30,16 @@ public class LevelsController : MonoBehaviour
             }
         }
 
+        if (stats.level == 9)
+        {
+            level9Distractor.SetActive(true);
+        }
+
+        DisableAllDistractors();
+        WavingSensorController.areChildrenWaving = false;
+        ResetPotController.isPotKnockedOver = false;
+        isWaitingForInteraction = false;
+        timer = 0;
         //if (stats.level == 1)
         //{
         //    DisableLevel_2Distractor();
@@ -47,7 +58,7 @@ public class LevelsController : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenDistractors)
+        if (timer >= timeBetweenDistractors && !isWaitingForInteraction)
         {
             timer = 0f;
             DisableAllDistractors();
@@ -61,8 +72,10 @@ public class LevelsController : MonoBehaviour
         level5Distractor.SetActive(false);
         level6Distractor.SetActive(false);
         //level7Distractor.SetActive(false);
-        //level8Distractor.SetActive(false);
-        level9Distractor.SetActive(false);
+        DisableAlllevel7Distractors();
+        level8Distractor.SetActive(false);
+        //level9Distractor.SetActive(false);
+        level9Distractor.GetComponent<BoxCollider>().enabled = false;
     }
 
     private void EnableRandomDistractor()
@@ -140,7 +153,8 @@ public class LevelsController : MonoBehaviour
 
     private void Enablelevel7Distractors()
     {
-        level7Distractor.SetActive(true);
+        EnableLevel7Distractor();
+        isWaitingForInteraction = true;
     }
 
     private void Enablelevel8Distractors()
@@ -150,7 +164,7 @@ public class LevelsController : MonoBehaviour
         switch (randomDistractorIndex)
         {
             case 1:
-                level7Distractor.SetActive(true);
+                EnableLevel7Distractor();
                 break;
             case 2:
                 level8Distractor.SetActive(true);
@@ -158,26 +172,34 @@ public class LevelsController : MonoBehaviour
             default:
                 break;
         }
+
+        isWaitingForInteraction = true;
     }
 
     private void Enablelevel9Distractors()
     {
         int randomDistractorIndex = Random.Range(1, 4);
+        //int randomDistractorIndex = 2;
 
         switch (randomDistractorIndex)
         {
             case 1:
-                level7Distractor.SetActive(true);
+                EnableLevel7Distractor();
                 break;
             case 2:
                 level8Distractor.SetActive(true);
+                Debug.Log("8");
                 break;
             case 3:
-                level9Distractor.SetActive(true);
+                //level9Distractor.SetActive(true);
+                Debug.Log("9");
+                level9Distractor.GetComponent<BoxCollider>().enabled = true;
                 break;
             default:
                 break;
         }
+
+        isWaitingForInteraction = true;
     }
 
     public void DisableLevel_2Distractor()
@@ -193,6 +215,29 @@ public class LevelsController : MonoBehaviour
     public void EnableLevel_3DistractorRPC()
     {
         bird.SetActive(true);
+    }
+
+    public static void DidInteracttWithDistractor()
+    {
+        timer = 0;
+        isWaitingForInteraction = false;
+    }
+
+    public void EnableLevel7Distractor()
+    {
+        level7Distractor[Statistics.instane.currentFlowerIndex].gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+        level7Distractor[Statistics.instane.currentFlowerIndex].GetComponent<Animator>().enabled = true;
+        level7Distractor[Statistics.instane.currentFlowerIndex].GetComponent<Animator>().SetTrigger("WigglePot");
+        level7Distractor[Statistics.instane.currentFlowerIndex].GetComponent<AudioSource>().Play();
+        Debug.Log("7");
+    }
+
+    public void DisableAlllevel7Distractors()
+    {
+        foreach (GameObject gameObject in level7Distractor)
+        {
+            gameObject.GetComponent<Animator>().enabled = false;
+        }
     }
 
 

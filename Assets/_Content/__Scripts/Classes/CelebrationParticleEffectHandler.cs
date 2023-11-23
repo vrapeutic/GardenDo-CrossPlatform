@@ -22,8 +22,9 @@ public class CelebrationParticleEffectHandler : MonoBehaviour
             Debug.Log("flower finished");
             flowerCelebrationParticleEffect[particleIndex].SetActive(true);
             particleIndex++;
+            //Statistics.instane.currentFlowerIndex++;
         }
-       
+
     }
     public void OnGameFinished()
     {

@@ -27,6 +27,8 @@ public class BirdMovementTrigger : MonoBehaviour
                 Debug.Log("Bird should fly");
                 Debug.Log("Response Time : Bird Response Times : " + stats.birdFlyingResponseTimes);
                 BirdController.isBirdOnFlower = false;
+                bird.gameObject.GetComponent<BoxCollider>().enabled = false;
+                LevelsController.DidInteracttWithDistractor();
                 FlyingBirdAnim();
             }
         }

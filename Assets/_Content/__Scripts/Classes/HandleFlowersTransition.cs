@@ -41,7 +41,7 @@ public class HandleFlowersTransition : MonoBehaviour
         }
         else
         {
-            for (int i = 4; i <= 16; i++)
+            for (int i = 4; i <= 12; i++)
             {
                 flowers[i].gameObject.SetActive(false);
             }

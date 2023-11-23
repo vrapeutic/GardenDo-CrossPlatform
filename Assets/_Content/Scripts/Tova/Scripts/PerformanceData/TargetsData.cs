@@ -35,8 +35,8 @@ public class TargetsData : MonoBehaviour
     void Start()
     {
 
-        targets = GameObject.FindGameObjectsWithTag(targetTag);
-        SetDataList();
+        //targets = GameObject.FindGameObjectsWithTag(targetTag);
+        //SetDataList();
 
     }
 

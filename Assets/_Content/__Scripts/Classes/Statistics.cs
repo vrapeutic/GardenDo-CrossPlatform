@@ -25,6 +25,8 @@ public class Statistics : MonoBehaviour
     public float tasksWithLimitiedInterruptions = 0;
     public float totalNumberOfTasks;
 
+    public int currentFlowerIndex = 0;
+
     public float wateringResponseTimeCounter;
     public float wateringResponseTimes;
     public bool wateringResponseTimeCounterBegin;
@@ -52,6 +54,11 @@ public class Statistics : MonoBehaviour
 #if UNITY_STANDALONE
         android = false;
 #endif
+    }
+
+    public void UpdateCurrentFlowerIndex()
+    {
+        currentFlowerIndex++;
     }
 
 }

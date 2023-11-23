@@ -79,7 +79,8 @@ public class AnimatorTrigger : MonoBehaviour
         {
             yield return waitingSeconds;
 
-            if (currentFlower.GetBucketWateringState() && currentFlower.GetCameraLookingState() && !BirdController.isBirdOnFlower && !SetAnimalAnimatorInt.isAnimalDistracting)
+            if (currentFlower.GetBucketWateringState() && currentFlower.GetCameraLookingState() && !ResetPotController.isPotKnockedOver
+                && !WavingSensorController.areChildrenWaving && !BirdController.isBirdOnFlower && !SetAnimalAnimatorInt.isAnimalDistracting)
             {
                 Debug.Log("enter condition to water  flower");
                 startFlowerTimer = true;

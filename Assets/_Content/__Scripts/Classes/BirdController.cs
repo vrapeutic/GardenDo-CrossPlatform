@@ -7,6 +7,7 @@ public class BirdController : MonoBehaviour
 {
     TovaDataSet dataSet;
     public static bool isBirdOnFlower;
+    //public static bool isEnabledDistractor = false;
     [SerializeField] Animator bird;
     [SerializeField] Animator birdParent;
 
@@ -20,6 +21,17 @@ public class BirdController : MonoBehaviour
         stats = Statistics.instane;
     }
 
+    //private void Update()
+    //{
+    //    if (isEnabledDistractor)
+    //    {
+    //        bird.GetComponent<BoxCollider>().enabled = false;
+    //    } else
+    //    {
+    //        bird.GetComponent<BoxCollider>().enabled = true;
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bird"))
@@ -28,8 +40,8 @@ public class BirdController : MonoBehaviour
             stats.birdFlyingResponseTimeCounterBegin = true;
             isBirdOnFlower = true;
             IdleBirdAnim();
-            dataSet.SetDistractorResponseTimer(true);
-            dataSet.SetNoOfDistractorHitsCounter(true);
+            //dataSet.SetDistractorResponseTimer(true);
+            //dataSet.SetNoOfDistractorHitsCounter(true);
         }
     }
 
@@ -38,7 +50,7 @@ public class BirdController : MonoBehaviour
         if (other.CompareTag("Bird"))
         {
             stats.birdFlyingResponseTimeCounterBegin = false;
-            dataSet.SetDistractorResponseTimer(false);
+            //dataSet.SetDistractorResponseTimer(false);
         }
     }
 
