@@ -67,6 +67,20 @@ public class AnimatorTrigger : MonoBehaviour
         {
             stats.flowerSustained += Time.deltaTime;
         }
+
+        if (!stopReverseAnim)
+        {
+            flowerAnimator = flowers[flowerIndex].GetComponent<Animator>();
+            animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
+            myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
+            currentClipTime = myAnimatorClip[0].clip.length * (animationState.normalizedTime % 1);
+            if (currentClipTime <= 0)
+            {
+                flowerAnimator.SetFloat("speed", 0f);
+                currentClipTime = 0f;
+                stopReverseAnim = true;
+            }
+        }
     }
 
 
@@ -105,7 +119,7 @@ public class AnimatorTrigger : MonoBehaviour
         {
             FlowerGrowingUpRPC(_currrentFlowerIndix);
             //NetworkManager.InvokeServerMethod("FlowerGrowingUpRPC", this.gameObject.name, _currrentFlowerIndix);
-            FlowerGrowingUpAndroid(_currrentFlowerIndix);
+            //FlowerGrowingUpAndroid(_currrentFlowerIndix);
         }
     }
 
@@ -153,7 +167,7 @@ public class AnimatorTrigger : MonoBehaviour
         //if (!Statistics.android)
         //{
             flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
-            stopReverseAnim = false;
+            stopReverseAnim = true;
             if (isNewFlower == true)
             {
                 isNewFlower = false;
@@ -200,7 +214,7 @@ public class AnimatorTrigger : MonoBehaviour
         {
             FlowerReverseRPC(_currentFlowerIndex);
             //NetworkManager.InvokeServerMethod("FlowerReverseRPC", this.gameObject.name, _currentFlowerIndex);
-            FlowerReverseAndroid(_currentFlowerIndex);
+            //FlowerReverseAndroid(_currentFlowerIndex);
         }
     }
 
@@ -233,7 +247,8 @@ public class AnimatorTrigger : MonoBehaviour
         //  if (!Statistics.android)
         // {
         taskStopped.Raise();
-            flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
+        stopReverseAnim = false;
+        flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
             if (!startPlayingSFX)
             {
@@ -241,18 +256,19 @@ public class AnimatorTrigger : MonoBehaviour
             }
 
             WaterPlarticleSystemEmission(false);
-            flowerAnimator.SetFloat("speed", -1.0f / finalGrowthSpeed);
+        flowerAnimator.SetFloat("speed", -1.0f / finalGrowthSpeed);
+        ////flowerAnimator.StartPlayback();
 
-            animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
-            myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
-            currentClipTime = myAnimatorClip[0].clip.length * animationState.normalizedTime;
+        //animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
+        //    myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
+        //    currentClipTime = myAnimatorClip[0].clip.length * (animationState.normalizedTime % 1);
 
-            if (currentClipTime <= 0.5f)
-            {
-                flowerAnimator.SetFloat("speed", 0f);
-                currentClipTime = 0f;
-                stopReverseAnim = true;
-            }
+        //    if (currentClipTime < 0)
+        //    {
+        //        flowerAnimator.SetFloat("speed", 0f);
+        //        currentClipTime = 0f;
+        //        stopReverseAnim = true;
+        //    }
     //    }
         //Debug.Log("Flower reverse");
 
