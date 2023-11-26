@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
         NetworkManager.InvokeClientMethod("SetWateringCycleRPC", invokationManager);
         NetworkManager.InvokeClientMethod("SetEnviromentRPC", invokationManager);
         NetworkManager.InvokeClientMethod("ExitModuleRPC", invokationManager);
+        stats.currentFlowerIndex = 0;
     }
 
     public void ShowInstructionsUI(int _number)
