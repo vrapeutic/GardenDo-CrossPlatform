@@ -1,7 +1,4 @@
-session start time,attempt end time,typical time ,actual duration,level,flower suatained,well sustained,impulisvity score,score,omission score,distraction endurance score
-2022/03/08 03:43:26 PM,2022/03/08 03:44:26 PM,130,76.21362,1,39.85031,0,1,100.3756,1.254695,0
-2022/06/22 12:24:03 PM,,0,0,2,0,0,0,0,0,0
-2022/06/23 12:27:41 AM,,0,0,1,0,0,0,0,0,0
-2022/06/23 12:28:42 AM,,0,0,1,0,0,0,0,0,0
-2022/06/23 03:43:37 PM,2022/06/23 03:47:20 PM,130,222.5387,2,0,9.971488,1,0,0,1.80057
-2022/06/23 05:41:20 PM,2022/06/23 05:41:50 PM,130,29.32936,2,0,0,1,0,0,2
+Garden_Do_Session_Start_Time,2023/11/28 12:22:21 AM
+Level,7
+Flower{Statistics.instance.currentFlowerIndex}_Watering_Time,56.87818
+Garden_Do_Session_End_Time,2023/11/28 12:24:06 AM

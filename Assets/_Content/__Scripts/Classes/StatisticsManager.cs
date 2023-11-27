@@ -24,7 +24,7 @@ public class StatisticsManager : MonoBehaviour
     BackendSession currentSession;
     DataCollection dataCollection;
 
-    public CSVWriter csvWriter;
+    public CSVWriter_Old csvWriter;
     private void Awake()
     {
         //currentSession = FindObjectOfType<BackendSession>();

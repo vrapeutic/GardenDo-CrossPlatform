@@ -12,6 +12,7 @@ public class Flower : MonoBehaviour
     [SerializeField] GameEvent flowerFinishedEvent;
     private bool isPlayerLooking;
     private bool isBucketWatering;
+    private float flowerWateringTime;
     private void Awake()
     {
         if (!cameraLookingSensor) cameraLookingSensor = GetComponentInChildren<StartWateringSensorForCamera>().gameObject;
@@ -19,6 +20,11 @@ public class Flower : MonoBehaviour
         if (!myAnimator) myAnimator = GetComponent<Animator>();
         if (!myFootStep) myFootStep = GetComponentInChildren<Step>().gameObject;
         if (!myBird) myBird = GetComponentInChildren<BirdController>().gameObject;
+    }
+
+    private void Update()
+    {
+        flowerWateringTime += Time.deltaTime;
     }
 
     public void GetReadyForWatering()
@@ -32,6 +38,7 @@ public class Flower : MonoBehaviour
         myAnimator.enabled = true;
         myAnimator.speed = 1;
         myBird.GetComponent<Collider>().enabled = true;
+        flowerWateringTime = 0;
     }
     public void FinishWatering()
     {
@@ -46,6 +53,7 @@ public class Flower : MonoBehaviour
         myAnimator.enabled = false;
         cameraLookingSensor.GetComponent<StartWateringSensorForCamera>().ResetValues();
         bucketWateringSensor.GetComponent<StartWateringSensorForBucket>().ResetValues();
+        CSVWriter.Instance.WriteFlowerWateringTime(flowerWateringTime.ToString());
     }
 
     public void UpdateLookingState(bool _isPlayerLooking)

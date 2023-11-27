@@ -147,6 +147,7 @@ public class MenuController : MonoBehaviour
     public void LoadMainMenuRPC()
     {
         //FindObjectOfType<BackendSession>().StartSession();
+        CSVWriter.Instance.WriteEndTime();
         SceneManager.LoadScene("Main Menu");
         Destroy(FindObjectOfType<TovaDataGet>().gameObject);
     }
