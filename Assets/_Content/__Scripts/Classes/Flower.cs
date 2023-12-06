@@ -13,6 +13,7 @@ public class Flower : MonoBehaviour
     private bool isPlayerLooking;
     private bool isBucketWatering;
     private float flowerWateringTime;
+
     private void Awake()
     {
         if (!cameraLookingSensor) cameraLookingSensor = GetComponentInChildren<StartWateringSensorForCamera>().gameObject;

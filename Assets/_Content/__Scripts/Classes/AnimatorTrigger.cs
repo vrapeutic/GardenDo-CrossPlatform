@@ -41,7 +41,7 @@ public class AnimatorTrigger : MonoBehaviour
     [SerializeField] AudioSource wateringFlowersSFX;
 
 
-
+    private float flowerInteruptionTime;
 
     private bool isFlower = false;
     private bool startFlowerTimer = false;
@@ -70,6 +70,8 @@ public class AnimatorTrigger : MonoBehaviour
 
         if (!stopReverseAnim)
         {
+            flowerInteruptionTime += Time.deltaTime;
+
             flowerAnimator = flowers[flowerIndex].GetComponent<Animator>();
             animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
             myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
@@ -168,7 +170,12 @@ public class AnimatorTrigger : MonoBehaviour
         //{
             flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
             stopReverseAnim = true;
-            if (isNewFlower == true)
+        if (flowerInteruptionTime >= 0.1)
+        {
+            CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
+        }
+
+        if (isNewFlower == true)
             {
                 isNewFlower = false;
                 newFlowerStarted.Raise();
@@ -248,6 +255,7 @@ public class AnimatorTrigger : MonoBehaviour
         // {
         taskStopped.Raise();
         stopReverseAnim = false;
+        flowerInteruptionTime = 0;
         flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
             if (!startPlayingSFX)

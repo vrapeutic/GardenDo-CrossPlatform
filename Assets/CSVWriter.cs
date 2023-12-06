@@ -62,7 +62,23 @@ public class CSVWriter : MonoBehaviour
     {
         TextWriter sw = new StreamWriter(filePath, true);
 
-        sw.WriteLine($"Flower{Statistics.instane.currentFlowerIndex}_Watering_Time," + flowerWateringTime);
+        sw.WriteLine($"Flower_{Statistics.instane.currentFlowerIndex + 1}_Watering_Time," + flowerWateringTime);
+        sw.Close();
+    }
+
+    public void WriteFlowerInteruptionTime(string flowerInteruptionTime)
+    {
+        TextWriter sw = new StreamWriter(filePath, true);
+
+        sw.WriteLine($"Flower_{Statistics.instane.currentFlowerIndex + 1}_Interuption_Time," + flowerInteruptionTime);
+        sw.Close();
+    }
+
+    public void WriteDistractorTime(string distractorName, string distractionTime)
+    {
+        TextWriter sw = new StreamWriter(filePath, true);
+
+        sw.WriteLine($"{distractorName}_Distraction_Time," + distractionTime);
         sw.Close();
     }
 

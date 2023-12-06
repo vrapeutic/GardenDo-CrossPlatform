@@ -34,6 +34,10 @@ public class Statistics : MonoBehaviour
     public float birdFlyingResponseTimeCounter;
     public bool birdFlyingResponseTimeCounterBegin;
     public int birdFlyingResponseTimes;
+
+    //public float flowerWateringTime = 0;
+    //public float flowerInteruptionTime;
+
     public static Statistics instane;
     private void Awake()
     {
