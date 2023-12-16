@@ -41,7 +41,9 @@ public class AnimatorTrigger : MonoBehaviour
     [SerializeField] AudioSource wateringFlowersSFX;
 
 
-    private float flowerInteruptionTime;
+    private float flowerInteruptionTime = 0;
+    private bool startInterruptionTimer = false;
+    private bool didTryToWaterAtleastOnce = false;
 
     private bool isFlower = false;
     private bool startFlowerTimer = false;
@@ -70,8 +72,6 @@ public class AnimatorTrigger : MonoBehaviour
 
         if (!stopReverseAnim)
         {
-            flowerInteruptionTime += Time.deltaTime;
-
             flowerAnimator = flowers[flowerIndex].GetComponent<Animator>();
             animationState = flowerAnimator.GetCurrentAnimatorStateInfo(0);
             myAnimatorClip = flowerAnimator.GetCurrentAnimatorClipInfo(0);
@@ -82,6 +82,11 @@ public class AnimatorTrigger : MonoBehaviour
                 currentClipTime = 0f;
                 stopReverseAnim = true;
             }
+        }
+
+        if (startInterruptionTimer && didTryToWaterAtleastOnce)
+        {
+            flowerInteruptionTime += Time.deltaTime;
         }
     }
 
@@ -102,14 +107,32 @@ public class AnimatorTrigger : MonoBehaviour
                 startFlowerTimer = true;
                 isFlower = true;
                 if (!isWatering)
+                {
                     FlowerGrowingUp(flowerIndex);
+                    startInterruptionTimer = false;
+                    didTryToWaterAtleastOnce = true;
+                    if (flowerInteruptionTime >= 0.1)
+                    {
+                        //CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
+                        Debug.Log("INTINT = " + flowerInteruptionTime);
+                        CSVWriter.Instance.WriteFlowerInteruptionTimes((Math.Round((decimal)flowerInteruptionTime, 2)).ToString());
+                    }
+                }
                 isWatering = true;
             }
             else if (isFlower)
             {
                 startFlowerTimer = false;
                 if (isWatering)
+                {
                     FlowerReverse(flowerIndex);
+                    if (didTryToWaterAtleastOnce)
+                    {
+                        flowerInteruptionTime = 0;
+                        Debug.Log("STARTED INTINT");
+                        startInterruptionTimer = true;
+                    }
+                }
                 isWatering = false;
             }
         }
@@ -170,10 +193,13 @@ public class AnimatorTrigger : MonoBehaviour
         //{
             flowerAnimator = flowers[_currrentFlowerIndix].GetComponent<Animator>();
             stopReverseAnim = true;
-        if (flowerInteruptionTime >= 0.1)
-        {
-            CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
-        }
+        //if (flowerInteruptionTime >= 0.1)
+        //{
+        //    CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
+        //    Debug.Log("INTINT = " + flowerInteruptionTime);
+        //}
+        //flowerInteruptionTime = 0;
+        //shouldCountInteruptionTime = false;
 
         if (isNewFlower == true)
             {
@@ -255,7 +281,12 @@ public class AnimatorTrigger : MonoBehaviour
         // {
         taskStopped.Raise();
         stopReverseAnim = false;
-        flowerInteruptionTime = 0;
+        //if (flowerInteruptionTime >= 0.1)
+        //{
+        //    CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
+        //}
+        //flowerInteruptionTime = 0;
+        //startInterruptionTimer = true;
         flowerAnimator = flowers[_currentFlowerIndex].GetComponent<Animator>();
 
             if (!startPlayingSFX)
@@ -332,6 +363,16 @@ public class AnimatorTrigger : MonoBehaviour
     public void FLowerFinishedWatering()
     {
         //currentFlower.FinishWatering();
+        //if (flowerInteruptionTime >= 0.1)
+        //{
+        //    CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
+        //}
+        //flowerInteruptionTime = 0;
+        //Debug.Log("FINISH INTINT");
+        //startInterruptionTimer = false;
+        didTryToWaterAtleastOnce = false;
+        flowerInteruptionTime = 0;
+
         isNewFlower = true;
         StopWaterSFX();
         WaterPlarticleSystemEmission(false);

@@ -25,8 +25,11 @@ public class FunctionsForAnimationEvents : MonoBehaviour
 
     public void ChildrenStartedWaving()
     {
-        WavingSensorController.areChildrenWaving = true;
-        wavingArea.SetActive(true);
+        if (wavingArea != null)
+        {
+            WavingSensorController.areChildrenWaving = true;
+            wavingArea.SetActive(true);
+        }
     }
 
     public void WigglePot()

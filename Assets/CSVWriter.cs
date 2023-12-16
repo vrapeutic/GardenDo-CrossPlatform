@@ -41,7 +41,8 @@ public class CSVWriter : MonoBehaviour
     private string level = "9000";
     private List<DateTime> startTimes = new List<DateTime>();
     private List<DateTime> endTimes = new List<DateTime>();
-    private List<double> interruptionTimes = new List<double>();
+    //private List<List<string>> interruptionTimes = new List<List<string>>();
+    private Dictionary<int, List<string>> interruptionTimes = new Dictionary<int, List<string>>();
 
     private void Awake()
     {
@@ -60,6 +61,8 @@ public class CSVWriter : MonoBehaviour
     {
         //filePath = Application.dataPath + "/Statistics.csv";
         filePath = Application.dataPath + "/" + System.DateTime.Now.ToFileTime() + ".csv";
+        //filePath = Application.dataPath + "/" + System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt") + ".csv";
+
         WriteStartTime();
         WriteLevel(Statistics.instane.level.ToString());
     }
@@ -141,6 +144,23 @@ public class CSVWriter : MonoBehaviour
         endTimes.Add(flowerEndTime);
     }
 
+    public void WriteFlowerInteruptionTimes(string interruptionTime)
+    {
+        int key = Statistics.instane.currentFlowerIndex;
+        // Check if the key exists in the dictionary
+        if (interruptionTimes.ContainsKey(Statistics.instane.currentFlowerIndex))
+        {
+            // Retrieve the list, add the new item, and update the dictionary
+            List<string> originalList = interruptionTimes[key];
+            originalList.Add(interruptionTime);
+        }
+        else
+        {
+            // If the key doesn't exist, create a new entry with an empty list
+            interruptionTimes[key] = new List<string> { interruptionTime };
+        }
+    }
+
     public void WriteCSV()
     {
         TextWriter sw = new StreamWriter(filePath, true);
@@ -148,7 +168,14 @@ public class CSVWriter : MonoBehaviour
         sw.WriteLine("Target Starting Time" + ", " + "Target Hitting Time " + ", " + "Interruption Durations");
         for (int i = 0; i < endTimes.Count; i++)
         {
-            sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString()); // + ", " + interruptionTimes[i].ToString());
+            if (interruptionTimes.TryGetValue(i, out List<string> listOfInterruptions))
+            {
+                sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString() + ", " + string.Join(",", interruptionTimes[i]));
+            }
+            else
+            {
+                sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString());
+            }
         }
         ////for (int i = 0; i < interruptionDurations.Count; i++)
         ////{
