@@ -41,8 +41,9 @@ public class CSVWriter : MonoBehaviour
     private string level = "9000";
     private List<DateTime> startTimes = new List<DateTime>();
     private List<DateTime> endTimes = new List<DateTime>();
-    //private List<List<string>> interruptionTimes = new List<List<string>>();
     private Dictionary<int, List<string>> interruptionTimes = new Dictionary<int, List<string>>();
+    private List<string> distractorNames = new List<string>();
+    private List<string> distractionTimes = new List<string>();
 
     private void Awake()
     {
@@ -64,7 +65,8 @@ public class CSVWriter : MonoBehaviour
         //filePath = Application.dataPath + "/" + System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt") + ".csv";
 
         WriteStartTime();
-        WriteLevel(Statistics.instane.level.ToString());
+        //WriteLevel(Statistics.instane.level.ToString());
+        SaveLevel(Statistics.instane.level.ToString());
     }
 
     private void OnApplicationQuit()
@@ -106,12 +108,10 @@ public class CSVWriter : MonoBehaviour
 
     public void WriteLevel(string level)
     {
-        //TextWriter sw = new StreamWriter(filePath, true);
+        TextWriter sw = new StreamWriter(filePath, true);
 
-        //sw.WriteLine("Level," + level);
-        //sw.Close();
-        this.level = level;
-
+        sw.WriteLine("Level," + level);
+        sw.Close();
     }
 
     public void WriteFlowerWateringTime(string flowerWateringTime)
@@ -138,13 +138,18 @@ public class CSVWriter : MonoBehaviour
         sw.Close();
     }
 
-    public void WriteFlowerStartAndEndTimes(DateTime flowerStartTime, DateTime flowerEndTime)
+    public void SaveLevel(string level)
+    {
+        this.level = level;
+    }
+
+    public void SaveFlowerStartAndEndTimes(DateTime flowerStartTime, DateTime flowerEndTime)
     {
         startTimes.Add(flowerStartTime);
         endTimes.Add(flowerEndTime);
     }
 
-    public void WriteFlowerInteruptionTimes(string interruptionTime)
+    public void SaveFlowerInteruptionTimes(string interruptionTime)
     {
         int key = Statistics.instane.currentFlowerIndex;
         // Check if the key exists in the dictionary
@@ -161,31 +166,37 @@ public class CSVWriter : MonoBehaviour
         }
     }
 
+    public void SaveDistractorTime(string distractorName, string distractionTime)
+    {
+        distractorNames.Add(distractorName);
+        distractionTimes.Add(distractionTime);
+    }
+
     public void WriteCSV()
     {
         TextWriter sw = new StreamWriter(filePath, true);
-        sw.WriteLine("Garden_Do, " + level);
-        sw.WriteLine("Target Starting Time" + ", " + "Target Hitting Time " + ", " + "Interruption Durations");
+        sw.WriteLine("Garden_Do," + level);
+        sw.WriteLine("Target Starting Time" + "," + "Target Hitting Time " + "," + "Interruption Durations");
         for (int i = 0; i < endTimes.Count; i++)
         {
             if (interruptionTimes.TryGetValue(i, out List<string> listOfInterruptions))
             {
-                sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString() + ", " + string.Join(",", interruptionTimes[i]));
+                sw.WriteLine(startTimes[i].ToString() + "," + endTimes[i].ToString() + "," + string.Join(",", interruptionTimes[i]));
             }
             else
             {
-                sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString());
+                sw.WriteLine(startTimes[i].ToString() + "," + endTimes[i].ToString());
             }
         }
-        ////for (int i = 0; i < interruptionDurations.Count; i++)
-        ////{
-        ////    tw.WriteLine(interruptionDurations[i].ToString());
-        ////}
-        //sw.WriteLine("Distractor Name          " + ", " + "Time Following It");
-        //for (int i = 0; i < DistractorsName.Count; i++)
+        //for (int i = 0; i < interruptionDurations.Count; i++)
         //{
-        //    sw.WriteLine(DistractorsName[i].ToFixedString(25, ' ') + ", " + TimeFollowingDistractors[i].ToString());
+        //    tw.WriteLine(interruptionDurations[i].ToString());
         //}
+        sw.WriteLine("Distractor Name          " + "," + "Time Following It");
+        for (int i = 0; i < distractorNames.Count; i++)
+        {
+            sw.WriteLine(distractorNames[i] + "," + distractionTimes[i]);
+        }
         sw.Close();
     }
 

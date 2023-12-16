@@ -60,7 +60,7 @@ public class Flower : MonoBehaviour
 
         //CSVWriter.Instance.WriteFlowerWateringTime(flowerWateringTime.ToString());
         flowerEndTime = System.DateTime.Now;
-        CSVWriter.Instance.WriteFlowerStartAndEndTimes(flowerStartTime, flowerEndTime);
+        CSVWriter.Instance.SaveFlowerStartAndEndTimes(flowerStartTime, flowerEndTime);
 
     }
 

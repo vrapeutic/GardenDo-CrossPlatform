@@ -75,12 +75,12 @@ public class StartWateringSensorForCamera : MonoBehaviour
 
     public void OnExceedInerruptionThreshold()
     {
-        if (interruptionThreshold == 3)
-        {
-            stats.tasksWithLimitiedInterruptions++;
-            dataSet.SetHitsCounterEnabled(true);
-        }
-        Debug.Log("TaR : Task with limited interruption : " + stats.tasksWithLimitiedInterruptions);
+        //if (interruptionThreshold == 3)
+        //{
+        //    stats.tasksWithLimitiedInterruptions++;
+        //    dataSet.SetHitsCounterEnabled(true);
+        //}
+        //Debug.Log("TaR : Task with limited interruption : " + stats.tasksWithLimitiedInterruptions);
     }
 
 

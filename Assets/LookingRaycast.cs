@@ -47,7 +47,9 @@ public class LookingRaycast : MonoBehaviour
         else if (hitFlag)
         {
             Debug.Log("Exited distractor: " + distractorName + ", Time: " + timer);
-            CSVWriter.Instance.WriteDistractorTime(distractorName: distractorName, distractionTime: timer.ToString());
+            //CSVWriter.Instance.WriteDistractorTime(distractorName: distractorName, distractionTime: timer.ToString());
+            if (timer >= 0.1)
+            CSVWriter.Instance.SaveDistractorTime(distractorName: distractorName, distractionTime: System.Math.Round((decimal)timer, 2).ToString());
             distractorName = "";
             timer = 0;
             hitFlag = false;
