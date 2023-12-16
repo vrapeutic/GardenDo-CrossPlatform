@@ -1,61 +1,114 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 public class CSVWriter : MonoBehaviour
 {
-    static string filePath;
+    //private static CSVWriter instance;
+
+    //// Ensure only one instance of the class exists
+    //public static CSVWriter Instance
+    //{
+    //    get
+    //    {
+    //        if (instance == null)
+    //        {
+    //            instance = new CSVWriter();
+    //        }
+    //        return instance;
+    //    }
+    //}
+
+    //private CSVWriter() { } // Private constructor to prevent instantiation
 
     private static CSVWriter instance;
 
-    // Ensure only one instance of the class exists
     public static CSVWriter Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = new CSVWriter();
+                GameObject singletonObject = new GameObject("CSVWriter");
+                instance = singletonObject.AddComponent<CSVWriter>();
             }
             return instance;
         }
     }
 
-    private CSVWriter() { } // Private constructor to prevent instantiation
+    static string filePath;
+    private string level = "9000";
+    private List<DateTime> startTimes = new List<DateTime>();
+    private List<DateTime> endTimes = new List<DateTime>();
+    private List<double> interruptionTimes = new List<double>();
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+    }
 
     void Start()
     {
-        filePath = Application.dataPath + "/Statistics.csv";
+        //filePath = Application.dataPath + "/Statistics.csv";
+        filePath = Application.dataPath + "/" + System.DateTime.Now.ToFileTime() + ".csv";
         WriteStartTime();
         WriteLevel(Statistics.instane.level.ToString());
     }
 
     private void OnApplicationQuit()
     {
-        WriteEndTime();
+        //WriteEndTime();
+
+       WriteCSV();
     }
+
+    //// Reset data when a new scene is loaded
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    // Reset your data here
+    //    score = 0;
+    //    playerName = "DefaultPlayer";
+
+    //    Debug.Log("Data Reset on Scene Change");
+    //}
 
     public void WriteStartTime()
     {
-        TextWriter sw = new StreamWriter(filePath, true);
-        string startTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
-        sw.WriteLine("Garden_Do_Session_Start_Time," + startTime);
-        sw.Close();
+        //TextWriter sw = new StreamWriter(filePath, true);
+        //string startTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
+        //sw.WriteLine("Garden_Do_Session_Start_Time," + startTime);
+        //sw.Close();
+
+        //startTimes.Add(System.DateTime.Now);
     }
 
     public void WriteEndTime()
     {
-        TextWriter sw = new StreamWriter(filePath, true);
-        string endTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
-        sw.WriteLine("Garden_Do_Session_End_Time," + endTime);
-        sw.Close();
+        //TextWriter sw = new StreamWriter(filePath, true);
+        //string endTime = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
+        //sw.WriteLine("Garden_Do_Session_End_Time," + endTime);
+        //sw.Close();
+
+        //endTimes.Add(System.DateTime.Now);
     }
 
     public void WriteLevel(string level)
     {
-        TextWriter sw = new StreamWriter(filePath, true);
+        //TextWriter sw = new StreamWriter(filePath, true);
 
-        sw.WriteLine("Level," + level);
-        sw.Close();
+        //sw.WriteLine("Level," + level);
+        //sw.Close();
+        this.level = level;
+
     }
 
     public void WriteFlowerWateringTime(string flowerWateringTime)
@@ -79,6 +132,33 @@ public class CSVWriter : MonoBehaviour
         TextWriter sw = new StreamWriter(filePath, true);
 
         sw.WriteLine($"{distractorName}_Distraction_Time," + distractionTime);
+        sw.Close();
+    }
+
+    public void WriteFlowerStartAndEndTimes(DateTime flowerStartTime, DateTime flowerEndTime)
+    {
+        startTimes.Add(flowerStartTime);
+        endTimes.Add(flowerEndTime);
+    }
+
+    public void WriteCSV()
+    {
+        TextWriter sw = new StreamWriter(filePath, true);
+        sw.WriteLine("Garden_Do, " + level);
+        sw.WriteLine("Target Starting Time" + ", " + "Target Hitting Time " + ", " + "Interruption Durations");
+        for (int i = 0; i < endTimes.Count; i++)
+        {
+            sw.WriteLine(startTimes[i].ToString() + ", " + endTimes[i].ToString()); // + ", " + interruptionTimes[i].ToString());
+        }
+        ////for (int i = 0; i < interruptionDurations.Count; i++)
+        ////{
+        ////    tw.WriteLine(interruptionDurations[i].ToString());
+        ////}
+        //sw.WriteLine("Distractor Name          " + ", " + "Time Following It");
+        //for (int i = 0; i < DistractorsName.Count; i++)
+        //{
+        //    sw.WriteLine(DistractorsName[i].ToFixedString(25, ' ') + ", " + TimeFollowingDistractors[i].ToString());
+        //}
         sw.Close();
     }
 

@@ -13,6 +13,8 @@ public class Flower : MonoBehaviour
     private bool isPlayerLooking;
     private bool isBucketWatering;
     private float flowerWateringTime;
+    private System.DateTime flowerStartTime;
+    private System.DateTime flowerEndTime;
 
     private void Awake()
     {
@@ -40,6 +42,7 @@ public class Flower : MonoBehaviour
         myAnimator.speed = 1;
         myBird.GetComponent<Collider>().enabled = true;
         flowerWateringTime = 0;
+        flowerStartTime = System.DateTime.Now;
     }
     public void FinishWatering()
     {
@@ -54,7 +57,11 @@ public class Flower : MonoBehaviour
         myAnimator.enabled = false;
         cameraLookingSensor.GetComponent<StartWateringSensorForCamera>().ResetValues();
         bucketWateringSensor.GetComponent<StartWateringSensorForBucket>().ResetValues();
-        CSVWriter.Instance.WriteFlowerWateringTime(flowerWateringTime.ToString());
+
+        //CSVWriter.Instance.WriteFlowerWateringTime(flowerWateringTime.ToString());
+        flowerEndTime = System.DateTime.Now;
+        CSVWriter.Instance.WriteFlowerStartAndEndTimes(flowerStartTime, flowerEndTime);
+
     }
 
     public void UpdateLookingState(bool _isPlayerLooking)
