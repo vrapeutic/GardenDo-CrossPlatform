@@ -21,7 +21,7 @@ public class LookingRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
             // Check if the ray hits a collider named "distractor"
-            if (hit.collider.CompareTag("Distractor"))
+            if (hit.collider.CompareTag("Distractor") || hit.collider.CompareTag("Bird"))
             {
                 Debug.Log("Ray hit distractor: " + hit.collider.name);
 
