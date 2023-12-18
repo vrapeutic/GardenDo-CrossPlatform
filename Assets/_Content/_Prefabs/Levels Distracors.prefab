@@ -87449,6 +87449,9 @@ MonoBehaviour:
   level6Distractor: {fileID: 5394508928643963988}
   level7Distractor:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   level8Distractor: {fileID: 9167590120117196683}
   level9Distractor: {fileID: 9044149994211713755}
   secondLevelDistractorsAudioSources:
@@ -104760,7 +104763,7 @@ GameObject:
   - component: {fileID: 7392364764528928458}
   - component: {fileID: 105962202711092467}
   m_Layer: 0
-  m_Name: littleBird
+  m_Name: Shoo_Bird
   m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
