@@ -41584,7 +41584,7 @@ GameObject:
   - component: {fileID: 3763585389883852888}
   m_Layer: 0
   m_Name: Children
-  m_TagString: Untagged
+  m_TagString: Distractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
