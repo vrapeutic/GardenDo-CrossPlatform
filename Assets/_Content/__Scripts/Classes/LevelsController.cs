@@ -8,6 +8,7 @@ public class LevelsController : MonoBehaviour
     [SerializeField] GameObject butterfly;
     [SerializeField] GameObject bird;
     private static float timer = 0f;
+    public static float blockingTimer = 0f;
     [SerializeField] public float timeBetweenDistractors = 30f;
     [SerializeField] GameObject level4Distractor; //9 levels, 1-3 no distractors, 6 distractors total for levels 4,5,6,7,8,9
     [SerializeField] GameObject level5Distractor;
@@ -18,6 +19,7 @@ public class LevelsController : MonoBehaviour
     [SerializeField] AudioSource[] secondLevelDistractorsAudioSources;
 
     public static bool isWaitingForInteraction = false;
+    public static bool isBlockingInteraction = false;
     Statistics stats;
     void Start()
     {
@@ -57,6 +59,9 @@ public class LevelsController : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+
+        if (isBlockingInteraction)
+            blockingTimer += Time.deltaTime;
 
         if (timer >= timeBetweenDistractors && !isWaitingForInteraction)
         {
@@ -221,6 +226,8 @@ public class LevelsController : MonoBehaviour
     {
         timer = 0;
         isWaitingForInteraction = false;
+        blockingTimer = 0;
+        isBlockingInteraction = false;
     }
 
     public void EnableLevel7Distractor()

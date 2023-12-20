@@ -40,6 +40,7 @@ public class BirdController : MonoBehaviour
             stats.birdFlyingResponseTimeCounterBegin = true;
             isBirdOnFlower = true;
             IdleBirdAnim();
+            LevelsController.isBlockingInteraction = true;
             //dataSet.SetDistractorResponseTimer(true);
             //dataSet.SetNoOfDistractorHitsCounter(true);
         }

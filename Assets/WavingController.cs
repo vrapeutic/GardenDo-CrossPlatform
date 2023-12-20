@@ -31,6 +31,8 @@ public class WavingController : MonoBehaviour
             {
                 WavingSensorController.areChildrenWaving = false;
                 childrensAnimator.SetTrigger("Wave");
+                Debug.Log("FIXED distractor: " + "Children" + ", Time: " + LevelsController.blockingTimer);
+                CSVWriter.Instance.SaveDistractorBlockingTime("Children", System.Math.Round((decimal)LevelsController.blockingTimer, 2).ToString());
                 LevelsController.DidInteracttWithDistractor();
                 this.gameObject.SetActive(false);
             }

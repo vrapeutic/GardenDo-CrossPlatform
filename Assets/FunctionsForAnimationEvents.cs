@@ -29,12 +29,14 @@ public class FunctionsForAnimationEvents : MonoBehaviour
         {
             WavingSensorController.areChildrenWaving = true;
             wavingArea.SetActive(true);
+            LevelsController.isBlockingInteraction = true;
         }
     }
 
     public void WigglePot()
     {
         ResetPotController.isPotKnockedOver = true;
+        LevelsController.isBlockingInteraction = true;
     }
 
     public void ResetPot()

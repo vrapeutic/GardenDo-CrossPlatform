@@ -19513,7 +19513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4314437232900328789}
   - component: {fileID: 6818275554401377165}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104834,8 +104834,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16232002, y: 0.10288572, z: 0.12051718}
-  m_Center: {x: 0.0037700932, y: 0.046692293, z: 0.004701575}
+  m_Size: {x: 0.16232002, y: 0.111385666, z: 0.12051718}
+  m_Center: {x: 0.0037700932, y: 0.04244232, z: 0.004701575}
 --- !u!114 &105962202711092467
 MonoBehaviour:
   m_ObjectHideFlags: 0

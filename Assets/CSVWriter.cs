@@ -44,6 +44,8 @@ public class CSVWriter : MonoBehaviour
     private Dictionary<int, List<string>> interruptionTimes = new Dictionary<int, List<string>>();
     private List<string> distractorNames = new List<string>();
     private List<string> distractionTimes = new List<string>();
+    private List<string> adaptiveDistractorNames = new List<string>();
+    private List<string> blockingTimes = new List<string>();
 
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class CSVWriter : MonoBehaviour
     void Start()
     {
         //filePath = Application.dataPath + "/Statistics.csv";
-        filePath = Application.dataPath + "/" + System.DateTime.Now.ToFileTime() + ".csv";
+        filePath = Application.persistentDataPath + $"/{DateTime.Now:yyyy_MM_dd-HH_mm_ss}.csv";
         //filePath = Application.dataPath + "/" + System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt") + ".csv";
 
         WriteStartTime();
@@ -172,6 +174,12 @@ public class CSVWriter : MonoBehaviour
         distractionTimes.Add(distractionTime);
     }
 
+    public void SaveDistractorBlockingTime(string adaptiveDistractorName, string blockingTime)
+    {
+        adaptiveDistractorNames.Add(adaptiveDistractorName);
+        blockingTimes.Add(blockingTime);
+    }
+
     public void WriteCSV()
     {
         TextWriter sw = new StreamWriter(filePath, true);
@@ -192,10 +200,20 @@ public class CSVWriter : MonoBehaviour
         //{
         //    tw.WriteLine(interruptionDurations[i].ToString());
         //}
-        sw.WriteLine("Distractor Name          " + "," + "Time Following It");
+        sw.WriteLine("Distractor Name" + "," + "Time Following It");
         for (int i = 0; i < distractorNames.Count; i++)
         {
             sw.WriteLine(distractorNames[i] + "," + distractionTimes[i]);
+        }
+        //sw.Close();
+
+        if (adaptiveDistractorNames.Count > 0)
+        {
+            sw.WriteLine("Distractor Name" + "," + "Blocking Time");
+            for (int i = 0; i < adaptiveDistractorNames.Count; i++)
+            {
+                sw.WriteLine(adaptiveDistractorNames[i] + "," + blockingTimes[i]);
+            }
         }
         sw.Close();
     }

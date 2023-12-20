@@ -28,6 +28,8 @@ public class BirdMovementTrigger : MonoBehaviour
                 Debug.Log("Response Time : Bird Response Times : " + stats.birdFlyingResponseTimes);
                 BirdController.isBirdOnFlower = false;
                 bird.gameObject.GetComponent<BoxCollider>().enabled = false;
+                Debug.Log("FIXED distractor: " + this.gameObject.name + ", Time: " + LevelsController.blockingTimer);
+                CSVWriter.Instance.SaveDistractorBlockingTime(this.gameObject.name, System.Math.Round((decimal)LevelsController.blockingTimer, 2).ToString());
                 LevelsController.DidInteracttWithDistractor();
                 FlyingBirdAnim();
             }
