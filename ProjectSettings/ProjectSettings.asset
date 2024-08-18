@@ -140,9 +140,9 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: e0a60859808fcd14cbc94151b81359b4, type: 2}
   - {fileID: 11400000, guid: 4c5dec813e7c9d742b5b74e966e8ae4b, type: 2}
   - {fileID: 11400000, guid: a2a41c6a616c9e44b97fbccb8ce12746, type: 2}
-  - {fileID: 11400000, guid: e0a60859808fcd14cbc94151b81359b4, type: 2}
   - {fileID: -8566193857612030659, guid: 664001d9690a2964196b79854f94b8c8, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -248,11 +248,11 @@ PlayerSettings:
   clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
   templatePackageId: com.unity.template.3d@1.3.0
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 0
+  useCustomMainManifest: 1
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
+  useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 0
-  useCustomBaseGradleTemplate: 1
+  useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
