@@ -47,6 +47,10 @@ public class CSVWriter : MonoBehaviour
     private List<string> adaptiveDistractorNames = new List<string>();
     private List<string> blockingTimes = new List<string>();
 
+    [SerializeField] StringVariable fileName;
+    [SerializeField] BoolValue isReqToGenerateCSVFile;
+    [SerializeField] BridgePluginInitializer bridge;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -63,19 +67,48 @@ public class CSVWriter : MonoBehaviour
     void Start()
     {
         //filePath = Application.dataPath + "/Statistics.csv";
-        filePath = Application.persistentDataPath + $"/{DateTime.Now:yyyy_MM_dd-HH_mm_ss}.csv";
-        //filePath = Application.dataPath + "/" + System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt") + ".csv";
+        //filePath = Application.persistentDataPath + $"/{DateTime.Now:yyyy_MM_dd-HH_mm_ss}.csv";
+        filePath = CreateDirectory(GetDownloadFolder() + "/VRapeuticSessions/") + fileName.Value + ".csv";
 
         WriteStartTime();
         //WriteLevel(Statistics.instane.level.ToString());
         SaveLevel(Statistics.instane.level.ToString());
     }
 
-    private void OnApplicationQuit()
-    {
-        //WriteEndTime();
+    //private void OnApplicationQuit()
+    //{
+    //    //WriteEndTime();
 
-       WriteCSV();
+    //   WriteCSV();
+    //}
+
+    public string GetDownloadFolder()
+    {
+        string[] temp = (Application.persistentDataPath.Replace("Android", "")).Split(new string[] { "//" }, System.StringSplitOptions.None);
+        return (temp[0] + "/Download");
+        //return (temp[0] + "/Pictures");
+    }
+
+    public string CreateDirectory(string dir)
+    {
+        if (!Directory.Exists(dir))
+        {
+            var directory = Directory.CreateDirectory(dir);
+        }
+        if (!SetEveryoneAccess(dir)) Debug.Log("!!!!can`t set Access to everyone");
+        return dir;
+    }
+
+    bool SetEveryoneAccess(string dirName)
+    {
+        try
+        {
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 
     //// Reset data when a new scene is loaded
@@ -216,6 +249,8 @@ public class CSVWriter : MonoBehaviour
             }
         }
         sw.Close();
+
+        if (isReqToGenerateCSVFile) bridge.SendIntent(filePath);
     }
 
     //public void AppendToCSV(string filePath, string[][] newData)

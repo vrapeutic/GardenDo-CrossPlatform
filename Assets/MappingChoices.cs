@@ -39,7 +39,7 @@ public class MappingChoices : MonoBehaviour
         // settings regardless of level
         menuController.setLanguage(1); // default for now
         menuController.SetEnviroment(isGarden);
-        menuController.SetCompleteCourse(true); // default for now
+        menuController.SetCompleteCourse(false); // default for now
         menuController.SetVisualOnly(false); // default for now
         menuController.ChooseCharacter(Random.Range(0, 2));
         menuController.SetWateringCycle(4);
