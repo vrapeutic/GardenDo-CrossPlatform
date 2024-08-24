@@ -140,9 +140,9 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: e0a60859808fcd14cbc94151b81359b4, type: 2}
   - {fileID: 11400000, guid: 4c5dec813e7c9d742b5b74e966e8ae4b, type: 2}
   - {fileID: 11400000, guid: a2a41c6a616c9e44b97fbccb8ce12746, type: 2}
+  - {fileID: 11400000, guid: e0a60859808fcd14cbc94151b81359b4, type: 2}
   - {fileID: -8566193857612030659, guid: 664001d9690a2964196b79854f94b8c8, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -162,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.VRapeutic.GardenDo
+    Android: com.vrapeutic.gardendo
     Standalone: com.oculus.UnitySample
     Windows Store Apps: com.oculus.UnitySample
     iPhone: com.oculus.UnitySample

@@ -12,15 +12,15 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         stats = Statistics.instane;
-        InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
-        NetworkManager.InvokeClientMethod("LoadSceneRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("setLevelRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("LoadMainMenuRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("ChooseCharacterRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("SetCompleteCourseRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("SetWateringCycleRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("SetEnviromentRPC", invokationManager);
-        NetworkManager.InvokeClientMethod("ExitModuleRPC", invokationManager);
+        //InvokationManager invokationManager = new InvokationManager(this, this.gameObject.name);
+        //NetworkManager.InvokeClientMethod("LoadSceneRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("setLevelRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("LoadMainMenuRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("ChooseCharacterRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("SetCompleteCourseRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("SetWateringCycleRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("SetEnviromentRPC", invokationManager);
+        //NetworkManager.InvokeClientMethod("ExitModuleRPC", invokationManager);
         stats.currentFlowerIndex = 0;
     }
 
@@ -42,6 +42,23 @@ public class MenuController : MonoBehaviour
         {
             instruction[i].SetActive(false);
         }
+    }
+
+    public void setLanguage(int languageNO)
+    {
+        Statistics.languageIndex = languageNO;
+    }
+
+    public void SetFlowerGrowthPeriod(int totalSceneSeconds)
+    {
+        stats.totalFlowerGrowth = totalSceneSeconds;
+        float eachFlowerGrowthPeriod = (float)stats.totalFlowerGrowth / 4f;
+        stats.growthSpeed = 0.5f; //(float)eachFlowerGrowthPeriod / 10f;
+    }
+
+    public void SetCurrentFlowerIndeex(int flowerIndex)
+    {
+        stats.currentFlowerIndex = 0;
     }
 
     public void ChangeMenue(GameObject MenueToAppear)

@@ -8,15 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Content/___Scenes/Session.unity
     guid: 534d362804046ad4aa2fadd4350f6f0f
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Content/___Scenes/Main Menu.unity
     guid: cef3e4df3e8af6640978fdb63d5946dc
   - enabled: 1
-    path: Assets/_Content/___Scenes/Balacony.unity
-    guid: b29ed61627608d64186122d2ceea6ad7
+    path: Assets/Assets/_Scenes/SystemLobby.unity
+    guid: 22469849f30d77c4fb8e668196a8ee85
   - enabled: 1
     path: Assets/_Content/___Scenes/Garden.unity
     guid: bc93c26384792ed469bb5b15eb82d9a4
+  - enabled: 1
+    path: Assets/_Content/___Scenes/Balacony.unity
+    guid: b29ed61627608d64186122d2ceea6ad7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a2a41c6a616c9e44b97fbccb8ce12746,
       type: 2}
