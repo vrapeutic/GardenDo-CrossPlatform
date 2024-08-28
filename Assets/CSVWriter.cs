@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public class CSVWriter : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class CSVWriter : MonoBehaviour
     private string level = "9000";
     private List<DateTime> startTimes = new List<DateTime>();
     private List<DateTime> endTimes = new List<DateTime>();
-    private Dictionary<int, List<string>> interruptionTimes = new Dictionary<int, List<string>>();
+    private Dictionary<int, List<decimal>> interruptionTimes = new Dictionary<int, List<decimal>>();
     private List<string> distractorNames = new List<string>();
     private List<string> distractionTimes = new List<string>();
     private List<string> adaptiveDistractorNames = new List<string>();
@@ -184,20 +185,20 @@ public class CSVWriter : MonoBehaviour
         endTimes.Add(flowerEndTime);
     }
 
-    public void SaveFlowerInteruptionTimes(string interruptionTime)
+    public void SaveFlowerInteruptionTimes(decimal interruptionTime)
     {
         int key = Statistics.instane.currentFlowerIndex;
         // Check if the key exists in the dictionary
         if (interruptionTimes.ContainsKey(Statistics.instane.currentFlowerIndex))
         {
             // Retrieve the list, add the new item, and update the dictionary
-            List<string> originalList = interruptionTimes[key];
+            List<decimal> originalList = interruptionTimes[key];
             originalList.Add(interruptionTime);
         }
         else
         {
             // If the key doesn't exist, create a new entry with an empty list
-            interruptionTimes[key] = new List<string> { interruptionTime };
+            interruptionTimes[key] = new List<decimal> { interruptionTime };
         }
     }
 
@@ -220,9 +221,9 @@ public class CSVWriter : MonoBehaviour
         sw.WriteLine("Target Starting Time" + "," + "Target Hitting Time " + "," + "Interruption Durations");
         for (int i = 0; i < endTimes.Count; i++)
         {
-            if (interruptionTimes.TryGetValue(i, out List<string> listOfInterruptions))
+            if (interruptionTimes.TryGetValue(i, out List<decimal> listOfInterruptions))
             {
-                sw.WriteLine(startTimes[i].ToString() + "," + endTimes[i].ToString() + "," + string.Join(",", interruptionTimes[i]));
+                sw.WriteLine(startTimes[i].ToString() + "," + endTimes[i].ToString() + "," + interruptionTimes[i].Sum().ToString());
             }
             else
             {

@@ -115,7 +115,7 @@ public class AnimatorTrigger : MonoBehaviour
                     {
                         //CSVWriter.Instance.WriteFlowerInteruptionTime(flowerInteruptionTime.ToString());
                         Debug.Log("INTINT = " + flowerInteruptionTime);
-                        CSVWriter.Instance.SaveFlowerInteruptionTimes(Math.Round((decimal)flowerInteruptionTime, 2).ToString());
+                        CSVWriter.Instance.SaveFlowerInteruptionTimes(Math.Round((decimal)flowerInteruptionTime, 2));
                     }
                 }
                 isWatering = true;
